@@ -230,7 +230,6 @@
             </div>
         </div>
 
-
         <div class="header-middle">
             <div class="container">
                 <div class="row align-items-center">
