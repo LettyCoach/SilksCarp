@@ -218,7 +218,7 @@
                             </div>
                             <ul class="user-login">
                                 <li>
-                                    <a href="login.html">Sign In</a>
+                                    <a href="{{ route('login') }}">Sign In</a>
                                 </li>
                                 <li>
                                     <a href="register.html">Register</a>
