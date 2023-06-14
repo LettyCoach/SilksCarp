@@ -278,80 +278,51 @@
             <li class="nav-item">
                 <a class="nav-link " href="{{ route('home') }}">
                     <i class="bi bi-grid"></i>
-                    <span>お知らせ</span>
+                    <span>Dashboard</span>
                 </a>
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('home') }}">
-                    <i class="bi bi-grid"></i>
-                    <span>購入</span>
+                    <i class="bi bi-boxes"></i>
+                    <span>商品</span>
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('home') }}">
-                    <i class="bi bi-grid"></i>
-                    <span>売却</span>
+                    <i class="bi bi-clipboard2-pulse"></i>
+                    <span>販売情報</span>
                 </a>
-            </li>
-
-            <li class="nav-heading">マイページ</li>        
+            </li>        
             
             <li class="nav-item">
                 <a class="nav-link collapsed" href="users-profile.html">
-                    <i class="bi bi-person"></i>
-                    <span>所有一覧</span>
+                    <i class="bi bi-bank"></i>
+                    <span>出金情報</span>
                 </a>
             </li>
             
             <li class="nav-item">
                 <a class="nav-link collapsed" href="users-profile.html">
-                    <i class="bi bi-person"></i>
-                    <span>ユーザー情報</span>
+                    <i class="bi bi-bell-fill"></i>
+                    <span>お知らせ管理</span>
                 </a>
             </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse"
-                    href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>お金管理</span><i
-                        class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="components-badges.html">
-                            <i class="bi bi-circle"></i><span>出金</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="components-badges.html">
-                            <i class="bi bi-circle"></i><span>銀行口座情</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="components-badges.html">
-                            <i class="bi bi-circle"></i><span>クレジット</span>
-                        </a>
-                    </li>
-                </ul>
-            </li><!-- End Components Nav -->
-
-
+            
             <li class="nav-item">
                 <a class="nav-link collapsed" href="users-profile.html">
-                    <i class="bi bi-person"></i>
-                    <span>お問い合わせ</span>
+                    <i class="bi bi-chat-left-text"></i>
+                    <span>メッセージ管理</span>
                 </a>
             </li>
-
+            
             <li class="nav-item">
                 <a class="nav-link collapsed" href="users-profile.html">
-                    <i class="bi bi-person"></i>
-                    <span>ヘルプ</span>
+                    <i class="bi bi-question-circle"></i>
+                    <span>ヘルプ管理</span>
                 </a>
             </li>
-
         </ul>
 
     </aside><!-- End Sidebar-->
