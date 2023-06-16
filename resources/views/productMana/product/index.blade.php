@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+    <link rel="stylesheet" href="{{ asset('assets/css/productMana/product.css') }}">
     <div class="pagetitle">
         <h1>商品</h1>
         <nav>
@@ -17,93 +18,84 @@
                 <div class="panel-heading">
                     <div class="d-flex justify-content-between flex-wrap items-center mb-2 mt-4">
                         <div class="rounded-md">
-                            <select name="pageSize" class="form-select" id="pageSize" onchange="viewDataTable()">
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                                <option value="15" selected>15</option>
-                                <option value="20">20</option>
+                            <select name="pageSize" class="form-select" id="pageSize" onchange="viewIndex()">
+                                @foreach (Config::get('app.pageSizes') as $value)
+                                    <option value="{{ $value }}" {{ $value == $pageSize ? 'selected' : '' }}>
+                                        {{ $value }}</option>
+                                @endforeach
                             </select>
                         </div>
 
-                        <button class="rounded btn btn-danger" onclick="showDataModal()">
+                        <a class="rounded btn btn-danger" href="{{ route('product.create') }}">
                             <i class="fa fa-plus"></i>&nbsp;
                             商品追加
-                        </button>
+                        </a>
                     </div>
                 </div>
                 <div class="panel-body">
                     <div style="min-height: calc(100vh - 360px)">
                         <div class="table-responsive" id="data_div">
+                            <table id="dtBasicExample" class="table table-striped table-fixed table-bordered table-sm"
+                                cellspacing="0" style="min-width: 1000px; overflow-x: scroll; width:100%">
+                                <thead style="height:47px;">
+                                    <tr class="align-middle">
+                                        <th class="text-center">No</th>
+                                        <th class="text-center">写真</th>
+                                        <th class="text-center">タイトル</th>
+                                        <th class="text-center">価格</th>
+                                        <th class="text-center">説明</th>
+                                        <th class="text-center">仕入れ値</th>
+                                        <th class="text-center">仕入先URL</th>
+                                        <th class="text-center">変更</th>
+                                        <th class="text-center">削除</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($models as $i => $model)
+                                        <tr class="align-middle">
+                                            <td class="text-center"><span class="">{{ $i + 1 }}</span></td>
+                                            <td class="text-xs text-center">{{ $model->name }}</td>
+                                            <td class="text-center">{{ $model->name }}</td>
+                                            <td class="text-center">{{ $model->price }}</td>
+                                            <td class="text-center">{{ $model->description }}</td>
+                                            <td class="text-center">{{ $model->cost }}</td>
+                                            <td class="text-center">{{ $model->supplier_url }}</td>
+                                            <td class="text-center">
+                                                <a href="javascript:;register(1, 1)"><i class="bi-pencil-square"></i></a>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="javascript:;cancel(1)"><i class="bi-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
 
+                                    @if ($models->count() == 0)
+                                        <tr class="align-middle">
+                                            <td class="text-center" colspan='11'>
+                                                データはありません。
+                                            </td>
+                                        </tr>
+                                    @endif
+                                </tbody>
+                            </table>
+                            <div class="" style="min-width: 700px">
+                                {{ $models->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="modal fade" id="dataModal">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">出荷指示追加</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <p id="oxId" class="d-none"></p>
-                        <div class="row mb-2">
-                            <div class="col">
-                                <label for="">牧場選択</label>
-                                <input type="text" id="oxNameById" class="form-control rounded" disabled />
-                            </div>
-                            <div class="col">
-                                <label for="">運送会社選択</label>
-                                <input type="text" id="oxNameById" class="form-control rounded" disabled />
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col">
-                                <label for="">牛選択</label>
-                                <input type="text" id="oxNameById" class="form-control rounded" disabled />
-                            </div>
-                            <div class="col">
-                                <label for="">和牛登録名</label>
-                                <input type="text" id="oxNameById" class="form-control rounded" disabled />
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col">
-                                <label for="">出荷日</label>
-                                <input type="text" id="oxNameById" class="form-control rounded" disabled />
-                            </div>
-                            <div class="col">
-                                <label for="">行き先選択</label>
-                                <input type="text" id="oxNameById" class="form-control rounded" disabled />
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" style="background-color: #6ea924; border: 0;"
-                            onclick="addShip()">
-                            <i class="fa fa-check"></i> セーブ
-                        </button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                            <i class="fa fa-times"></i>閉じる
-                        </button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
     </section>
 @endsection
 
 @section('js')
-    <script src="{{ asset('assets/js/productMana/product.js') }}"></script>
+
+    <script>
+        const indexUrl = "{{ route('product.index') }}";
+        const viewIndex = () => {
+            const pageSize = $('#pageSize').val();
+            location.href = `${indexUrl}?pageSize=${pageSize}`;
+        };
+    </script>
 @endsection

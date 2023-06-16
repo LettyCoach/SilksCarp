@@ -15,34 +15,19 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $pageSize = 10;
+        if (isset($request->pageSize)) {
+            $pageSize = $request->pageSize;
+        }
+        $models = Product::orderby('created_at', 'desc');
+        $models = $models->paginate($pageSize);
+        $models->appends(['pageSize' => $pageSize]);
         return view('productMana.product.index')
-            ->with('data', '');
-    }
-
-    public function list(Request $request)
-    {
-
-        $page = $request->page;
-        $pageSize = $request->pageSize;
-
-        $snapshot = Product::where('id', '>', 0);
-        $totalCnt = $snapshot->count();
-
-        $models = $snapshot->limit($pageSize)
-            ->offset(($page - 1) * $pageSize)
-            ->orderBy('id', 'asc')
-            ->get();
-
-        $stNo = ($page - 1) * $pageSize + 1;
-        $links = Common::makePagination($page, $pageSize, $totalCnt, $models->count());
-
-        return view('productMana.product.list')
-            ->with('models', $models)
-            ->with('stNo', $stNo)
-            ->with('links', $links);
+            ->with('pageSize', $pageSize)
+            ->with('models', $models);
     }
 
     /**
@@ -51,6 +36,11 @@ class ProductController extends Controller
     public function create()
     {
         //
+        $model = new Product();
+
+        return view('productMana.product.create')
+            ->with('images', "[]")
+            ->with('plusImgUrl', $model->getPlusImgUrl());
     }
 
     /**
@@ -59,6 +49,36 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate(
+            [
+                'name' => ['required', 'string'],
+                'price' => ['required', 'integer'],
+                'cost' => ['required', 'integer'],
+            ],
+            $messages = [
+                'name.required' => '必須項目です。',
+                'price.required' => '必須項目です。',
+                'cost.required' => '必須項目です。',
+                'price.integer' => '数字を入力する必要があります。',
+                'cost.integer' => '数字を入力する必要があります。'
+            ]
+        );
+
+
+        $model = new Product();
+        $model->name = $request->name;
+        $model->images = $request->images;
+        $model->price = $request->price;
+        $model->description = $request->description ?? "";
+        // $model->description = $request->description != null ? $request->description : "";
+        $model->cost = $request->cost;
+        $model->supplier_url = $request->supplier_url ?? "";
+        // $model->supplier_url = $request->supplier_url != null ? $request->supplier_url : "";
+        $model->other = '';
+
+        $model->save();
+
+        return redirect()->route('product.index');
     }
 
     /**

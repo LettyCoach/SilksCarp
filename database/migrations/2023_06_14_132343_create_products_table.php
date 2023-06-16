@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('description', 512)->default("");
             $table->integer('cost')->default(0);
             $table->string('supplier_url', 256)->default('');
-            $table->text('other');
+            $table->text('other')->default("");
             $table->timestamps();
         });
     }
