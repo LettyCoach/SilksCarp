@@ -53,18 +53,36 @@
                                 <tbody>
                                     @foreach ($models as $i => $model)
                                         <tr class="align-middle">
-                                            <td class="text-center"><span class="">{{ $i + 1 }}</span></td>
-                                            <td class="text-xs text-center">{{ $model->name }}</td>
-                                            <td class="text-center">{{ $model->name }}</td>
-                                            <td class="text-center">{{ $model->price }}</td>
-                                            <td class="text-center">{{ $model->description }}</td>
-                                            <td class="text-center">{{ $model->cost }}</td>
-                                            <td class="text-center">{{ $model->supplier_url }}</td>
+                                            <td class="text-center view-data">
+                                                <a href="{{ route('product.show', ['product' => $model->id]) }}">{{ $i + 1 }}
+                                                </a>
+                                            </td>
+                                            <td class="text-center view-data">
+                                                <a href="{{ route('product.show', ['product' => $model->id]) }}">{{ $model->name }}
+                                                </a>
+                                            </td>
+                                            <td class="text-center view-data"></td>
+                                            <td class="text-center view-data">{{ $model->price }}</td>
+                                            <td class="text-center view-data">{{ $model->description }}</td>
+                                            <td class="text-center view-data">{{ $model->cost }}</td>
+                                            <td class="text-center view-data">{{ $model->supplier_url }}</td>
                                             <td class="text-center">
-                                                <a href="javascript:;register(1, 1)"><i class="bi-pencil-square"></i></a>
+                                                <a href="{{ route('product.edit', ['product' => $model->id]) }}">
+                                                    <i class="bi-pencil-square"></i>
+                                                </a>
                                             </td>
                                             <td class="text-center">
-                                                <a href="javascript:;cancel(1)"><i class="bi-trash"></i></a>
+                                                <form method="POST"
+                                                    action="{{ route('product.destroy', ['product' => $model->id]) }}">
+                                                    @csrf
+                                                    @method('DELETE')
+
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn delete-button">
+                                                            <i class="bi-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -90,12 +108,18 @@
 @endsection
 
 @section('js')
-
     <script>
         const indexUrl = "{{ route('product.index') }}";
         const viewIndex = () => {
             const pageSize = $('#pageSize').val();
             location.href = `${indexUrl}?pageSize=${pageSize}`;
         };
+
+        $(".delete-button").click(function(e) {
+            e.preventDefault();
+            if (confirm("本当に削除しますか？")) {
+                $(e.target).closest("form").submit();
+            }
+        });
     </script>
 @endsection

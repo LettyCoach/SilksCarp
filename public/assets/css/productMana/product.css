@@ -1,3 +1,11 @@
+.view-data {
+    cursor: pointer;
+}
+.view-data a {
+    text-decoration: none;
+    color: black;
+}
+
 .product_img_div {
     width: 122px;
     height: 122px;

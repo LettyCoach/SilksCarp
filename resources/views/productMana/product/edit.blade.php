@@ -7,16 +7,17 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                 <li class="breadcrumb-item active"> <a href="{{ route('product.index') }}">商品一覧</a> </li>
-                <li class="breadcrumb-item active">商品追加</li>
+                <li class="breadcrumb-item active">商品変更</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
 
     <section class="section">
         <div class="card">
-            <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data"
-                onsubmit="return checkData()">
+            <form action="{{ route('product.update', ['product' => $model->id]) }}" method="POST"
+                enctype="multipart/form-data" onsubmit="return checkData()">
                 @csrf
+                @method('PUT')
                 <div class="row d-flex justify-content-center">
 
                     <div class="col-10 col-lg-8 col-xl-6">
@@ -25,7 +26,7 @@
                                 <div class="col">
                                     <label for="">商品 (必須)</label>
                                     <input type="text" name="name" id="name" class="form-control rounded"
-                                        value="{{ old('name') }}" />
+                                        value="{{ old('name', $model->name) }}" />
                                     @error('name')
                                         <span class="invalid-feedback d-block" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -58,7 +59,7 @@
                                 <div class="col">
                                     <label for="">価格 (必須)</label>
                                     <input type="text" name="price" id="price" class="form-control rounded"
-                                        value="{{ old('price') }}" />
+                                        value="{{ old('price', $model->price) }}" />
                                     @error('price')
                                         <span class="invalid-feedback d-block" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -69,16 +70,14 @@
                             <div class="row mb-2">
                                 <div class="col">
                                     <label for="">説明</label>
-                                    <textarea name="description" id="description" class="form-control rounded" style="height: 120px">
-                                        {{ old('description') }}
-                                    </textarea>
+                                    <textarea name="description" id="description" class="form-control rounded" style="height: 120px">{{ old('description', $model->description) }}</textarea>
                                 </div>
                             </div>
                             <div class="row mb-2">
                                 <div class="col">
                                     <label for="">仕入れ値 (必須)</label>
                                     <input type="text" name="cost" id="cost" class="form-control rounded"
-                                        value="{{ old('cost') }}" />
+                                        value="{{ old('cost', $model->cost) }}" />
                                     @error('cost')
                                         <span class="invalid-feedback d-block" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -90,7 +89,7 @@
                                 <div class="col">
                                     <label for="">仕入先URL</label>
                                     <input type="text" name="supplier_url" id="supplier_url" class="form-control rounded"
-                                        value="{{ old('supplier_url') }}" />
+                                        value="{{ old('supplier_url', $model->supplier_url) }}" />
                                 </div>
                             </div>
                         </div>

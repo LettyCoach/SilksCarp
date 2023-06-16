@@ -37,10 +37,10 @@ class ProductController extends Controller
     {
         //
         $model = new Product();
+        $model->images = "[]";
 
         return view('productMana.product.create')
-            ->with('images', "[]")
-            ->with('plusImgUrl', $model->getPlusImgUrl());
+            ->with('model', $model);
     }
 
     /**
@@ -84,32 +84,72 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $temp)
+    public function show(string $id)
     {
         //
+        $model = Product::find($id);
+
+        return view('productMana.product.show')
+            ->with('model', $model);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $temp)
+    public function edit(string $id)
     {
-        //
+
+        $model = Product::find($id);
+
+        return view('productMana.product.edit')
+            ->with('model', $model);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $temp)
+    public function update(Request $request, string $id)
     {
         //
+        $request->validate(
+            [
+                'name' => ['required', 'string'],
+                'price' => ['required', 'integer'],
+                'cost' => ['required', 'integer'],
+            ],
+            $messages = [
+                'name.required' => '必須項目です。',
+                'price.required' => '必須項目です。',
+                'cost.required' => '必須項目です。',
+                'price.integer' => '数字を入力する必要があります。',
+                'cost.integer' => '数字を入力する必要があります。'
+            ]
+        );
+
+        $model = Product::find($id);
+        $model->name = $request->name;
+        $model->images = $request->images;
+        $model->price = $request->price;
+        $model->description = $request->description ?? "";
+        // $model->description = $request->description != null ? $request->description : "";
+        $model->cost = $request->cost;
+        $model->supplier_url = $request->supplier_url ?? "";
+        // $model->supplier_url = $request->supplier_url != null ? $request->supplier_url : "";
+        $model->other = '';
+
+        $model->save();
+
+        return redirect()->route('product.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $temp)
+    public function destroy(string $id)
     {
         //
+        $model = Product::find($id);
+        $model->delete();
+        return redirect()->route('product.index');
     }
 }
