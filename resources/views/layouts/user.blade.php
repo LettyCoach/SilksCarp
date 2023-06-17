@@ -274,28 +274,33 @@
 
     </header><!-- End Header -->
 
+    @php
+        $routeName = Route::currentRouteName();
+    @endphp
+
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
 
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link " href="{{ route('home') }}">
-                    <i class="bi bi-grid"></i>
+                <a class="nav-link {{ $routeName == 'home' ? '' : 'collapsed' }}" href="{{ route('home') }}">
+                    <i class="bi-alarm"></i>
                     <span>お知らせ</span>
                 </a>
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('home') }}">
-                    <i class="bi bi-grid"></i>
+                <a class="nav-link  {{ $routeName == 'purchase.index' ? '' : 'collapsed' }} "
+                    href="{{ route('purchase.index') }}">
+                    <i class="bi-cart-plus-fill"></i>
                     <span>購入</span>
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('home') }}">
-                    <i class="bi bi-grid"></i>
+                    <i class="bi-cart-dash-fill"></i>
                     <span>売却</span>
                 </a>
             </li>
@@ -304,14 +309,14 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="users-profile.html">
-                    <i class="bi bi-person"></i>
+                    <i class="bi-minecart-loaded"></i>
                     <span>所有一覧</span>
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="users-profile.html">
-                    <i class="bi bi-person"></i>
+                    <i class="bi-person-lines-fill"></i>
                     <span>ユーザー情報</span>
                 </a>
             </li>
@@ -319,7 +324,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse"
                     href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>お金管理</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi-currency-yen"></i><span>お金管理</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
@@ -343,14 +348,14 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="users-profile.html">
-                    <i class="bi bi-person"></i>
+                    <i class="bi-envelope-open"></i>
                     <span>お問い合わせ</span>
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="users-profile.html">
-                    <i class="bi bi-person"></i>
+                    <i class="bi-question-diamond"></i>
                     <span>ヘルプ</span>
                 </a>
             </li>
