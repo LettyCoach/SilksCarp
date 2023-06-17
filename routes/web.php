@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CommonController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductMana\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +22,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('/image/upload_path', [CommonController::class, 'uploadImageWithPath']);
+
+// Route::resource('/product', ProductController::class)->only(['index', 'store', 'edit', 'update', 'destroy']);
+// Route::post('/product/list', [ProductController::class, 'list']);
+// Route::post('/product/save', [ProductController::class, 'save']);
+
+Route::resource('/product', ProductController::class);

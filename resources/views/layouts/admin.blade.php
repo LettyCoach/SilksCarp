@@ -1,3 +1,7 @@
+@php
+    use Illuminate\Support\Facades\Route;
+@endphp
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -26,6 +30,10 @@
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
         rel="stylesheet">
+
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
     <!-- Vendor CSS Files -->
     <link href="{{ asset('assets/niceAdmin/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -270,20 +278,25 @@
 
     </header><!-- End Header -->
 
+    @php
+        $routeName = Route::currentRouteName();
+    @endphp
+
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
 
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link " href="{{ route('home') }}">
+                <a class="nav-link {{ $routeName == 'home' ? '' : 'collapsed' }}" href="{{ route('home') }}">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('home') }}">
+                <a class="nav-link {{ $routeName == 'product.index' ? '' : 'collapsed' }} "
+                    href="{{ route('product.index') }}">
                     <i class="bi bi-boxes"></i>
                     <span>商品</span>
                 </a>
@@ -294,29 +307,29 @@
                     <i class="bi bi-clipboard2-pulse"></i>
                     <span>販売情報</span>
                 </a>
-            </li>        
-            
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="users-profile.html">
                     <i class="bi bi-bank"></i>
                     <span>出金情報</span>
                 </a>
             </li>
-            
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="users-profile.html">
                     <i class="bi bi-bell-fill"></i>
                     <span>お知らせ管理</span>
                 </a>
             </li>
-            
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="users-profile.html">
                     <i class="bi bi-chat-left-text"></i>
                     <span>メッセージ管理</span>
                 </a>
             </li>
-            
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="users-profile.html">
                     <i class="bi bi-question-circle"></i>
@@ -360,6 +373,11 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/niceAdmin/js/main.js') }}"></script>
+
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+    @yield('js')
 
 </body>
 
