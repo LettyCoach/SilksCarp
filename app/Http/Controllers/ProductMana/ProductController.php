@@ -4,10 +4,11 @@ namespace App\Http\Controllers\ProductMana;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 use App\Models\Common;
 use App\Models\ProductMana\Product;
-use DB;
+use App\Models\ProductMana\Trade;
 
 class ProductController extends Controller
 {
@@ -70,13 +71,22 @@ class ProductController extends Controller
         $model->images = $request->images;
         $model->price = $request->price;
         $model->description = $request->description ?? "";
-        // $model->description = $request->description != null ? $request->description : "";
         $model->cost = $request->cost;
         $model->supplier_url = $request->supplier_url ?? "";
-        // $model->supplier_url = $request->supplier_url != null ? $request->supplier_url : "";
         $model->other = '';
 
         $model->save();
+
+        $modelTrade = new Trade();
+        $modelTrade->product_id = $model->id;
+        $modelTrade->source_user_id = 1;
+        $modelTrade->target_user_id = 1;
+        $modelTrade->money_amount = $model->cost;
+        $modelTrade->type = 0;
+        $modelTrade->store_state = 0;
+        $modelTrade->destination = "";
+        $modelTrade->trade_date = Carbon::now();
+        $modelTrade->save();
 
         return redirect()->route('product.index');
     }

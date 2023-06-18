@@ -54,14 +54,21 @@
                                     @foreach ($models as $i => $model)
                                         <tr class="align-middle">
                                             <td class="text-center view-data">
-                                                <a href="{{ route('product.show', ['product' => $model->id]) }}">{{ $i + 1 }}
+                                                <a href="{{ route('product.show', ['product' => $model->id]) }}">
+                                                    {{ $i + 1 }}
                                                 </a>
                                             </td>
                                             <td class="text-center view-data">
-                                                <a href="{{ route('product.show', ['product' => $model->id]) }}">{{ $model->name }}
+                                                <a href="{{ route('product.show', ['product' => $model->id]) }}">
+                                                    {{ $model->name }}
                                                 </a>
                                             </td>
-                                            <td class="text-center view-data"></td>
+                                            <td class="text-center view-data">
+                                                <a href="{{ route('product.show', ['product' => $model->id]) }}">
+                                                    <img src="{{ $model->getImageUrlFirst() }}" class="product_img"
+                                                        alt="">
+                                                </a>
+                                            </td>
                                             <td class="text-center view-data">{{ $model->price }}</td>
                                             <td class="text-center view-data">{{ $model->description }}</td>
                                             <td class="text-center view-data">{{ $model->cost }}</td>

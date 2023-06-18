@@ -1,4 +1,4 @@
-.view-data {
+.view-data a {
     cursor: pointer;
 }
 .view-data a {
@@ -13,8 +13,16 @@
     border-radius: 8px;
     cursor: pointer;
 }
+
 .product_img_div img {
     width: 120px;
     height: 120px;
     border-radius: 8px;
+}
+
+.product_img {
+    width: 80px;
+    height: 80px;
+    border: 1px solid grey;
+    border-radius: 6px;
 }

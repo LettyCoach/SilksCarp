@@ -98,7 +98,7 @@
                             <div class="col d-flex justify-content-center">
                                 <button type="button" class="btn btn-secondary"
                                     onclick="location.href='{{ route('product.index') }}'">
-                                    <i class="fa fa-times"></i> 閉じる
+                                    <i class="bi-list-stars"></i> 一覧を見る
                                 </button>
                             </div>
 
