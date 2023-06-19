@@ -19,10 +19,8 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         //
-        $pageSize = 10;
-        if (isset($request->pageSize)) {
-            $pageSize = $request->pageSize;
-        }
+        $pageSize = $request->pageSize ?? 10;
+        
         $models = Product::orderby('created_at', 'desc');
         $models = $models->paginate($pageSize);
         $models->appends(['pageSize' => $pageSize]);

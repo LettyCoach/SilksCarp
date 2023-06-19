@@ -42,9 +42,9 @@
                                         <th class="text-center">No</th>
                                         <th class="text-center">写真</th>
                                         <th class="text-center">タイトル</th>
-                                        <th class="text-center">価格</th>
+                                        <th class="text-center">価格(円)</th>
                                         <th class="text-center">説明</th>
-                                        <th class="text-center">仕入れ値</th>
+                                        <th class="text-center">仕入れ値(円)</th>
                                         <th class="text-center">仕入先URL</th>
                                         <th class="text-center">変更</th>
                                         <th class="text-center">削除</th>
@@ -69,9 +69,9 @@
                                                         alt="">
                                                 </a>
                                             </td>
-                                            <td class="text-center view-data">{{ $model->price }}</td>
+                                            <td class="text-center view-data">{{ number_format($model->price) }}</td>
                                             <td class="text-center view-data">{{ $model->description }}</td>
-                                            <td class="text-center view-data">{{ $model->cost }}</td>
+                                            <td class="text-center view-data">{{ number_format($model->cost) }}</td>
                                             <td class="text-center view-data">{{ $model->supplier_url }}</td>
                                             <td class="text-center">
                                                 <a href="{{ route('product.edit', ['product' => $model->id]) }}">

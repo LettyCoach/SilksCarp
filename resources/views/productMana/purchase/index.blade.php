@@ -1,13 +1,13 @@
 @extends('layouts.user')
 
 @section('content')
-    <link rel="stylesheet" href="{{ asset('assets/css/productMana/product.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/productMana/purchase.css') }}">
     <div class="pagetitle">
         <h1>商品</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                <li class="breadcrumb-item active">商品</li>
+                <li class="breadcrumb-item active">錦鯉閲覧</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -25,11 +25,6 @@
                                 @endforeach
                             </select>
                         </div>
-
-                        <a class="rounded btn btn-danger" href="{{ route('product.create') }}">
-                            <i class="fa fa-plus"></i>&nbsp;
-                            商品追加
-                        </a>
                     </div>
                 </div>
                 <div class="panel-body">
@@ -42,52 +37,40 @@
                                         <th class="text-center">No</th>
                                         <th class="text-center">写真</th>
                                         <th class="text-center">タイトル</th>
-                                        <th class="text-center">価格</th>
+                                        <th class="text-center">価格(円)</th>
                                         <th class="text-center">説明</th>
-                                        <th class="text-center">仕入れ値</th>
-                                        <th class="text-center">仕入先URL</th>
-                                        <th class="text-center">変更</th>
-                                        <th class="text-center">削除</th>
+                                        <th class="text-center">購入</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($models as $i => $model)
                                         <tr class="align-middle">
                                             <td class="text-center view-data">
-                                                <a href="{{ route('product.show', ['product' => $model->id]) }}">{{ $i + 1 }}
+                                                <a href="{{ route('purchase.show', ['purchase' => $model->id]) }}">{{ $i + 1 }}
                                                 </a>
                                             </td>
                                             <td class="text-center view-data">
-                                                <a href="{{ route('product.show', ['product' => $model->id]) }}">{{ $model->name }}
+                                                <a href="{{ route('purchase.show', ['purchase' => $model->id]) }}">
+                                                    {{ $model->product->name }}
                                                 </a>
                                             </td>
-                                            <td class="text-center view-data"></td>
-                                            <td class="text-center view-data">{{ $model->price }}</td>
-                                            <td class="text-center view-data">{{ $model->description }}</td>
-                                            <td class="text-center view-data">{{ $model->cost }}</td>
-                                            <td class="text-center view-data">{{ $model->supplier_url }}</td>
-                                            <td class="text-center">
-                                                <a href="{{ route('product.edit', ['product' => $model->id]) }}">
-                                                    <i class="bi-pencil-square"></i>
+                                            <td class="text-center view-data">
+                                                <a href="{{ route('purchase.show', ['purchase' => $model->id]) }}">
+                                                    <img src="{{ $model->product->getImageUrlFirst() }}"
+                                                        class="product_img" alt="">
                                                 </a>
                                             </td>
+                                            <td class="text-center view-data">{{ $model->product->price }}</td>
+                                            <td class="text-center view-data">{{ $model->product->description }}</td>
                                             <td class="text-center">
-                                                <form method="POST"
-                                                    action="{{ route('product.destroy', ['product' => $model->id]) }}">
-                                                    @csrf
-                                                    @method('DELETE')
-
-                                                    <div class="form-group">
-                                                        <button type="submit" class="btn delete-button">
-                                                            <i class="bi-trash"></i>
-                                                        </button>
-                                                    </div>
-                                                </form>
+                                                <a href="{{ route('purchase.create', ['id' => $model->id]) }}">
+                                                    <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach
 
-                                    @if ($models == 0)
+                                    @if ($models->count() == 0)
                                         <tr class="align-middle">
                                             <td class="text-center" colspan='11'>
                                                 データはありません。
@@ -97,7 +80,7 @@
                                 </tbody>
                             </table>
                             <div class="" style="min-width: 700px">
-                                {{-- {{ $models->links() }} --}}
+                                {{ $models->links() }}
                             </div>
                         </div>
                     </div>
@@ -109,17 +92,10 @@
 
 @section('js')
     <script>
-        // const indexUrl = "{{ route('product.index') }}";
-        // const viewIndex = () => {
-        //     const pageSize = $('#pageSize').val();
-        //     location.href = `${indexUrl}?pageSize=${pageSize}`;
-        // };
-
-        // $(".delete-button").click(function(e) {
-        //     e.preventDefault();
-        //     if (confirm("本当に削除しますか？")) {
-        //         $(e.target).closest("form").submit();
-        //     }
-        // });
+        const indexUrl = "{{ route('product.index') }}";
+        const viewIndex = () => {
+            const pageSize = $('#pageSize').val();
+            location.href = `${indexUrl}?pageSize=${pageSize}`;
+        };
     </script>
 @endsection

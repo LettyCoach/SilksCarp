@@ -56,7 +56,7 @@
                             </div>
                             <div class="row mb-2">
                                 <div class="col">
-                                    <label for="">価格 (必須)</label>
+                                    <label for="">価格(円) (必須)</label>
                                     <input type="text" name="price" id="price" class="form-control rounded"
                                         value="{{ old('price') }}" />
                                     @error('price')
@@ -76,7 +76,7 @@
                             </div>
                             <div class="row mb-2">
                                 <div class="col">
-                                    <label for="">仕入れ値 (必須)</label>
+                                    <label for="">仕入れ値(円) (必須)</label>
                                     <input type="text" name="cost" id="cost" class="form-control rounded"
                                         value="{{ old('cost') }}" />
                                     @error('cost')

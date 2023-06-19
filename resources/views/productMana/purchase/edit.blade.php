@@ -1,4 +1,4 @@
-@extends('layouts.admin');
+@extends('layouts.user');
 @section('content')
     <link rel="stylesheet" href="{{ asset('assets/css/productMana/product.css') }}">
     <div class="pagetitle">
