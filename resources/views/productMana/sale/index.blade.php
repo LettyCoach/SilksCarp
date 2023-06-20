@@ -39,7 +39,8 @@
                                         <th class="text-center">タイトル</th>
                                         <th class="text-center">価格(円)</th>
                                         <th class="text-center">説明</th>
-                                        <th class="text-center">購入</th>
+                                        <th class="text-center">購入日</th>
+                                        <th class="text-center">売却</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -62,6 +63,7 @@
                                             </td>
                                             <td class="text-center view-data">{{ $model->product->price }}</td>
                                             <td class="text-center view-data">{{ $model->product->description }}</td>
+                                            <td class="text-center view-data">{{ $model->getTradeDate() }}</td>
                                             <td class="text-center">
                                                 <a href="{{ route('sale.create', ['id' => $model->id]) }}">
                                                     <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>

@@ -19,7 +19,7 @@
                 @csrf
                 <div class="row d-flex justify-content-center">
                     <div class="col-10 col-lg-8 col-xl-6">
-                        <div class="row mt-5">
+                        <div class="row mt-5 justify-content-center">
                             <div class="row mb-2 mt-2" style="max-width: 480px">
                                 <div class="col d-flex justify-content-center">
                                     <div class="product_img_div">
