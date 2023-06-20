@@ -1,13 +1,13 @@
 @extends('layouts.user')
 
 @section('content')
-    <link rel="stylesheet" href="{{ asset('assets/css/productMana/purchase.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/productMana/sale.css') }}">
     <div class="pagetitle">
-        <h1>商品</h1>
+        <h1>売却　</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>
-                <li class="breadcrumb-item active">錦鯉閲覧</li>
+                <li class="breadcrumb-item active">所有一覧</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -39,31 +39,33 @@
                                         <th class="text-center">タイトル</th>
                                         <th class="text-center">価格(円)</th>
                                         <th class="text-center">説明</th>
-                                        <th class="text-center">購入</th>
+                                        <th class="text-center">購入日</th>
+                                        <th class="text-center">売却</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($models as $i => $model)
                                         <tr class="align-middle">
                                             <td class="text-center view-data">
-                                                <a href="{{ route('purchase.show', ['purchase' => $model->id]) }}">{{ $i + 1 }}
+                                                <a href="{{ route('sale.show', ['sale' => $model->id]) }}">{{ $i + 1 }}
                                                 </a>
                                             </td>
                                             <td class="text-center view-data">
-                                                <a href="{{ route('purchase.show', ['purchase' => $model->id]) }}">
+                                                <a href="{{ route('sale.show', ['sale' => $model->id]) }}">
                                                     {{ $model->product->name }}
                                                 </a>
                                             </td>
                                             <td class="text-center view-data">
-                                                <a href="{{ route('purchase.show', ['purchase' => $model->id]) }}">
+                                                <a href="{{ route('sale.show', ['sale' => $model->id]) }}">
                                                     <img src="{{ $model->product->getImageUrlFirst() }}"
                                                         class="product_img" alt="">
                                                 </a>
                                             </td>
                                             <td class="text-center view-data">{{ $model->product->price }}</td>
                                             <td class="text-center view-data">{{ $model->product->description }}</td>
+                                            <td class="text-center view-data">{{ $model->getTradeDate() }}</td>
                                             <td class="text-center">
-                                                <a href="{{ route('purchase.create', ['id' => $model->id]) }}">
+                                                <a href="{{ route('sale.create', ['id' => $model->id]) }}">
                                                     <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
                                                 </a>
                                             </td>
@@ -92,7 +94,7 @@
 
 @section('js')
     <script>
-        const indexUrl = "{{ route('purchase.index') }}";
+        const indexUrl = "{{ route('sale.index') }}";
         const viewIndex = () => {
             const pageSize = $('#pageSize').val();
             location.href = `${indexUrl}?pageSize=${pageSize}`;

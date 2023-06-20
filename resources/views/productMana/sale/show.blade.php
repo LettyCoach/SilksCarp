@@ -1,12 +1,12 @@
 @extends('layouts.user');
 @section('content')
-    <link rel="stylesheet" href="{{ asset('assets/css/productMana/purchase.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/productMana/sale.css') }}">
     <div class="pagetitle">
         <h1>商品</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>
-                <li class="breadcrumb-item active"> <a href="{{ route('purchase.index') }}">商品一覧</a> </li>
+                <li class="breadcrumb-item active"> <a href="{{ route('sale.index') }}">商品一覧</a> </li>
                 <li class="breadcrumb-item active">商品見る</li>
             </ol>
         </nav>
@@ -75,7 +75,7 @@
                     <div class="row">
                         <div class="col d-flex justify-content-center">
                             <button type="button" class="btn btn-secondary"
-                                onclick="location.href='{{ route('purchase.index') }}'">
+                                onclick="location.href='{{ route('sale.index') }}'">
                                 <i class="bi-list-stars"></i> 一覧を見る
                             </button>
                         </div>

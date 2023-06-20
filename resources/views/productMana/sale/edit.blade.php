@@ -1,12 +1,12 @@
 @extends('layouts.user');
 @section('content')
-    <link rel="stylesheet" href="{{ asset('assets/css/productMana/purchase.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/productMana/sale.css') }}">
     <div class="pagetitle">
         <h1>商品</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>
-                <li class="breadcrumb-item active"> <a href="{{ route('purchase.index') }}">商品一覧</a> </li>
+                <li class="breadcrumb-item active"> <a href="{{ route('sale.index') }}">商品一覧</a> </li>
                 <li class="breadcrumb-item active">商品変更</li>
             </ol>
         </nav>
@@ -14,7 +14,7 @@
 
     <section class="section">
         <div class="card">
-            <form action="{{ route('purchase.update', ['purchase' => $model->id]) }}" method="POST"
+            <form action="{{ route('sale.update', ['sale' => $model->id]) }}" method="POST"
                 enctype="multipart/form-data" onsubmit="return checkData()">
                 @csrf
                 @method('PUT')
@@ -102,7 +102,7 @@
                             </div>
                             <div class="col">
                                 <button type="button" class="btn btn-secondary"
-                                    onclick="location.href='{{ route('purchase.index') }}'">
+                                    onclick="location.href='{{ route('sale.index') }}'">
                                     <i class="bi-list-stars"></i> 一覧を見る
                                 </button>
                             </div>
@@ -122,5 +122,5 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('assets/js/productMana/purchase.js') }}"></script>
+    <script src="{{ asset('assets/js/productMana/sale.js') }}"></script>
 @endsection
