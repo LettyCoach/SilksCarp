@@ -5,7 +5,7 @@
         <h1>商品</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>
                 <li class="breadcrumb-item active"> <a href="{{ route('product.index') }}">商品一覧</a> </li>
                 <li class="breadcrumb-item active">商品見る</li>
             </ol>

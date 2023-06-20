@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommonController;
 use App\Http\Controllers\ProductMana\PurchaseController;
 use App\Http\Controllers\ProductMana\ProductController;
+use App\Http\Controllers\ProductMana\SaleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,4 @@ Route::post('/image/upload_path', [CommonController::class, 'uploadImageWithPath
 
 Route::resource('/product', ProductController::class);
 Route::resource('/purchase', PurchaseController::class);
+Route::resource('/sale', SaleController::class);

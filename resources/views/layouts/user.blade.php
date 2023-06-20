@@ -299,7 +299,8 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('home') }}">
+                <a class="nav-link {{ $routeName == 'sale.index' ? '' : 'collapsed' }}"
+                    href="{{ route('sale.index') }}">
                     <i class="bi-cart-dash-fill"></i>
                     <span>売却</span>
                 </a>
