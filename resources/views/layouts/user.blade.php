@@ -317,7 +317,8 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="users-profile.html">
+                <a class="nav-link collapsed" {{ $routeName == 'profile.index' ? '' : 'collapsed' }}
+                    href="{{ route('profile.index') }}">
                     <i class="bi-person-lines-fill"></i>
                     <span>ユーザー情報</span>
                 </a>

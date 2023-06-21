@@ -7,10 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use File;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    private $blankAvata = "assets/images/common/user.png";
 
     /**
      * The attributes that are mass assignable.
@@ -42,4 +45,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function getAvatar()
+    {
+        $url = "assets/users/$this->id.png";
+        if (File::exists($url)) {
+            return asset($url);
+        }
+
+        return asset($this->blankAvata);
+    }
 }
