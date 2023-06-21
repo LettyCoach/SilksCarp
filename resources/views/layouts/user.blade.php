@@ -309,8 +309,8 @@
             <li class="nav-heading">マイページ</li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" {{ $routeName == 'sale.index' ? '' : 'collapsed' }}"
-                    href="{{ route('sale.index') }}">
+                <a class="nav-link collapsed" {{ $routeName == 'own.index' ? '' : 'collapsed' }}"
+                    href="{{ route('own.index') }}">
                     <i class="bi-minecart-loaded"></i>
                     <span>所有一覧</span>
                 </a>
