@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Alarm\AlarmToAllController;
+use App\Http\Controllers\Alarm\AlarmToIndividualController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommonController;
@@ -32,11 +34,14 @@ Route::middleware([Authenticate::class])->group(function () {
 
     Route::post('/image/upload_path', [CommonController::class, 'uploadImageWithPath']);
 
-    // Route::resource('/product', ProductController::class)->only(['index', 'store', 'edit', 'update', 'destroy']);
-    // Route::post('/product/list', [ProductController::class, 'list']);
-    // Route::post('/product/save', [ProductController::class, 'save']);
 
+    /********************************* Admin Page *****************************************/
     Route::resource('/product', ProductController::class);
+    Route::resource('/a2a', AlarmToAllController::class);
+    Route::resource('/a2i', AlarmToIndividualController::class);
+
+
+    /********************************* User Page *****************************************/
     Route::resource('/purchase', PurchaseController::class);
     Route::resource('/sale', SaleController::class);
     Route::resource('/own', OwnController::class);
