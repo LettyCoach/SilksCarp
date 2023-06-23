@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Alarm\AlarmToAllController;
 use App\Http\Controllers\Alarm\AlarmToIndividualController;
+use App\Http\Controllers\MessageMana\MessageController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommonController;
@@ -50,4 +51,6 @@ Route::middleware([Authenticate::class])->group(function () {
     Route::post('/profile/update/profile', [ProfileController::class, 'updateProfile'])->name('profile.updateProfile');
     Route::post('/profile/update/password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
 
+    /********************************* Common Page *****************************************/
+    Route::resource('/message', MessageController::class);
 });

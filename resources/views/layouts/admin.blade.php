@@ -339,7 +339,8 @@
             </li><!-- End Components Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="users-profile.html">
+                <a class="nav-link {{ $routeName == 'message.index' ? '' : 'collapsed' }} "
+                    href="{{ route('message.index') }}">
                     <i class="bi bi-chat-left-text"></i>
                     <span>メッセージ管理</span>
                 </a>
