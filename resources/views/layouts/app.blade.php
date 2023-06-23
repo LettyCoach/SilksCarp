@@ -106,7 +106,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Favicons -->
-    <link href="{{ asset('assets/niceAdmin/img/favicon.png') }}" rel="icon">
+    <link href="{{ asset('assets/images/topPage/favicon.svg') }}" rel="icon">
     <link href="{{ asset('assets/niceAdmin/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->

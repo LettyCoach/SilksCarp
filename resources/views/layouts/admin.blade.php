@@ -22,7 +22,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Favicons -->
-    <link href="{{ asset('assets/niceAdmin/img/favicon.png') }}" rel="icon">
+    <link href="{{ asset('assets/images/topPage/favicon.svg') }}" rel="icon">
     <link href="{{ asset('assets/niceAdmin/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
@@ -56,7 +56,8 @@
 
         <div class="d-flex align-items-center justify-content-between">
             <a href="{{ route('home') }}" class="logo d-flex align-items-center">
-                <img src="{{ asset('assets/niceAdmin/img/logo.png') }}" alt="">
+                <img src="{{ asset('assets/images/topPage/logo.png') }}" alt=""
+                    style="width:42px; height:42px; max-height:42px">
                 <span class="d-none d-lg-block">SilksCarp</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
