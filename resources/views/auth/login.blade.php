@@ -10,7 +10,8 @@
 
                         <div class="d-flex justify-content-center py-4">
                             <a href="{{ url('/') }}" class="logo d-flex align-items-center w-auto">
-                                <img src="{{ asset('assets/niceAdmin/img/logo.png') }}" alt="">
+                                <img src="{{ asset('assets/images/topPage/logo.png') }}" alt=""
+                                    style="width:42px; height:42px; max-height:42px">
                                 <span class="d-none d-lg-block">SilksCarp</span>
                             </a>
                         </div><!-- End Logo -->
