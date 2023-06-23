@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Alarm;
+namespace App\Http\Controllers\MessageMana;
 
 use App\Http\Controllers\Controller;
-use App\Models\Alarm\AlarmToIndividual;
-use App\Models\User;
+use App\Models\MessageMana\Message;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
+use App\Models\User;
+use Auth;
 
-class AlarmToIndividualController extends Controller
+class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,12 +19,9 @@ class AlarmToIndividualController extends Controller
         $pageSize = $request->pageSize ?? 10;
         $selType = $request->selType ?? -1;
         $selUser_id = $request->selUser_id ?? -1;
-        $selState = $request->selState ?? -1;
-        $selRead_date = $request->selRead_state;
 
-        $models = AlarmToIndividual::orderby('created_at', 'desc');
+        $models = Message::orderby('created_at', 'desc');
         if ($selType > -1) {
-            $models = $models->where('type', $selType);
         }
 
         $models = $models->paginate($pageSize);
@@ -32,20 +29,14 @@ class AlarmToIndividualController extends Controller
 
         $users = User::whereNull('role')->orWhere('role', '<>', 'admin')->orderby('name', 'asc')->get();
 
-        $today = Date('Y-m-d');
-
-
         return view(
-            'alarm.alarm2individual.index',
+            'messageMana.message.index',
             compact(
                 'models',
                 'users',
                 'pageSize',
                 'selType',
                 'selUser_id',
-                'selState',
-                'selRead_date',
-                'today'
             )
         );
     }
@@ -56,11 +47,9 @@ class AlarmToIndividualController extends Controller
     public function create()
     {
         //
-        $model = new AlarmToIndividual();
+        $model = new Message();
 
-        $today = Date('Y-m-d');
-
-        return view('alarm.alarm2individual.create', compact('model', 'today'));
+        return view('messageMana.message.create', compact('model'));
     }
 
     /**
@@ -76,16 +65,15 @@ class AlarmToIndividualController extends Controller
             ],
         );
 
-        $model = new AlarmToIndividual();
-        $model->type = $request->type;
-        $model->title = $request->title ?? "";
-        $model->description = $request->description ?? "";
-        $model->end_date = Carbon::parse("$request->end_date 23:59:59");
-        $model->other = '';
+        $model = new Message();
+        $model->user_id = Auth::user()->id;
+        $model->content = $request->content ?? "";
+        $model->parent_id = null;
+        $model->response_state = 0;
 
         $model->save();
 
-        return redirect()->route('a2i.index');
+        return redirect()->route('message.index');
     }
 
     /**
@@ -94,9 +82,9 @@ class AlarmToIndividualController extends Controller
     public function show(string $id)
     {
         //
-        $model = AlarmToIndividual::find($id);
+        $model = Message::find($id);
 
-        return view('alarm.alarm2individual.show')
+        return view('messageMana.message.show')
             ->with('model', $model);
     }
 
@@ -106,9 +94,9 @@ class AlarmToIndividualController extends Controller
     public function edit(string $id)
     {
 
-        $model = AlarmToIndividual::find($id);
+        $model = Message::find($id);
 
-        return view('alarm.alarm2individual.edit')
+        return view('messageMana.message.edit')
             ->with('model', $model);
     }
 
@@ -125,16 +113,15 @@ class AlarmToIndividualController extends Controller
             ],
         );
 
-        $model = AlarmToIndividual::find($id);
+        $model = Message::find($id);
         $model->type = $request->type;
         $model->title = $request->title;
         $model->description = $request->description ?? "";
-        $model->end_date = Carbon::now();
         $model->other = '';
 
         $model->save();
 
-        return redirect()->route('a2i.index');
+        return redirect()->route('message.index');
     }
 
     /**
@@ -143,9 +130,9 @@ class AlarmToIndividualController extends Controller
     public function destroy(Request $request, string $id)
     {
         //
-        $model = AlarmToIndividual::find($id);
+        $model = Message::find($id);
         $model->delete();
 
-        return redirect()->route('a2i.index');
+        return redirect()->route('message.index');
     }
 }

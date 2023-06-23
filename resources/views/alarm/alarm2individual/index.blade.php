@@ -35,10 +35,10 @@
                             </select>
                         </div>
                         <div class="rounded-md">
-                            <select name="selUser" class="form-select" id="selUser" onchange="viewIndex()">
+                            <select name="selUser_id" class="form-select" id="selUser_id" onchange="viewIndex()">
                                 <option value="-1" selected>全て(ユーザー)</option>
                                 @foreach ($users as $v)
-                                    <option value="{{ $v->id }}" {{ $v->id == $selUser ? 'selected' : '' }}>
+                                    <option value="{{ $v->id }}" {{ $v->id == $selUser_id ? 'selected' : '' }}>
                                         {{ $v->name }}</option>
                                 @endforeach
                             </select>
