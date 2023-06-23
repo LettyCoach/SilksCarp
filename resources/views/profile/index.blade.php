@@ -58,7 +58,7 @@
 
                             <div class="tab-pane fade {{ $page == 0 ? 'show active' : '' }} profile-overview"
                                 id="profile-overview">
-                                <h5 class="card-title">Profile Details{{ $page }}</h5>
+                                <h5 class="card-title">Profile Details</h5>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label ">名前</div>

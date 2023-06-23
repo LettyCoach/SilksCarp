@@ -208,7 +208,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-12">
-                        
+
                     </div>
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="top-end">
@@ -221,7 +221,7 @@
                                     <a href="{{ route('login') }}">Sign In</a>
                                 </li>
                                 <li>
-                                    <a href="register.html">Register</a>
+                                    <a href="{{ route('register') }}">Register</a>
                                 </li>
                             </ul>
                         </div>
@@ -236,7 +236,7 @@
                     <div class="col-lg-3 col-md-3 col-7">
 
                         <a class="navbar-brand" href="index.html">
-                            <script data-pagespeed-no-defer>
+                            {{-- <script data-pagespeed-no-defer>
                                 (function() {
                                     for (var g = "function" == typeof Object.defineProperties ? Object.defineProperty : function(b, c, a) {
                                                 if (a.get || a.set) throw new TypeError("ES3 does not support getters and setters.");
@@ -409,8 +409,9 @@
                                 })();
                                 pagespeed.CriticalImages.Run('/ngx_pagespeed_beacon', 'https://demo.graygrids.com/themes/shopgrids/index.html',
                                     'vgO0_CsSLD', false, false, 'CSUQ3AeFCDY');
-                            </script><img src="{{ asset('assets/images/topPage/logo.svg') }}"
-                                alt="Logo" data-pagespeed-url-hash="3224337811"
+                            </script> --}}
+                            <img src="{{ asset('assets/images/topPage/logo.svg') }}" alt="Logo"
+                                data-pagespeed-url-hash="3224337811"
                                 onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
                         </a>
 
@@ -422,7 +423,7 @@
                             <div class="nav-hotline">
 
                             </div>
-                            <div class="navbar-cart">
+                            <div class="navbar-cart d-none">
                                 <div class="wishlist">
                                     <a href="javascript:void(0)">
                                         <i class="lni lni-heart"></i>
@@ -522,7 +523,7 @@
     </section>
 
 
-    <section class="featured-categories section">
+    <section class="featured-categories section" style="display: none">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -547,8 +548,8 @@
                         </ul>
                         <div class="images">
                             <img data-pagespeed-lazy-src="{{ asset('assets/upload/carp/01.jpg') }}"
-                                style="width: 180px; height: 240px" alt="#"
-                                data-pagespeed-url-hash="1763067336" src="/pagespeed_static/1.JiBnMqyl6S.gif"
+                                style="width: 180px; height: 240px" alt="#" data-pagespeed-url-hash="1763067336"
+                                src="/pagespeed_static/1.JiBnMqyl6S.gif"
                                 onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
                                 onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
                         </div>
@@ -670,31 +671,29 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                        <h2>Trending Product</h2>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have
-                            suffered alteration in some form.</p>
+                        <h2>おすすめ商品</h2>
+                        <p>Lorem Ipsum の一節にはさまざまなバリエーションがありますが、大部分は何らかの形で改変されています。</p>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-12">
-
                     <div class="single-product">
                         <div class="product-image">
                             <img data-pagespeed-lazy-src="{{ asset('assets/upload/carp/01.jpg') }}"
                                 style="width: 100%; height: 420px" alt="#"
-                                data-pagespeed-url-hash="2548583845" src="/pagespeed_static/1.JiBnMqyl6S.gif"
+                                data-pagespeed-url-hash="2548583845" src="{{ asset('assets/upload/carp/01.jpg') }}"
                                 onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
                                 onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
                             <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
-                                    Cart</a>
+                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> View
+                                    Detail</a>
                             </div>
                         </div>
                         <div class="product-info">
-                            <span class="category">Watches</span>
+                            <span class="category">錦鯉</span>
                             <h4 class="title">
-                                <a href="product-grids.html">Xiaomi Mi Band 5</a>
+                                <a href="product-grids.html">錦鯉-01</a>
                             </h4>
                             <ul class="review">
                                 <li><i class="lni lni-star-filled"></i></li>
@@ -705,169 +704,156 @@
                                 <li><span>4.0 Review(s)</span></li>
                             </ul>
                             <div class="price">
-                                <span>$199.00</span>
+                                <span>250000円</span>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="col-lg-3 col-md-6 col-12">
-
                     <div class="single-product">
                         <div class="product-image">
                             <img data-pagespeed-lazy-src="{{ asset('assets/upload/carp/02.jpg') }}"
                                 style="width: 100%; height: 420px" alt="#"
-                                data-pagespeed-url-hash="2843083766" src="/pagespeed_static/1.JiBnMqyl6S.gif"
+                                data-pagespeed-url-hash="2548583845" src="{{ asset('assets/upload/carp/02.jpg') }}"
                                 onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
                                 onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
-                            <span class="sale-tag">-25%</span>
                             <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
-                                    Cart</a>
+                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> View
+                                    Detail</a>
                             </div>
                         </div>
                         <div class="product-info">
-                            <span class="category">Speaker</span>
+                            <span class="category">錦鯉</span>
                             <h4 class="title">
-                                <a href="product-grids.html">Big Power Sound Speaker</a>
+                                <a href="product-grids.html">錦鯉-02</a>
                             </h4>
                             <ul class="review">
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
+                                <li><i class="lni lni-star"></i></li>
+                                <li><span>4.0 Review(s)</span></li>
                             </ul>
                             <div class="price">
-                                <span>$275.00</span>
-                                <span class="discount-price">$300.00</span>
+                                <span>250000円</span>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="col-lg-3 col-md-6 col-12">
-
                     <div class="single-product">
                         <div class="product-image">
                             <img data-pagespeed-lazy-src="{{ asset('assets/upload/carp/03.jpg') }}"
                                 style="width: 100%; height: 420px" alt="#"
-                                data-pagespeed-url-hash="3137583687" src="/pagespeed_static/1.JiBnMqyl6S.gif"
+                                data-pagespeed-url-hash="2548583845" src="{{ asset('assets/upload/carp/03.jpg') }}"
                                 onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
                                 onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
                             <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
-                                    Cart</a>
+                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> View
+                                    Detail</a>
                             </div>
                         </div>
                         <div class="product-info">
-                            <span class="category">Camera</span>
+                            <span class="category">錦鯉</span>
                             <h4 class="title">
-                                <a href="product-grids.html">WiFi Security Camera</a>
+                                <a href="product-grids.html">錦鯉-03</a>
                             </h4>
                             <ul class="review">
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
+                                <li><i class="lni lni-star"></i></li>
+                                <li><span>4.0 Review(s)</span></li>
                             </ul>
                             <div class="price">
-                                <span>$399.00</span>
+                                <span>250000円</span>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="col-lg-3 col-md-6 col-12">
-
                     <div class="single-product">
                         <div class="product-image">
                             <img data-pagespeed-lazy-src="{{ asset('assets/upload/carp/04.jpg') }}"
                                 style="width: 100%; height: 420px" alt="#"
-                                data-pagespeed-url-hash="3432083608" src="/pagespeed_static/1.JiBnMqyl6S.gif"
+                                data-pagespeed-url-hash="2548583845" src="{{ asset('assets/upload/carp/04.jpg') }}"
                                 onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
                                 onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
-                            <span class="new-tag">New</span>
                             <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
-                                    Cart</a>
+                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> View
+                                    Detail</a>
                             </div>
                         </div>
                         <div class="product-info">
-                            <span class="category">Phones</span>
+                            <span class="category">錦鯉</span>
                             <h4 class="title">
-                                <a href="product-grids.html">iphone 6x plus</a>
+                                <a href="product-grids.html">錦鯉-04</a>
                             </h4>
                             <ul class="review">
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
+                                <li><i class="lni lni-star"></i></li>
+                                <li><span>4.0 Review(s)</span></li>
                             </ul>
                             <div class="price">
-                                <span>$400.00</span>
+                                <span>250000円</span>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="col-lg-3 col-md-6 col-12">
-
                     <div class="single-product">
                         <div class="product-image">
                             <img data-pagespeed-lazy-src="{{ asset('assets/upload/carp/05.png') }}"
                                 style="width: 100%; height: 420px" alt="#"
-                                data-pagespeed-url-hash="3726583529" src="/pagespeed_static/1.JiBnMqyl6S.gif"
+                                data-pagespeed-url-hash="2548583845" src="{{ asset('assets/upload/carp/05.png') }}"
                                 onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
                                 onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
                             <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
-                                    Cart</a>
+                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> View
+                                    Detail</a>
                             </div>
                         </div>
                         <div class="product-info">
-                            <span class="category">Headphones</span>
+                            <span class="category">錦鯉</span>
                             <h4 class="title">
-                                <a href="product-grids.html">Wireless Headphones</a>
+                                <a href="product-grids.html">錦鯉-05</a>
                             </h4>
                             <ul class="review">
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
+                                <li><i class="lni lni-star"></i></li>
+                                <li><span>4.0 Review(s)</span></li>
                             </ul>
                             <div class="price">
-                                <span>$350.00</span>
+                                <span>250000円</span>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="col-lg-3 col-md-6 col-12">
-
                     <div class="single-product">
                         <div class="product-image">
                             <img data-pagespeed-lazy-src="{{ asset('assets/upload/carp/01.jpg') }}"
                                 style="width: 100%; height: 420px" alt="#"
-                                data-pagespeed-url-hash="4021083450" src="/pagespeed_static/1.JiBnMqyl6S.gif"
+                                data-pagespeed-url-hash="2548583845" src="{{ asset('assets/upload/carp/01.jpg') }}"
                                 onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
                                 onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
                             <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
-                                    Cart</a>
+                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> View
+                                    Detail</a>
                             </div>
                         </div>
                         <div class="product-info">
-                            <span class="category">Speaker</span>
+                            <span class="category">錦鯉</span>
                             <h4 class="title">
-                                <a href="product-grids.html">Mini Bluetooth Speaker</a>
+                                <a href="product-grids.html">錦鯉-01</a>
                             </h4>
                             <ul class="review">
                                 <li><i class="lni lni-star-filled"></i></li>
@@ -878,31 +864,28 @@
                                 <li><span>4.0 Review(s)</span></li>
                             </ul>
                             <div class="price">
-                                <span>$70.00</span>
+                                <span>250000円</span>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="col-lg-3 col-md-6 col-12">
-
                     <div class="single-product">
                         <div class="product-image">
                             <img data-pagespeed-lazy-src="{{ asset('assets/upload/carp/02.jpg') }}"
-                                style="width: 100%; height: 420px" alt="#" data-pagespeed-url-hash="20616075"
-                                src="/pagespeed_static/1.JiBnMqyl6S.gif"
+                                style="width: 100%; height: 420px" alt="#"
+                                data-pagespeed-url-hash="2548583845" src="{{ asset('assets/upload/carp/02.jpg') }}"
                                 onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
                                 onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
-                            <span class="sale-tag">-50%</span>
                             <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
-                                    Cart</a>
+                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> View
+                                    Detail</a>
                             </div>
                         </div>
                         <div class="product-info">
-                            <span class="category">Headphones</span>
+                            <span class="category">錦鯉</span>
                             <h4 class="title">
-                                <a href="product-grids.html">PX7 Wireless Headphones</a>
+                                <a href="product-grids.html">錦鯉-02</a>
                             </h4>
                             <ul class="review">
                                 <li><i class="lni lni-star-filled"></i></li>
@@ -913,55 +896,48 @@
                                 <li><span>4.0 Review(s)</span></li>
                             </ul>
                             <div class="price">
-                                <span>$100.00</span>
-                                <span class="discount-price">$200.00</span>
+                                <span>250000円</span>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="col-lg-3 col-md-6 col-12">
-
                     <div class="single-product">
                         <div class="product-image">
                             <img data-pagespeed-lazy-src="{{ asset('assets/upload/carp/03.jpg') }}"
-                                style="width: 100%; height: 420px" alt="#" data-pagespeed-url-hash="315115996"
-                                src="/pagespeed_static/1.JiBnMqyl6S.gif"
+                                style="width: 100%; height: 420px" alt="#"
+                                data-pagespeed-url-hash="2548583845" src="{{ asset('assets/upload/carp/03.jpg') }}"
                                 onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
                                 onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
                             <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
-                                    Cart</a>
+                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> View
+                                    Detail</a>
                             </div>
                         </div>
                         <div class="product-info">
-                            <span class="category">Laptop</span>
+                            <span class="category">錦鯉</span>
                             <h4 class="title">
-                                <a href="product-grids.html">Apple MacBook Air</a>
+                                <a href="product-grids.html">錦鯉-03</a>
                             </h4>
                             <ul class="review">
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
+                                <li><i class="lni lni-star"></i></li>
+                                <li><span>4.0 Review(s)</span></li>
                             </ul>
                             <div class="price">
-                                <span>$899.00</span>
+                                <span>250000円</span>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </section>
 
-
-
-
-    <section class="home-product-list section">
+    <section class="home-product-list section" style="display: none">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-12 custom-responsive-margin">
@@ -1140,7 +1116,7 @@
     </section>
 
 
-    <div class="brands">
+    <div class="brands" style="display: none">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3 col-md-12 col-12">
@@ -1150,58 +1126,50 @@
             <div class="brands-logo-wrapper">
                 <div class="brands-logo-carousel d-flex align-items-center justify-content-between">
                     <div class="brand-logo">
-                        <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/brand.webp') }}"
-                            alt="#" data-pagespeed-url-hash="3611277597"
-                            src="/pagespeed_static/1.JiBnMqyl6S.gif"
+                        <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/brand.webp') }}" alt="#"
+                            data-pagespeed-url-hash="3611277597" src="/pagespeed_static/1.JiBnMqyl6S.gif"
                             onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
                             onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
                     </div>
                     <div class="brand-logo">
-                        <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/brand.webp') }}"
-                            alt="#" data-pagespeed-url-hash="3905777518"
-                            src="/pagespeed_static/1.JiBnMqyl6S.gif"
+                        <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/brand.webp') }}" alt="#"
+                            data-pagespeed-url-hash="3905777518" src="/pagespeed_static/1.JiBnMqyl6S.gif"
                             onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
                             onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
                     </div>
                     <div class="brand-logo">
-                        <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/brand.webp') }}"
-                            alt="#" data-pagespeed-url-hash="4200277439"
-                            src="/pagespeed_static/1.JiBnMqyl6S.gif"
+                        <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/brand.webp') }}" alt="#"
+                            data-pagespeed-url-hash="4200277439" src="/pagespeed_static/1.JiBnMqyl6S.gif"
                             onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
                             onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
                     </div>
                     <div class="brand-logo">
-                        <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/brand.webp') }}"
-                            alt="#" data-pagespeed-url-hash="199810064"
-                            src="/pagespeed_static/1.JiBnMqyl6S.gif"
+                        <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/brand.webp') }}" alt="#"
+                            data-pagespeed-url-hash="199810064" src="/pagespeed_static/1.JiBnMqyl6S.gif"
                             onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
                             onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
                     </div>
                     <div class="brand-logo">
-                        <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/brand.webp') }}"
-                            alt="#" data-pagespeed-url-hash="494309985"
-                            src="/pagespeed_static/1.JiBnMqyl6S.gif"
+                        <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/brand.webp') }}" alt="#"
+                            data-pagespeed-url-hash="494309985" src="/pagespeed_static/1.JiBnMqyl6S.gif"
                             onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
                             onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
                     </div>
                     <div class="brand-logo">
-                        <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/brand.webp') }}"
-                            alt="#" data-pagespeed-url-hash="788809906"
-                            src="/pagespeed_static/1.JiBnMqyl6S.gif"
+                        <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/brand.webp') }}" alt="#"
+                            data-pagespeed-url-hash="788809906" src="/pagespeed_static/1.JiBnMqyl6S.gif"
                             onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
                             onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
                     </div>
                     <div class="brand-logo">
-                        <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/brand.webp') }}"
-                            alt="#" data-pagespeed-url-hash="4200277439"
-                            src="/pagespeed_static/1.JiBnMqyl6S.gif"
+                        <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/brand.webp') }}" alt="#"
+                            data-pagespeed-url-hash="4200277439" src="/pagespeed_static/1.JiBnMqyl6S.gif"
                             onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
                             onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
                     </div>
                     <div class="brand-logo">
-                        <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/brand.webp') }}"
-                            alt="#" data-pagespeed-url-hash="199810064"
-                            src="/pagespeed_static/1.JiBnMqyl6S.gif"
+                        <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/brand.webp') }}" alt="#"
+                            data-pagespeed-url-hash="199810064" src="/pagespeed_static/1.JiBnMqyl6S.gif"
                             onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
                             onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
                     </div>
@@ -1211,7 +1179,7 @@
     </div>
 
 
-    <section class="blog-section section">
+    <section class="blog-section section" style="display: none">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -1317,15 +1285,16 @@
                         <div class="col-lg-3 col-md-4 col-12">
                             <div class="footer-logo">
                                 <a href="index.html">
-                                    <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/logo.svg') }}" alt="#"
-                                        data-pagespeed-url-hash="664057475" src="/pagespeed_static/1.JiBnMqyl6S.gif"
+                                    <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/logo.svg') }}"
+                                        alt="#" data-pagespeed-url-hash="664057475"
+                                        src="/pagespeed_static/1.JiBnMqyl6S.gif"
                                         onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
                                         onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
                                 </a>
                             </div>
                         </div>
                         <div class="col-lg-9 col-md-8 col-12">
-                            <div class="footer-newsletter">
+                            <div class="footer-newsletter d-none">
                                 <h4 class="title">
                                     Subscribe to our Newsletter
                                     <span>Get all the latest information, Sales and Offers.</span>
@@ -1346,7 +1315,7 @@
         </div>
 
 
-        <div class="footer-middle">
+        <div class="footer-middle" style="display: none">
             <div class="container">
                 <div class="bottom-inner">
                     <div class="row">
@@ -1441,8 +1410,7 @@
                         </div>
                         <div class="col-lg-4 col-12">
                             <div class="copyright">
-                                <p>Designed and Developed by<a href="https://graygrids.com/" rel="nofollow"
-                                        target="_blank">GrayGrids</a></p>
+                                <p>SilksCarp</p>
                             </div>
                         </div>
                         <div class="col-lg-4 col-12">
