@@ -44,6 +44,13 @@
     <link href="{{ asset('assets/niceAdmin/css/style.css') }}" rel="stylesheet">
 
 </head>
+@php
+    $user = Auth::user();
+    $unreadAlarms = $user
+        ->alarms()
+        ->where('read_date', '2000-01-01 00:00:00')
+        ->get();
+@endphp
 
 <body>
 
@@ -67,65 +74,36 @@
 
                     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                         <i class="bi bi-bell"></i>
-                        <span class="badge bg-primary badge-number">4</span>
+                        <span class="badge bg-primary badge-number">{{ count($unreadAlarms) }}</span>
                     </a><!-- End Notification Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
                         <li class="dropdown-header">
-                            You have 4 new notifications
+                            You have {{ count($unreadAlarms) }} new notifications
                             <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
                         </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+                        @foreach ($unreadAlarms as $alarm)
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
 
-                        <li class="notification-item">
-                            <i class="bi bi-exclamation-circle text-warning"></i>
-                            <div>
-                                <h4>Lorem Ipsum</h4>
-                                <p>Quae dolorem earum veritatis oditseno</p>
-                                <p>30 min. ago</p>
-                            </div>
-                        </li>
-
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="notification-item">
-                            <i class="bi bi-x-circle text-danger"></i>
-                            <div>
-                                <h4>Atque rerum nesciunt</h4>
-                                <p>Quae dolorem earum veritatis oditseno</p>
-                                <p>1 hr. ago</p>
-                            </div>
-                        </li>
-
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="notification-item">
-                            <i class="bi bi-check-circle text-success"></i>
-                            <div>
-                                <h4>Sit rerum fuga</h4>
-                                <p>Quae dolorem earum veritatis oditseno</p>
-                                <p>2 hrs. ago</p>
-                            </div>
-                        </li>
-
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="notification-item">
-                            <i class="bi bi-info-circle text-primary"></i>
-                            <div>
-                                <h4>Dicta reprehenderit</h4>
-                                <p>Quae dolorem earum veritatis oditseno</p>
-                                <p>4 hrs. ago</p>
-                            </div>
-                        </li>
+                            <li class="notification-item">
+                                @if ($alarm->type === 0)
+                                    <i class="bi bi-info-circle text-primary"></i>
+                                @else
+                                    <i class="bi bi-exclamation-circle text-warning"></i>
+                                @endif
+                                <div>
+                                    <div class="text-truncate" style="max-width: 200px;">
+                                        {{ $alarm->title }}
+                                    </div>
+                                    <div class="text-truncate" style="max-width: 240px;">
+                                        {{ $alarm->description }}
+                                    </div>
+                                    <p>{{$alarm->created_at}}</p>
+                                </div>
+                            </li>
+                        @endforeach
 
                         <li>
                             <hr class="dropdown-divider">

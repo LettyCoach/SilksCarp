@@ -68,6 +68,11 @@
                                             </td>
                                             <td class="text-center view-data">
                                                 <a href="{{ route('a2a.show', ['a2a' => $model->id]) }}">
+                                                    @if ($model->type === 0)
+                                                        <i class="bi bi-info-circle text-primary"></i>
+                                                    @else
+                                                        <i class="bi bi-exclamation-circle text-warning"></i>
+                                                    @endif
                                                     {{ $model->getTypeName() }}
                                                 </a>
                                             </td>
