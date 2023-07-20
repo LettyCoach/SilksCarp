@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class AlarmReadState extends Model
 {
     use HasFactory;
+    protected $primaryKey = null;
+    public $incrementing = false;
 }

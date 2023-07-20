@@ -80,7 +80,8 @@
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
                         <li class="dropdown-header">
                             You have {{ count($unreadAlarms) }} new notifications
-                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                            <a href="{{ route('alarm-user.index') }}"><span
+                                    class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
                         </li>
                         @foreach ($unreadAlarms as $alarm)
                             <li>
@@ -100,7 +101,7 @@
                                     <div class="text-truncate" style="max-width: 240px;">
                                         {{ $alarm->description }}
                                     </div>
-                                    <p>{{$alarm->created_at}}</p>
+                                    <p>{{ $alarm->created_at }}</p>
                                 </div>
                             </li>
                         @endforeach
@@ -109,7 +110,7 @@
                             <hr class="dropdown-divider">
                         </li>
                         <li class="dropdown-footer">
-                            <a href="#">Show all notifications</a>
+                            <a href="{{ route('alarm-user.index') }}">Show all notifications</a>
                         </li>
 
                     </ul><!-- End Notification Dropdown Items -->

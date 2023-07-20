@@ -61,6 +61,6 @@ class User extends Authenticatable
 
     public function alarms(): BelongsToMany
     {
-        return $this->belongsToMany(AlarmToAll::class, 'alarm_read_states', 'user_id', 'alarm_to_all_id');
+        return $this->belongsToMany(AlarmToAll::class, 'alarm_read_states', 'user_id', 'alarm_to_all_id')->withPivot('read_date');
     }
 }
