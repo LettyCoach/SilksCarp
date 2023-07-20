@@ -17,26 +17,30 @@ class MessageController extends Controller
     {
         //
         $pageSize = $request->pageSize ?? 10;
-        $selType = $request->selType ?? -1;
-        $selUser_id = $request->selUser_id ?? -1;
+        $response_state = $request->response_state ?? 0;
 
-        $models = Message::orderby('created_at', 'desc');
-        if ($selType > -1) {
+        $models = Auth::user()->messages();
+
+        if ($response_state === 0) {
+            $models = $models->where('read_date', '2000-01-01 00:00:00');
+        } else if ($response_state === 1) {
+            $models = $models->where('read_date', '<>', '2000-01-01 00:00:00');
         }
 
-        $models = $models->paginate($pageSize);
-        $models->appends(['pageSize' => $pageSize]);
+        $cnt = count($models->get());
 
-        $users = User::whereNull('role')->orWhere('role', '<>', 'admin')->orderby('name', 'asc')->get();
+        $models = $models->orderby('created_at', 'desc');
+
+        $models = $models->paginate($pageSize);
+        $models->appends(compact('pageSize', 'response_state'));
 
         return view(
             'messageMana.message.index',
             compact(
                 'models',
-                'users',
                 'pageSize',
-                'selType',
-                'selUser_id',
+                'response_state',
+                'cnt'
             )
         );
     }
@@ -61,19 +65,21 @@ class MessageController extends Controller
         $request->validate(
             [
                 'title' => 'required|string',
-                'description' => 'required|string',
+                'content' => 'required|string',
             ],
         );
 
         $model = new Message();
         $model->user_id = Auth::user()->id;
+        $model->title = $request->title ?? "";
         $model->content = $request->content ?? "";
         $model->parent_id = null;
+        $model->read_date = "2000-01-01 00:00:00";
         $model->response_state = 0;
 
         $model->save();
 
-        return redirect()->route('message.index');
+        return redirect()->route('message.show', ['message' => $model->id]);
     }
 
     /**
@@ -106,22 +112,22 @@ class MessageController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $request->validate(
-            [
-                'title' => 'required|string',
-                'description' => 'required|string',
-            ],
-        );
+        // $request->validate(
+        //     [
+        //         'title' => 'required|string',
+        //         'description' => 'required|string',
+        //     ],
+        // );
 
-        $model = Message::find($id);
-        $model->type = $request->type;
-        $model->title = $request->title;
-        $model->description = $request->description ?? "";
-        $model->other = '';
+        // $model = Message::find($id);
+        // $model->type = $request->type;
+        // $model->title = $request->title;
+        // $model->description = $request->description ?? "";
+        // $model->other = '';
 
-        $model->save();
+        // $model->save();
 
-        return redirect()->route('message.index');
+        // return redirect()->route('message.index', ['id' => $model->id]);
     }
 
     /**
@@ -130,9 +136,9 @@ class MessageController extends Controller
     public function destroy(Request $request, string $id)
     {
         //
-        $model = Message::find($id);
-        $model->delete();
+        // $model = Message::find($id);
+        // $model->delete();
 
-        return redirect()->route('message.index');
+        // return redirect()->route('message.index');
     }
 }

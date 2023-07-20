@@ -215,7 +215,7 @@ return [
         1 => '未読',
     ],
     
-    'messageTypes' => [
+    'messageResponseStates' => [
         0 => '未読',
         1 => '対応未完了',
     ],

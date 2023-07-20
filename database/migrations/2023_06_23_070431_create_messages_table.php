@@ -13,10 +13,11 @@ return new class extends Migration {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('title', 1024)->default('');
             $table->text('content')->default('');
             $table->foreignId('parent_id')->nullable()->constrained('messages');
+            $table->timestamp('read_date')->nullable()->default('2000-01-01 00:00:00');
             $table->integer('response_state')->default(0);
-            $table->timestamp('read_date')->nullable();
             $table->timestamps();
         });
     }
