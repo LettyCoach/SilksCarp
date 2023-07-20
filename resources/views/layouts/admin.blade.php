@@ -303,7 +303,8 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('home') }}">
+                <a class="nav-link {{ $routeName == 'sale-info.index' ? '' : 'collapsed' }} "
+                    href="{{ route('sale-info.index') }}">
                     <i class="bi bi-clipboard2-pulse"></i>
                     <span>販売情報</span>
                 </a>
