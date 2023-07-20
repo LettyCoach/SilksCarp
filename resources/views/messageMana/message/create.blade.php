@@ -1,13 +1,13 @@
-@extends('layouts.admin');
+@extends('layouts.user');
 @section('content')
     <link rel="stylesheet" href="{{ asset('assets/css/messageMana/message.css') }}">
     <div class="pagetitle">
-        <h1>お知らせ</h1>
+        <h1>メッセージ</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>
-                <li class="breadcrumb-item active"> <a href="{{ route('message.index') }}">お知らせ一覧</a> </li>
-                <li class="breadcrumb-item active">お知らせ追加</li>
+                <li class="breadcrumb-item active"> <a href="{{ route('message.index') }}">メッセージ一覧</a> </li>
+                <li class="breadcrumb-item active">メッセージ追加</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -22,16 +22,6 @@
                     <div class="col-10 col-lg-8 col-xl-7">
                         <div class="row mt-5">
                             <div class="row mb-3">
-                                <label for="" class="col-md-4 col-lg-3 col-form-label fw-bold">種別</label>
-                                <div class="col-md-8 col-lg-9">
-                                    <select name="type" class="form-select" id="type" onchange="viewIndex()">
-                                        @foreach (Config::get('app.alarmTypes') as $k => $v)
-                                            <option value="{{ $k }}">{{ $v }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
                                 <label for="title" class="col-md-4 col-lg-3 col-form-label fw-bold">タイトル (必須)</label>
                                 <div class="col-md-8 col-lg-9">
                                     <input type="text" name="title" id="title" class="form-control rounded"
@@ -44,16 +34,9 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="description" class="col-md-4 col-lg-3 col-form-label fw-bold">詳細 (必須)</label>
+                                <label for="content" class="col-md-4 col-lg-3 col-form-label fw-bold">詳細 (必須)</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <textarea name="description" id="description" class="form-control rounded" style="height: 120px">{{ old('description') }}</textarea>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="end_date" class="col-md-4 col-lg-3 col-form-label fw-bold">表示期間 (必須)</label>
-                                <div class="col-md-8 col-lg-9">
-                                    <input type="date" name="end_date" id="end_date" class="form-control rounded"
-                                        value="{{ old('end_date', $today) }}" placeholder="" />
+                                    <textarea name="content" id="content" class="form-control rounded" style="height: 120px">{{ old('content') }}</textarea>
                                 </div>
                             </div>
                         </div>

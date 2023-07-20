@@ -1,13 +1,13 @@
-@extends('layouts.admin')
+@extends('layouts.user')
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('assets/css/messageMana/message.css') }}">
     <div class="pagetitle">
-        <h1>お知らせ</h1>
+        <h1>メッセージ</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>
-                <li class="breadcrumb-item active">お知らせ</li>
+                <li class="breadcrumb-item active">メッセージ</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -29,23 +29,14 @@
                             <div class="rounded-md">
                                 <select name="selType" class="form-select" id="selType" onchange="viewIndex()">
                                     <option value="-1" selected>全て(種別)</option>
-                                    @foreach (Config::get('app.alarmTypes_I') as $k => $v)
-                                        <option value="{{ $k }}" {{ $k == $selType ? 'selected' : '' }}>
+                                    @foreach (Config::get('app.messageResponseStates') as $k => $v)
+                                        <option value="{{ $k }}" {{ $k == $response_state ? 'selected' : '' }}>
                                             {{ $v }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="rounded-md">
-                                <select name="selUser_id" class="form-select" id="selUser_id" onchange="viewIndex()">
-                                    <option value="-1" selected>全て(ユーザー)</option>
-                                    @foreach ($users as $v)
-                                        <option value="{{ $v->id }}" {{ $v->id == $selUser_id ? 'selected' : '' }}>
-                                            {{ $v->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
 
-                            <span class="badge bg-success badge-number" style="height:20px">5</span>
+                            <span class="badge bg-success badge-number" style="height:20px">{{ $cnt }}</span>
 
                             <a class="rounded btn btn-success d-none" href="javascript:;viewIndex()">
                                 <i class="bi-search"></i>&nbsp;
@@ -58,41 +49,15 @@
                         <div class="row d-flex justify-content-center">
                             <div class="col col-lg-8">
                                 <div class="news mt-5">
-                                    <div class="post-item clearfix">
-                                        <img src="{{ Auth::user()->getAvatar() }}" alt="">
-                                        <h4><a href="#">{{ Auth::user()->name }}</a></h4>
-                                        <p>Sit recusandae non aspernatur laboriosam. Quia enim eligendi sed ut harum...</p>
-                                    </div>
-
-                                    <div class="post-item clearfix">
-                                        <img src="{{ Auth::user()->getAvatar() }}" alt="">
-                                        <h4><a href="#">{{ Auth::user()->name }}</a></h4>
-                                        <p>Illo nemo neque maiores vitae officiis cum eum turos elan dries werona nande...
-                                        </p>
-                                    </div>
-
-                                    <div class="post-item clearfix">
-                                        <img src="{{ Auth::user()->getAvatar() }}" alt="">
-                                        <h4><a href="#">{{ Auth::user()->name }}</a></h4>
-                                        <p>Fugiat voluptas vero eaque accusantium eos. Consequuntur sed ipsam et totam...
-                                        </p>
-                                    </div>
-
-                                    <div class="post-item clearfix">
-                                        <img src="{{ Auth::user()->getAvatar() }}" alt="">
-                                        <h4><a href="#">{{ Auth::user()->name }}</a></h4>
-                                        <p>Qui enim quia optio. Eligendi aut asperiores enim repellendusvel rerum cuder...
-                                        </p>
-                                    </div>
-
-                                    <div class="post-item clearfix">
-                                        <img src="{{ Auth::user()->getAvatar() }}" alt="">
-                                        <h4><a href="#">{{ Auth::user()->name }}</a></h4>
-                                        <p>Odit ut eveniet modi reiciendis. Atque cupiditate libero beatae dignissimos
-                                            eius...
-                                        </p>
-                                    </div>
-
+                                    @foreach ($models as $model)
+                                        <div class="post-item clearfix">
+                                            <img src="{{ Auth::user()->getAvatar() }}" alt="">
+                                            <h4><a
+                                                    href="{{ route('message.show', ['message' => $model->id]) }}">{{ Auth::user()->name }}</a>
+                                            </h4>
+                                            <p>{{ $model->title }}</p>
+                                        </div>
+                                    @endforeach
                                 </div><!-- End sidebar recent posts-->
                             </div>
                         </div>
@@ -114,7 +79,8 @@
         const indexUrl = "{{ route('message.index') }}";
         const viewIndex = () => {
             const pageSize = $('#pageSize').val();
-            location.href = `${indexUrl}?pageSize=${pageSize}`;
+            const response_state = $('#response_state').val();
+            location.href = `${indexUrl}?pageSize=${pageSize}&response_state=${response_state}`;
         };
 
         $(".delete-button").click(function(e) {

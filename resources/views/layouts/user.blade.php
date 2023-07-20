@@ -334,7 +334,8 @@
 
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="users-profile.html">
+                <a class="nav-link {{ $routeName == 'message.create' ? '' : 'collapsed' }} "
+                    href="{{ route('message.create') }}">
                     <i class="bi-envelope-open"></i>
                     <span>お問い合わせ</span>
                 </a>
