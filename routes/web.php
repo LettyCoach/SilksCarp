@@ -3,6 +3,7 @@
 use App\Http\Controllers\Alarm\AlarmToAllController;
 use App\Http\Controllers\Alarm\AlarmToIndividualController;
 use App\Http\Controllers\MessageMana\MessageController;
+use App\Http\Controllers\ProductMana\SaleInfoController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommonController;
@@ -40,6 +41,9 @@ Route::middleware([Authenticate::class])->group(function () {
     Route::resource('/product', ProductController::class);
     Route::resource('/a2a', AlarmToAllController::class);
     Route::resource('/a2i', AlarmToIndividualController::class);
+    Route::get('/sale-info', [SaleInfoController::class, 'index'])->name('sale-info.index');
+    Route::get('/sale-info/csv', [SaleInfoController::class, 'exportCSV'])->name('sale-info.csv');
+    // Route::resource('/sale-info', SaleInfoController::class);
 
 
     /********************************* User Page *****************************************/
