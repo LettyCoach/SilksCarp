@@ -34,7 +34,7 @@ class AlarmUserController extends Controller
             $models = $models->where('read_date', '<>', '2000-01-01 00:00:00');
         }
 
-        $models = $models->orderby('created_at', 'desc');
+        $models = $models->where('end_date', '>=', Carbon::now())->orderby('created_at', 'desc');
 
         $models = $models->paginate($pageSize);
         // dd($models);
