@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Alarm\AlarmToAllController;
 use App\Http\Controllers\Alarm\AlarmToIndividualController;
+use App\Http\Controllers\Alarm\AlarmUserController;
 use App\Http\Controllers\MessageMana\MessageController;
 use App\Http\Controllers\ProductMana\SaleInfoController;
 use App\Http\Middleware\Authenticate;
@@ -50,6 +51,7 @@ Route::middleware([Authenticate::class])->group(function () {
     Route::resource('/purchase', PurchaseController::class);
     Route::resource('/sale', SaleController::class);
     Route::resource('/own', OwnController::class);
+    Route::resource('/alarm-user', AlarmUserController::class);
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile/update/profile', [ProfileController::class, 'updateProfile'])->name('profile.updateProfile');

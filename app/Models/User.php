@@ -3,7 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Alarm\AlarmToAll;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -54,5 +57,10 @@ class User extends Authenticatable
         }
 
         return asset($this->blankAvata);
+    }
+
+    public function alarms(): BelongsToMany
+    {
+        return $this->belongsToMany(AlarmToAll::class, 'alarm_read_states', 'user_id', 'alarm_to_all_id')->withPivot('read_date');
     }
 }

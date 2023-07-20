@@ -1,7 +1,7 @@
-@extends('layouts.admin')
+@extends('layouts.user')
 
 @section('content')
-    <link rel="stylesheet" href="{{ asset('assets/css/alarm/a2a.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/alarm/alarm_user.css') }}">
     <div class="pagetitle">
         <h1>お知らせ</h1>
         <nav>
@@ -25,7 +25,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="rounded-md">
+                        <div class="rounded-md d-flex">
                             <select name="selType" class="form-select" id="selType" onchange="viewIndex()">
                                 <option value="-1" selected>全て(種別)</option>
                                 @foreach (Config::get('app.alarmTypes') as $k => $v)
@@ -33,12 +33,21 @@
                                         {{ $v }}</option>
                                 @endforeach
                             </select>
+                            &nbsp;&nbsp;&nbsp;
                         </div>
+                        <div class="rounded-md">
 
-                        <a class="rounded btn btn-danger" href="{{ route('a2a.create') }}">
-                            <i class="fa fa-plus"></i>&nbsp;
-                            お知らせ追加
-                        </a>
+                            <select name="selState" class="form-select" id="selState" onchange="viewIndex()">
+                                <option value="-1" selected>全て(読んだ状態)</option>
+                                @foreach (Config::get('app.alarmStates_I') as $k => $v)
+                                    <option value="{{ $k }}" {{ $k == $selState ? 'selected' : '' }}>
+                                        {{ $v }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="rounded-md">
+
+                        </div>
                     </div>
                 </div>
                 <div class="panel-body">
@@ -49,25 +58,33 @@
                                 <thead style="height:47px;">
                                     <tr class="align-middle">
                                         <th class="text-center">No</th>
+                                        <th class="text-center">読んだ状態</th>
                                         <th class="text-center">種別</th>
                                         <th class="text-center">タイトル</th>
                                         <th class="text-center">詳細</th>
                                         <th class="text-center">発行日</th>
                                         <th class="text-center">表示期間</th>
-                                        <th class="text-center">変更</th>
-                                        <th class="text-center">削除</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($models as $i => $model)
                                         <tr class="align-middle">
-                                            <td class="text-center view-data">
-                                                <a href="{{ route('a2a.show', ['a2a' => $model->id]) }}">
+                                            <td class="text-center view-data p-3">
+                                                <a href="{{ route('alarm-user.show', ['alarm_user' => $model->id]) }}">
                                                     {{ $i + 1 }}
                                                 </a>
                                             </td>
                                             <td class="text-center view-data">
-                                                <a href="{{ route('a2a.show', ['a2a' => $model->id]) }}">
+                                                <a href="{{ route('alarm-user.show', ['alarm_user' => $model->id]) }}">
+                                                    @if ($model->pivot->read_date === '2000-01-01 00:00:00')
+                                                        未読
+                                                    @else
+                                                        読む
+                                                    @endif
+                                                </a>
+                                            </td>
+                                            <td class="text-center view-data">
+                                                <a href="{{ route('alarm-user.show', ['alarm_user' => $model->id]) }}">
                                                     @if ($model->type === 0)
                                                         <i class="bi bi-info-circle text-primary"></i>
                                                     @else
@@ -77,31 +94,13 @@
                                                 </a>
                                             </td>
                                             <td class="text-center view-data">
-                                                <a href="{{ route('a2a.show', ['a2a' => $model->id]) }}">
+                                                <a href="{{ route('alarm-user.show', ['alarm_user' => $model->id]) }}">
                                                     {{ $model->title }}
                                                 </a>
                                             </td>
                                             <td class="text-center view-data">{{ $model->description }}</td>
                                             <td class="text-center view-data">{{ $model->getStartDate() }}</td>
                                             <td class="text-center view-data">{{ $model->getEndDate() }}</td>
-                                            <td class="text-center">
-                                                <a href="{{ route('a2a.edit', ['a2a' => $model->id]) }}">
-                                                    <i class="bi-pencil-square"></i>
-                                                </a>
-                                            </td>
-                                            <td class="text-center">
-                                                <form method="POST"
-                                                    action="{{ route('a2a.destroy', ['a2a' => $model->id]) }}">
-                                                    @csrf
-                                                    @method('DELETE')
-
-                                                    <div class="form-group">
-                                                        <button type="submit" class="btn delete-button">
-                                                            <i class="bi-trash"></i>
-                                                        </button>
-                                                    </div>
-                                                </form>
-                                            </td>
                                         </tr>
                                     @endforeach
 
@@ -127,17 +126,12 @@
 
 @section('js')
     <script>
-        const indexUrl = "{{ route('a2a.index') }}";
+        const indexUrl = "{{ route('alarm-user.index') }}";
         const viewIndex = () => {
             const pageSize = $('#pageSize').val();
-            location.href = `${indexUrl}?pageSize=${pageSize}`;
+            const selType = $('#selType').val();
+            const selState = $('#selState').val();
+            location.href = `${indexUrl}?pageSize=${pageSize}&selType=${selType}&selState=${selState}`;
         };
-
-        $(".delete-button").click(function(e) {
-            e.preventDefault();
-            if (confirm("本当に削除しますか？")) {
-                $(e.target).closest("form").submit();
-            }
-        });
     </script>
 @endsection

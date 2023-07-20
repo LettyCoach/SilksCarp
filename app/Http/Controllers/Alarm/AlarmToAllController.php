@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Alarm;
 
 use App\Http\Controllers\Controller;
+use App\Models\Alarm\AlarmReadState;
 use App\Models\Alarm\AlarmToAll;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Session;
@@ -67,6 +69,15 @@ class AlarmToAllController extends Controller
 
         $model->save();
 
+        $users = User::whereNull('role')->orWhere('role', '<>', 'admin')->get();
+        foreach ($users as $user) {
+            $modelState = new AlarmReadState();
+            $modelState->user_id = $user->id;
+            $modelState->alarm_to_all_id = $model->id;
+            $modelState->read_date = '2000-01-01 00:00:00';
+            $modelState->save();
+        }
+
         return redirect()->route('a2a.index');
     }
 
@@ -111,7 +122,7 @@ class AlarmToAllController extends Controller
         $model->type = $request->type;
         $model->title = $request->title;
         $model->description = $request->description ?? "";
-        $model->end_date = Carbon::now();
+        $model->end_date = Carbon::parse("$request->end_date 23:59:59");
         $model->other = '';
 
         $model->save();

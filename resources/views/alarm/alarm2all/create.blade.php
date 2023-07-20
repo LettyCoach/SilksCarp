@@ -24,7 +24,7 @@
                             <div class="row mb-3">
                                 <label for="" class="col-md-4 col-lg-3 col-form-label fw-bold">種別</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <select name="type" class="form-select" id="type" onchange="viewIndex()">
+                                    <select name="type" class="form-select" id="type">
                                         @foreach (Config::get('app.alarmTypes') as $k => $v)
                                             <option value="{{ $k }}">{{ $v }}</option>
                                         @endforeach

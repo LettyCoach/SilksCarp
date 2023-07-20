@@ -151,13 +151,12 @@
 
         function exportCSV() {
             let _url = "{{ route('sale-info.csv') }}";
-
             
             const pageSize = $('#pageSize').val();
             const stDate = $('#stDate').val();
             const edDate = $('#edDate').val();
             _url = `${_url}?pageSize=${pageSize}&stDate=${stDate}&edDate=${edDate}`;
-            console.log(_url);
+
             window.location.href = _url;
         }
     </script>
