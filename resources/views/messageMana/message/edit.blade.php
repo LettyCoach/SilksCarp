@@ -1,4 +1,4 @@
-@extends('layouts.admin');
+@extends('layouts.user');
 @section('content')
     <link rel="stylesheet" href="{{ asset('assets/css/messageMana/message.css') }}">
     <div class="pagetitle">
@@ -6,8 +6,8 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>
-                <li class="breadcrumb-item active"> <a href="{{ route('message.index') }}">商品一覧</a> </li>
-                <li class="breadcrumb-item active">商品変更</li>
+                <li class="breadcrumb-item active"> <a href="{{ route('message.index') }}">メッセージ一覧</a> </li>
+                <li class="breadcrumb-item active">メッセージ変更</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
