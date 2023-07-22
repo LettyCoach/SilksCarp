@@ -27,7 +27,7 @@
                                 </select>
                             </div>
                             <div class="rounded-md">
-                                <select name="selType" class="form-select" id="selType" onchange="viewIndex()">
+                                <select name="response_state" class="form-select" id="response_state" onchange="viewIndex()">
                                     <option value="-1" selected>全て(種別)</option>
                                     @foreach (Config::get('app.messageResponseStates') as $k => $v)
                                         <option value="{{ $k }}" {{ $k == $response_state ? 'selected' : '' }}>
@@ -53,7 +53,7 @@
                                         <div class="post-item clearfix">
                                             <img src="{{ Auth::user()->getAvatar() }}" alt="">
                                             <h4><a
-                                                    href="{{ route('message.show', ['message' => $model->id]) }}">{{ Auth::user()->name }}</a>
+                                                    href="{{ route('message.edit', ['message' => $model->id]) }}">{{ Auth::user()->name }}</a>
                                             </h4>
                                             <p>{{ $model->title }}</p>
                                         </div>

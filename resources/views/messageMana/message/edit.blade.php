@@ -12,112 +12,91 @@
         </nav>
     </div><!-- End Page Title -->
 
-    <section class="section">
-        <div class="card">
-            <form action="{{ route('message.update', ['message' => $model->id]) }}" method="POST"
-                enctype="multipart/form-data" onsubmit="return checkData()">
-                @csrf
-                @method('PUT')
-                <div class="row d-flex justify-content-center">
-
-                    <div class="col-10 col-lg-8 col-xl-6">
-                        <div class="row mt-5">
-                            <div class="row mb-2">
-                                <div class="col">
-                                    <label for="">商品 (必須)</label>
-                                    <input type="text" name="name" id="name" class="form-control rounded"
-                                        value="{{ old('name', $model->name) }}" />
-                                    @error('name')
-                                        <span class="invalid-feedback d-block" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <label for="">写真</label>
-                            <div class="row mb-2 mt-2">
-                                <div class="col d-flex justify-content-center">
-                                    <div class="product_img_div">
-                                        <img src="{{ asset('assets/images/common/transparent.png') }}" alt=""
-                                            id="product_img_0">
+    <section class="section dashboard">
+        <div class="row d-flex justify-content-center">
+            <div class="col col-md-10 col-xl-9">
+                <div class="card p-4">
+                    <div class="message_list row p-4">
+                        <div class="message">
+                            <div class="message-admin">
+                                <div class="_header">
+                                    <img src="{{ $model->user->getAvatar() }}" alt="">
+                                    <div>
+                                        <h5>{{ $model->title }}</h5>
+                                        <p>{{ $model->user->name }}</p>
                                     </div>
                                 </div>
-                                <div class="col d-flex justify-content-center">
-                                    <div class="product_img_div">
-                                        <img src="{{ asset('assets/images/common/transparent.png') }}" alt=""
-                                            id="product_img_1">
+                                <div class="_body">
+                                    <div>{!! $model->content !!}</div>
+                                    <div>{{ $model->created_at }}</div>
+                                </div>
+                            </div>
+                            @foreach ($subModels as $sm)
+                                <div class="{{ $sm->type === 0 ? 'message-admin' : 'message-user' }}">
+                                    <div class="_header">
+                                        <img src="{{ $sm->type === 0 ? $model->user->getAvatar() : $admin->getAvatar() }}"
+                                            alt="">
+                                        <div>
+                                            <h5>{{ $sm->title }}</h5>
+                                            <p>{{ $sm->type === 0 ? $model->user->name : $admin->name }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="_body">
+                                        <div>{!! $sm->content !!}</div>
+                                        <div>{{ $sm->created_at }}</div>
                                     </div>
                                 </div>
-                                <div class="col d-flex justify-content-center">
-                                    <div class="product_img_div">
-                                        <img src="{{ asset('assets/images/common/transparent.png') }}" alt=""
-                                            id="product_img_2">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-2">
-                                <div class="col">
-                                    <label for="">価格 (必須)</label>
-                                    <input type="text" name="price" id="price" class="form-control rounded"
-                                        value="{{ old('price', $model->price) }}" />
-                                    @error('price')
-                                        <span class="invalid-feedback d-block" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="row mb-2">
-                                <div class="col">
-                                    <label for="">説明</label>
-                                    <textarea name="description" id="description" class="form-control rounded" style="height: 120px">{{ old('description', $model->description) }}</textarea>
-                                </div>
-                            </div>
-                            <div class="row mb-2">
-                                <div class="col">
-                                    <label for="">仕入れ値 (必須)</label>
-                                    <input type="text" name="cost" id="cost" class="form-control rounded"
-                                        value="{{ old('cost', $model->cost) }}" />
-                                    @error('cost')
-                                        <span class="invalid-feedback d-block" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="row mb-2">
-                                <div class="col">
-                                    <label for="">仕入先URL</label>
-                                    <input type="text" name="supplier_url" id="supplier_url" class="form-control rounded"
-                                        value="{{ old('supplier_url', $model->supplier_url) }}" />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col d-flex justify-content-end">
-                                <button type="submit" class="btn btn-success">
-                                    <i class="fa fa-check"></i> セーブ
-                                </button>
-                            </div>
-                            <div class="col">
-                                <button type="button" class="btn btn-secondary"
-                                    onclick="location.href='{{ route('message.index') }}'">
-                                    <i class="bi-list-stars"></i> 一覧を見る
-                                </button>
-                            </div>
-
+                            @endforeach
                         </div>
                     </div>
+                    <div class="message_pan ">
+                        <form action="{{ route('message.update', ['message' => $model->id]) }}" method="POST"
+                            enctype="multipart/form-data" onsubmit="return checkData()">
+                            @csrf
+                            @method('PUT')
+                            <div class="message_pan_body">
+                                <div class="message_pan_txt gap-2">
+                                    <div class="">
+                                        <input type="text" name="title" id="title" class="form-control rounded"
+                                            value="{{ old('title') }}" placeholder="タイトル(必須)" />
+                                        @error('title')
+                                            <span class="invalid-feedback d-block" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="">
+                                        <textarea name="content" id="content" class="form-control rounded" placeholder="詳細(必須)" style="height: 60px">{{ old('content') }}</textarea>
+                                    </div>
+                                </div>
+
+                                <div class="message_pan_btn gap-2">
+                                    <div class="">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+                                            送信
+                                        </button>
+                                    </div>
+                                    <div class="">
+                                        <button type="button" class="btn btn-danger p-2"
+                                            onclick="location.href='{{ route('message.index') }}'">
+                                            <i class="bi-list-stars"></i>
+                                        </button>
+                                        @if ($model->response_state === 1)
+                                            <button type="button" class="btn btn-success p-2">
+                                                <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                            </button>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
                 </div>
-                <input type="hidden" name="images" id="images" value="{{ old('images', $model->images) }}">
-            </form>
+            </div>
         </div>
 
-        <input type="hidden" name="plusImgUrl" id="plusImgUrl" value="{{ $model->getPlusImgUrl() }}">
-        <input type="hidden" name="hostUrl" id="hostUrl" value="{{ url('/') }}">
-        <input type="hidden" name="assetUrl" id="assetUrl" value="{{ asset('/') }}">
-        <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
     </section>
 @endsection
 

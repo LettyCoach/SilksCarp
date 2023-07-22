@@ -4,6 +4,8 @@ namespace App\Http\Controllers\MessageMana;
 
 use App\Http\Controllers\Controller;
 use App\Models\MessageMana\Message;
+use App\Models\MessageMana\MessageSub;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Auth;
@@ -21,10 +23,15 @@ class MessageController extends Controller
 
         $models = Auth::user()->messages();
 
+        if ($response_state > -1) {
+            $models = $models->where('response_state', $response_state);
+        }
+
         if ($response_state === 0) {
-            $models = $models->where('read_date', '2000-01-01 00:00:00');
+            // $models = $models->where('read_date', '2000-01-01 00:00:00');
+
         } else if ($response_state === 1) {
-            $models = $models->where('read_date', '<>', '2000-01-01 00:00:00');
+            // $models = $models->where('read_date', '<>', '2000-01-01 00:00:00');
         }
 
         $cnt = count($models->get());
@@ -79,7 +86,7 @@ class MessageController extends Controller
 
         $model->save();
 
-        return redirect()->route('message.show', ['message' => $model->id]);
+        return redirect()->route('message.edit', ['message' => $model->id]);
     }
 
     /**
@@ -99,11 +106,19 @@ class MessageController extends Controller
      */
     public function edit(string $id)
     {
-
+        $crtDateTime = Carbon::now();
         $model = Message::find($id);
+        $subModels = $model->messages()->orderby('created_at', 'asc')->get();
+        foreach ($subModels as $m) {
+            if ($m->type === 0)
+                continue;
+            $m->read_date = $crtDateTime;
+            $m->save();
+        }
 
-        return view('messageMana.message.edit')
-            ->with('model', $model);
+        $admin = User::where('role', 'admin')->get()[0];
+
+        return view('messageMana.message.edit', compact('model', 'subModels', 'admin'));
     }
 
     /**
@@ -111,23 +126,25 @@ class MessageController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-        // $request->validate(
-        //     [
-        //         'title' => 'required|string',
-        //         'description' => 'required|string',
-        //     ],
-        // );
 
-        // $model = Message::find($id);
-        // $model->type = $request->type;
-        // $model->title = $request->title;
-        // $model->description = $request->description ?? "";
-        // $model->other = '';
+        $request->validate(
+            [
+                'title' => 'required|string',
+                'content' => 'required|string',
+            ],
+        );
 
-        // $model->save();
+        $model = new MessageSub();
+        $model->title = $request->title ?? "";
+        $model->content = $request->content ?? "";
+        $model->type = 0;
+        $model->message_id = $id;
+        $model->parent_id = null;
+        $model->read_date = "2000-01-01 00:00:00";
 
-        // return redirect()->route('message.index', ['id' => $model->id]);
+        $model->save();
+
+        return redirect()->route('message.edit', ['message' => $id]);
     }
 
     /**

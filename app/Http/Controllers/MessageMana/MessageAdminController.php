@@ -5,6 +5,7 @@ namespace App\Http\Controllers\MessageMana;
 use App\Http\Controllers\Controller;
 use App\Models\MessageMana\Message;
 use App\Models\MessageMana\MessageSub;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -107,8 +108,17 @@ class MessageAdminController extends Controller
     public function edit(string $id)
     {
 
+        $crtDateTime = Carbon::now();
         $model = Message::find($id);
-        $subModels = $model->messages()->orderby('created_at', 'desc')->get();
+        $model->read_date = $crtDateTime;
+        $model->save();
+        $subModels = $model->messages()->orderby('created_at', 'asc')->get();
+        foreach ($subModels as $m) {
+            if ($m->type === 1)
+                continue;
+            $m->read_date = $crtDateTime;
+            $m->save();
+        }
 
         return view('messageMana.message_admin.edit', compact('model', 'subModels'));
     }
