@@ -70,4 +70,50 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class, 'user_id');
     }
+
+    public function getUnreadMessages()
+    {
+        $unreadMSGs = array();
+        $isAdmin = $this->role === 'admin';
+        $admin = self::where('role', 'admin')->get()[0];
+
+        $messages = $this->messages;
+        if ($admin) {
+            $messages = Message::orderby('created_at', 'desc')->get();
+        }
+
+        $initTime = "2000-01-01 00:00:00";
+        foreach ($messages as $msg) {
+            if ($isAdmin && $msg->read_date === $initTime) {
+                array_push($unreadMSGs, [
+                    "avatar" => $msg->user->getAvatar(),
+                    "name" => $this->name,
+                    "title" => $msg->title,
+                    "time" => $msg->created_at,
+                    "msg_id" => $msg->id
+                ]);
+            }
+
+            $messageSubs = $msg->messages;
+            foreach ($messageSubs as $sMsg) {
+                if ($isAdmin && $sMsg->type === 1 || !$isAdmin && $sMsg->type === 0) {
+                    continue;
+                }
+                if ($sMsg->read_date !== $initTime)
+                    continue;
+                $avatar = $msg->user->getAvatar();
+                if ($sMsg->type === 1)
+                    $avatar = $admin->getAvatar();
+                array_push($unreadMSGs, [
+                    "avatar" => $avatar,
+                    "name" => $this->name,
+                    "title" => $sMsg->title,
+                    "time" => $sMsg->created_at,
+                    "msg_id" => $msg->id
+                ]);
+            }
+        }
+
+        return $unreadMSGs;
+    }
 }

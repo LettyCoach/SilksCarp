@@ -1,7 +1,7 @@
-@extends('layouts.user')
+@extends('layouts.admin')
 
 @section('content')
-    <link rel="stylesheet" href="{{ asset('assets/css/messageMana/message.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/messageMana/message_admin.css') }}">
     <div class="pagetitle">
         <h1>メッセージ</h1>
         <nav>
@@ -27,7 +27,7 @@
                                 </select>
                             </div>
                             <div class="rounded-md">
-                                <select name="response_state" class="form-select" id="response_state" onchange="viewIndex()">
+                                <select name="selType" class="form-select" id="response_state" onchange="viewIndex()">
                                     <option value="-1" selected>全て(種別)</option>
                                     @foreach (Config::get('app.messageResponseStates') as $k => $v)
                                         <option value="{{ $k }}" {{ $k == $response_state ? 'selected' : '' }}>
@@ -51,9 +51,11 @@
                                 <div class="news mt-5">
                                     @foreach ($models as $model)
                                         <div class="post-item clearfix">
-                                            <img src="{{ Auth::user()->getAvatar() }}" alt="">
-                                            <h4><a
-                                                    href="{{ route('message.edit', ['message' => $model->id]) }}">{{ Auth::user()->name }}</a>
+                                            <img src="{{ $model->user->getAvatar() }}" alt="">
+                                            <h4>
+                                                <a href="{{ route('message-admin.edit', ['message_admin' => $model->id]) }}">
+                                                    {{ $model->user->name }}
+                                                </a>
                                             </h4>
                                             <p>{{ $model->title }}</p>
                                         </div>
@@ -76,7 +78,7 @@
 
 @section('js')
     <script>
-        const indexUrl = "{{ route('message.index') }}";
+        const indexUrl = "{{ route('message-admin.index') }}";
         const viewIndex = () => {
             const pageSize = $('#pageSize').val();
             const response_state = $('#response_state').val();

@@ -7,11 +7,11 @@ use App\Models\MessageMana\Message;
 use App\Models\MessageMana\MessageSub;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Models\User;
 use Auth;
 
-class MessageController extends Controller
+class MessageAdminController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -21,7 +21,7 @@ class MessageController extends Controller
         $pageSize = $request->pageSize ?? 10;
         $response_state = $request->response_state ?? 0;
 
-        $models = Auth::user()->messages();
+        $models = Message::orderby('created_at', 'desc');
 
         if ($response_state > -1) {
             $models = $models->where('response_state', $response_state);
@@ -42,7 +42,7 @@ class MessageController extends Controller
         $models->appends(compact('pageSize', 'response_state'));
 
         return view(
-            'messageMana.message.index',
+            'messageMana.message_admin.index',
             compact(
                 'models',
                 'pageSize',
@@ -60,7 +60,7 @@ class MessageController extends Controller
         //
         $model = new Message();
 
-        return view('messageMana.message.create', compact('model'));
+        return view('messageMana.message_admin.create', compact('model'));
     }
 
     /**
@@ -76,17 +76,18 @@ class MessageController extends Controller
             ],
         );
 
-        $model = new Message();
-        $model->user_id = Auth::user()->id;
+        $model = new MessageSub();
         $model->title = $request->title ?? "";
         $model->content = $request->content ?? "";
+        $model->type = 1;
+        $model->message_id = $request->message_id;
         $model->parent_id = null;
         $model->read_date = "2000-01-01 00:00:00";
         $model->response_state = 0;
 
         $model->save();
 
-        return redirect()->route('message.edit', ['message' => $model->id]);
+        // return redirect()->route('message-admin.show', ['message_admin' => $model->id]);
     }
 
     /**
@@ -96,9 +97,9 @@ class MessageController extends Controller
     {
         //
         $model = Message::find($id);
+        $subModels = $model->messages()->orderby('created_at', 'asc');
 
-        return view('messageMana.message.show')
-            ->with('model', $model);
+        return view('messageMana.message_admin.show', compact('model', 'subModels'));
     }
 
     /**
@@ -106,19 +107,20 @@ class MessageController extends Controller
      */
     public function edit(string $id)
     {
+
         $crtDateTime = Carbon::now();
         $model = Message::find($id);
+        $model->read_date = $crtDateTime;
+        $model->save();
         $subModels = $model->messages()->orderby('created_at', 'asc')->get();
         foreach ($subModels as $m) {
-            if ($m->type === 0)
+            if ($m->type === 1)
                 continue;
             $m->read_date = $crtDateTime;
             $m->save();
         }
 
-        $admin = User::where('role', 'admin')->get()[0];
-
-        return view('messageMana.message.edit', compact('model', 'subModels', 'admin'));
+        return view('messageMana.message_admin.edit', compact('model', 'subModels'));
     }
 
     /**
@@ -137,14 +139,24 @@ class MessageController extends Controller
         $model = new MessageSub();
         $model->title = $request->title ?? "";
         $model->content = $request->content ?? "";
-        $model->type = 0;
+        $model->type = 1;
         $model->message_id = $id;
         $model->parent_id = null;
         $model->read_date = "2000-01-01 00:00:00";
 
         $model->save();
 
-        return redirect()->route('message.edit', ['message' => $id]);
+        return redirect()->route('message-admin.edit', ['message_admin' => $id]);
+    }
+
+    public function setResponseState(Request $request)
+    {
+        $id = $request->id;
+        $model = Message::find($id);
+        $model->response_state = 1;
+        $model->save();
+
+        return redirect()->route('message-admin.edit', ['message_admin' => $id]);
     }
 
     /**

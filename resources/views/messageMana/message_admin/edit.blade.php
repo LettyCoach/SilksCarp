@@ -1,12 +1,12 @@
-@extends('layouts.user');
+@extends('layouts.admin');
 @section('content')
-    <link rel="stylesheet" href="{{ asset('assets/css/messageMana/message.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/messageMana/message_admin.css') }}">
     <div class="pagetitle">
         <h1>商品</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>
-                <li class="breadcrumb-item active"> <a href="{{ route('message.index') }}">メッセージ一覧</a> </li>
+                <li class="breadcrumb-item active"> <a href="{{ route('message-admin.index') }}">メッセージ一覧</a> </li>
                 <li class="breadcrumb-item active">メッセージ変更</li>
             </ol>
         </nav>
@@ -18,7 +18,7 @@
                 <div class="card p-4">
                     <div class="message_list row p-4">
                         <div class="message">
-                            <div class="message-admin">
+                            <div class="message-user">
                                 <div class="_header">
                                     <img src="{{ $model->user->getAvatar() }}" alt="">
                                     <div>
@@ -32,13 +32,13 @@
                                 </div>
                             </div>
                             @foreach ($subModels as $sm)
-                                <div class="{{ $sm->type === 0 ? 'message-admin' : 'message-user' }}">
+                                <div class="{{ $sm->type === 0 ? 'message-user' : 'message-admin' }}">
                                     <div class="_header">
-                                        <img src="{{ $sm->type === 0 ? $model->user->getAvatar() : $admin->getAvatar() }}"
+                                        <img src="{{ $sm->type === 0 ? $model->user->getAvatar() : Auth::user()->getAvatar() }}"
                                             alt="">
                                         <div>
                                             <h5>{{ $sm->title }}</h5>
-                                            <p>{{ $sm->type === 0 ? $model->user->name : $admin->name }}</p>
+                                            <p>{{ $sm->type === 0 ? $model->user->name : Auth::user()->name }}</p>
                                         </div>
                                     </div>
                                     <div class="_body">
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="message_pan ">
-                        <form action="{{ route('message.update', ['message' => $model->id]) }}" method="POST"
+                        <form action="{{ route('message-admin.update', ['message_admin' => $model->id]) }}" method="POST"
                             enctype="multipart/form-data" onsubmit="return checkData()">
                             @csrf
                             @method('PUT')
@@ -79,11 +79,12 @@
                                     </div>
                                     <div class="">
                                         <button type="button" class="btn btn-danger p-2"
-                                            onclick="location.href='{{ route('message.index') }}'">
+                                            onclick="location.href='{{ route('message-admin.index') }}'">
                                             <i class="bi-list-stars"></i>
                                         </button>
-                                        @if ($model->response_state === 1)
-                                            <button type="button" class="btn btn-success p-2">
+                                        @if ($model->response_state === 0)
+                                            <button type="button" class="btn btn-success p-2"
+                                                onclick="location.href='{{ route('message-admin.response-state', ['id' => $model->id]) }}'">
                                                 <i class="fa fa-check-square-o" aria-hidden="true"></i>
                                             </button>
                                         @endif
@@ -101,5 +102,26 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('assets/js/messageMana/message.js') }}"></script>
+    <script>
+        // function functionTobeLoaded() {
+        //     $('.message_pan').scrollTop($('.message_pan')[0].scrollHeight);
+        //     var d = $('.message_pan');
+        //     d.scrollTop(d.prop("scrollHeight"));
+        //     $(".message_pan").animate({
+        //         scrollTop: $('.message_pan').prop("scrollHeight")
+        //     }, 1000);
+        // }
+        // $(window).on('load', functionTobeLoaded());
+        // $(document).ready(function() {
+        //     // $('.message_pan').scrollTop(1000);
+        //     // $('.message_pan').scrollTop($('.message_pan')[0].scrollHeight);
+        //     // console.log($('.message_pan')[0].scrollHeight);
+        //     var d = $('.message_pan');
+        //     d.scrollTop(d.prop("scrollHeight"));
+        //     $(".message_pan").animate({
+        //         scrollTop: $('.message_pan').prop("scrollHeight")
+        //     }, 1000);
+        // });
+        // $('.message_pan').scrollTop(1000);
+    </script>
 @endsection
