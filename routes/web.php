@@ -3,6 +3,8 @@
 use App\Http\Controllers\Alarm\AlarmToAllController;
 use App\Http\Controllers\Alarm\AlarmToIndividualController;
 use App\Http\Controllers\Alarm\AlarmUserController;
+use App\Http\Controllers\HelpMana\HelpCategoryController;
+use App\Http\Controllers\HelpMana\HelpController;
 use App\Http\Controllers\MessageMana\MessageController;
 use App\Http\Controllers\MessageMana\MessageAdminController;
 use App\Http\Controllers\ProductMana\SaleInfoController;
@@ -48,6 +50,8 @@ Route::middleware([Authenticate::class])->group(function () {
     // Route::resource('/sale-info', SaleInfoController::class);
     Route::get('/message-admin/resposne-state', [MessageAdminController::class, 'setResponseState'])->name('message-admin.response-state');
     Route::resource('/message-admin', MessageAdminController::class);
+    Route::resource("/help-category", HelpCategoryController::class);
+    Route::resource("/help", HelpController::class);
 
 
     /********************************* User Page *****************************************/
