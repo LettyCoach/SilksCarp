@@ -27,7 +27,7 @@ class AlarmToAllController extends Controller
             $models = $models->where('type', $selType);
         }
         $models = $models->paginate($pageSize);
-        $models->appends(['pageSize' => $pageSize]);
+        $models->appends(compact('pageSize', 'selType'));
 
         Session::put('selType', $selType);
 

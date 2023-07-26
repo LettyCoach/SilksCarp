@@ -250,11 +250,27 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="users-profile.html">
-                    <i class="bi bi-question-circle"></i>
-                    <span>ヘルプ管理</span>
+                <a class="nav-link {{ $routeName == 'help-category.index' || $routeName == 'help.index' ? '' : 'collapsed' }} "
+                    data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-bell-fill"></i><span>ヘルプ管理</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-            </li>
+                <ul id="components-nav"
+                    class="nav-content  {{ $routeName == 'help-category.index' || $routeName == 'help.index' ? '' : 'collapsed' }} "
+                    data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a class="{{ $routeName == 'help-category.index' ? 'active' : '' }}"
+                            href="{{ route('help-category.index') }}">
+                            <i class="bi bi-circle"></i><span>カテゴリ</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="{{ $routeName == 'help.index' ? 'active' : '' }}"
+                            href="{{ route('help.index') }}">
+                            <i class="bi bi-circle"></i><span>ヘルプ</span>
+                        </a>
+                    </li>
+                </ul>
+            </li><!-- End Components Nav -->
         </ul>
 
     </aside><!-- End Sidebar-->
