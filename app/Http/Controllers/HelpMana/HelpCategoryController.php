@@ -17,7 +17,7 @@ class HelpCategoryController extends Controller
         //
         $pageSize = $request->pageSize ?? 10;
 
-        $models = HelpCategory::orderby('created_at', 'desc');
+        $models = HelpCategory::orderby('created_at', 'asc');
         $models = $models->paginate($pageSize);
         $models->appends(['pageSize' => $pageSize]);
         return view('helpMana.help_category.index')

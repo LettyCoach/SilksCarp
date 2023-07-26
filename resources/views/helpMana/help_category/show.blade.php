@@ -40,7 +40,6 @@
                                 <i class="bi-list-stars"></i> 一覧を見る
                             </button>
                         </div>
-
                     </div>
                 </div>
             </div>

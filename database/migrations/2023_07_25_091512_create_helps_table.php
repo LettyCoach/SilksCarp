@@ -15,7 +15,6 @@ return new class extends Migration {
             $table->integer("display_order")->default(1);
             $table->string("title", 512)->default("");
             $table->text("content")->default("");
-            $table->foreignId("help_category_id")->constrained("help_categories")->onUpdate("cascade")->onDelete("cascade");
             $table->timestamps();
         });
     }

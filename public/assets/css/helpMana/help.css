@@ -1,0 +1,15 @@
+#css-dropdown {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 300px;
+    height: 42px;
+    margin: 100px auto 0 auto;
+}
+
+
+.choices__inner {
+    min-width: 360px;
+    width: 100%;
+}
