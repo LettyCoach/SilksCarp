@@ -7,6 +7,7 @@ use App\Http\Controllers\HelpMana\HelpCategoryController;
 use App\Http\Controllers\HelpMana\HelpController;
 use App\Http\Controllers\MessageMana\MessageController;
 use App\Http\Controllers\MessageMana\MessageAdminController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductMana\SaleInfoController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,13 @@ use App\Http\Controllers\ProfileController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+use App\Http\Controllers\SquareController;
+
+// Route::post('/checkout', [SquareController::class, 'checkout']);
+Route::post('/process-payment', 'PaymentController@processPayment')->name('process.payment');
+
+
 
 Route::get('/', function () {
     return view('welcome');
