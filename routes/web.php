@@ -7,7 +7,7 @@ use App\Http\Controllers\HelpMana\HelpCategoryController;
 use App\Http\Controllers\HelpMana\HelpController;
 use App\Http\Controllers\MessageMana\MessageController;
 use App\Http\Controllers\MessageMana\MessageAdminController;
-use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\Payment\SquareController;
 use App\Http\Controllers\ProductMana\SaleInfoController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
@@ -29,10 +29,6 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-use App\Http\Controllers\SquareController;
-
-// Route::post('/checkout', [SquareController::class, 'checkout']);
-Route::post('/process-payment', 'PaymentController@processPayment')->name('process.payment');
 
 
 
@@ -47,6 +43,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware([Authenticate::class])->group(function () {
 
     Route::post('/image/upload_path', [CommonController::class, 'uploadImageWithPath']);
+
+    /********************************* Payment *****************************************/
+    Route::get('/square', [SquareController::class, 'index'])->name('square.index');
+    Route::post('/square/process-payment', [SquareController::class, 'process_payment']);
+
 
 
     /********************************* Admin Page *****************************************/

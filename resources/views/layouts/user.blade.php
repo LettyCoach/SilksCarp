@@ -43,6 +43,8 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/niceAdmin/css/style.css') }}" rel="stylesheet">
 
+    @yield('css&js')
+
 </head>
 
 @php
