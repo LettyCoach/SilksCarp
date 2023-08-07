@@ -89,10 +89,10 @@ class PurchaseController extends Controller
         $model->destination = $model->store_state == 0 ? "" : $request->destination;
         $model->trade_date = Carbon::now();
 
-        $model->save();
+        // $model->save();
 
-        return redirect()->route('purchase.index');
-
+        // return redirect()->route('purchase.index');
+        return redirect()->route('square.index');
     }
 
     /**
