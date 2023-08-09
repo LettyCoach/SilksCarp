@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\ProductMana;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Payment\PresettingController;
 use Illuminate\Http\Request;
 
 use App\Models\ProductMana\Trade;
@@ -88,11 +89,10 @@ class PurchaseController extends Controller
         $model->store_state = $request->store_state;
         $model->destination = $model->store_state == 0 ? "" : $request->destination;
         $model->trade_date = Carbon::now();
-
         // $model->save();
 
         // return redirect()->route('purchase.index');
-        return redirect()->route('square.index');
+        return redirect()->route('presetting.index', ['trade_id'=>$model->product_id]);
     }
 
     /**

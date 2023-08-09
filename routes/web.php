@@ -9,6 +9,7 @@ use App\Http\Controllers\MessageMana\MessageController;
 use App\Http\Controllers\MessageMana\MessageAdminController;
 use App\Http\Controllers\Payment\SquareController;
 use App\Http\Controllers\ProductMana\SaleInfoController;
+use App\Http\Controllers\ProductMana\WithdrawInfoController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommonController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\ProductMana\ProductController;
 use App\Http\Controllers\ProductMana\SaleController;
 use App\Http\Controllers\ProductMana\OwnController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Payment\PresettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +58,7 @@ Route::middleware([Authenticate::class])->group(function () {
     Route::resource('/a2i', AlarmToIndividualController::class);
     Route::get('/sale-info', [SaleInfoController::class, 'index'])->name('sale-info.index');
     Route::get('/sale-info/csv', [SaleInfoController::class, 'exportCSV'])->name('sale-info.csv');
+    Route::get('/withdraw-info', [WithdrawInfoController::class, 'index'])->name('withdraw-info.index');
     // Route::resource('/sale-info', SaleInfoController::class);
     Route::get('/message-admin/resposne-state', [MessageAdminController::class, 'setResponseState'])->name('message-admin.response-state');
     Route::resource('/message-admin', MessageAdminController::class);
@@ -69,6 +72,7 @@ Route::middleware([Authenticate::class])->group(function () {
     Route::resource('/own', OwnController::class);
     Route::resource('/alarm-user', AlarmUserController::class);
     Route::resource('/message', MessageController::class);
+    Route::resource('/presetting', PresettingController::class);
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile/update/profile', [ProfileController::class, 'updateProfile'])->name('profile.updateProfile');

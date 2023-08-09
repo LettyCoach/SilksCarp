@@ -213,7 +213,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="users-profile.html">
+                <a class="nav-link collapsed" href="{{ route('withdraw-info.index') }}">
                     <i class="bi bi-bank"></i>
                     <span>出金情報</span>
                 </a>

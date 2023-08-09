@@ -253,7 +253,7 @@
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
-                <a class="nav-link  {{ $routeName == 'purchase.index' ? '' : 'collapsed' }} "
+                <a class="nav-link  {{ $routeName == 'purchase.pre_setting' ? '' : 'collapsed' }} "
                     href="{{ route('purchase.index') }}">
                     <i class="bi-cart-plus-fill"></i>
                     <span>購入</span>
