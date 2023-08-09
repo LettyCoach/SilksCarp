@@ -9,10 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/topPage/favicon.svg') }}" />
 
-    <link rel="stylesheet"
-        href="https://demo.graygrids.com/themes/shopgrids/assets/css/A.bootstrap.min.css+LineIcons.3.0.css+tiny-slider.css+glightbox.min.css,Mcc.OzR7N5fb_Y.css.pagespeed.cf.svKjl5Nf5n.css" />
-    <link rel="stylesheet"
-        href="https://demo.graygrids.com/themes/shopgrids/assets/css/A.main.css.pagespeed.cf.wZnWV-GMUP.css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/shopgrids/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shopgrids/LineIcons.3.0.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shopgrids/tiny-slider.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shopgrids/glightbox.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shopgrids/main.css') }}">
+
+
     <script data-pagespeed-no-defer>
         (function() {
             function f(a, b, d) {
@@ -522,150 +525,7 @@
         </div>
     </section>
 
-
-    <section class="featured-categories section" style="display: none">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title">
-                        <h2>Featured Categories</h2>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have
-                            suffered alteration in some form.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-12">
-
-                    <div class="single-category">
-                        <h3 class="heading">TV & Audios</h3>
-                        <ul>
-                            <li><a href="product-grids.html">Smart Television</a></li>
-                            <li><a href="product-grids.html">QLED TV</a></li>
-                            <li><a href="product-grids.html">Audios</a></li>
-                            <li><a href="product-grids.html">Headphones</a></li>
-                            <li><a href="product-grids.html">View All</a></li>
-                        </ul>
-                        <div class="images">
-                            <img data-pagespeed-lazy-src="{{ asset('assets/upload/carp/01.jpg') }}"
-                                style="width: 180px; height: 240px" alt="#" data-pagespeed-url-hash="1763067336"
-                                src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                                onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-
-                    <div class="single-category">
-                        <h3 class="heading">Desktop & Laptop</h3>
-                        <ul>
-                            <li><a href="product-grids.html">Smart Television</a></li>
-                            <li><a href="product-grids.html">QLED TV</a></li>
-                            <li><a href="product-grids.html">Audios</a></li>
-                            <li><a href="product-grids.html">Headphones</a></li>
-                            <li><a href="product-grids.html">View All</a></li>
-                        </ul>
-                        <div class="images">
-                            <img data-pagespeed-lazy-src="{{ asset('assets/upload/carp/02.jpg') }}"
-                                style="width: 180px; height: 240px" alt="#"
-                                data-pagespeed-url-hash="2057567257" src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                                onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-
-                    <div class="single-category">
-                        <h3 class="heading">Cctv Camera</h3>
-                        <ul>
-                            <li><a href="product-grids.html">Smart Television</a></li>
-                            <li><a href="product-grids.html">QLED TV</a></li>
-                            <li><a href="product-grids.html">Audios</a></li>
-                            <li><a href="product-grids.html">Headphones</a></li>
-                            <li><a href="product-grids.html">View All</a></li>
-                        </ul>
-                        <div class="images">
-                            <img data-pagespeed-lazy-src="{{ asset('assets/upload/carp/03.jpg') }}"
-                                style="width: 180px; height: 240px" alt="#"
-                                data-pagespeed-url-hash="2352067178" src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                                onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-
-                    <div class="single-category">
-                        <h3 class="heading">Dslr Camera</h3>
-                        <ul>
-                            <li><a href="product-grids.html">Smart Television</a></li>
-                            <li><a href="product-grids.html">QLED TV</a></li>
-                            <li><a href="product-grids.html">Audios</a></li>
-                            <li><a href="product-grids.html">Headphones</a></li>
-                            <li><a href="product-grids.html">View All</a></li>
-                        </ul>
-                        <div class="images">
-                            <img data-pagespeed-lazy-src="{{ asset('assets/upload/carp/01.jpg') }}"
-                                style="width: 180px; height: 240px" alt="#"
-                                data-pagespeed-url-hash="2646567099" src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                                onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-
-                    <div class="single-category">
-                        <h3 class="heading">Smart Phones</h3>
-                        <ul>
-                            <li><a href="product-grids.html">Smart Television</a></li>
-                            <li><a href="product-grids.html">QLED TV</a></li>
-                            <li><a href="product-grids.html">Audios</a></li>
-                            <li><a href="product-grids.html">Headphones</a></li>
-                            <li><a href="product-grids.html">View All</a></li>
-                        </ul>
-                        <div class="images">
-                            <img data-pagespeed-lazy-src="{{ asset('assets/upload/carp/02.jpg') }}"
-                                style="width: 180px; height: 240px" alt="#"
-                                data-pagespeed-url-hash="2941067020" src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                                onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-
-                    <div class="single-category">
-                        <h3 class="heading">Game Console</h3>
-                        <ul>
-                            <li><a href="product-grids.html">Smart Television</a></li>
-                            <li><a href="product-grids.html">QLED TV</a></li>
-                            <li><a href="product-grids.html">Audios</a></li>
-                            <li><a href="product-grids.html">Headphones</a></li>
-                            <li><a href="product-grids.html">View All</a></li>
-                        </ul>
-                        <div class="images">
-                            <img data-pagespeed-lazy-src="{{ asset('assets/upload/carp/03.jpg') }}"
-                                style="width: 180px; height: 240px" alt="#"
-                                data-pagespeed-url-hash="3235566941" src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                                onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-
+    <!-- Start Trending Product Area -->
     <section class="trending-product section">
         <div class="container">
             <div class="row">
@@ -678,16 +538,13 @@
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
                     <div class="single-product">
                         <div class="product-image">
-                            <img data-pagespeed-lazy-src="{{ asset('assets/upload/carp/01.jpg') }}"
-                                style="width: 100%; height: 420px" alt="#"
-                                data-pagespeed-url-hash="2548583845" src="{{ asset('assets/upload/carp/01.jpg') }}"
-                                onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
+                            <img src="{{ asset('assets/upload/carp/01.jpg') }}" alt="#">
                             <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> View
-                                    Detail</a>
+                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
+                                    Cart</a>
                             </div>
                         </div>
                         <div class="product-info">
@@ -708,18 +565,17 @@
                             </div>
                         </div>
                     </div>
+                    <!-- End Single Product -->
                 </div>
                 <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
                     <div class="single-product">
                         <div class="product-image">
-                            <img data-pagespeed-lazy-src="{{ asset('assets/upload/carp/02.jpg') }}"
-                                style="width: 100%; height: 420px" alt="#"
-                                data-pagespeed-url-hash="2548583845" src="{{ asset('assets/upload/carp/02.jpg') }}"
-                                onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
+                            <img src="{{ asset('assets/upload/carp/02.jpg') }}" alt="#">
+                            <span class="sale-tag">-25%</span>
                             <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> View
-                                    Detail</a>
+                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
+                                    Cart</a>
                             </div>
                         </div>
                         <div class="product-info">
@@ -732,58 +588,25 @@
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star"></i></li>
-                                <li><span>4.0 Review(s)</span></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><span>5.0 Review(s)</span></li>
                             </ul>
                             <div class="price">
                                 <span>250000円</span>
+                                <span class="discount-price">250000円</span>
                             </div>
                         </div>
                     </div>
+                    <!-- End Single Product -->
                 </div>
                 <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
                     <div class="single-product">
                         <div class="product-image">
-                            <img data-pagespeed-lazy-src="{{ asset('assets/upload/carp/03.jpg') }}"
-                                style="width: 100%; height: 420px" alt="#"
-                                data-pagespeed-url-hash="2548583845" src="{{ asset('assets/upload/carp/03.jpg') }}"
-                                onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
+                            <img src="{{ asset('assets/upload/carp/04.jpg') }}" alt="#">
                             <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> View
-                                    Detail</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">錦鯉</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">錦鯉-03</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star"></i></li>
-                                <li><span>4.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>250000円</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img data-pagespeed-lazy-src="{{ asset('assets/upload/carp/04.jpg') }}"
-                                style="width: 100%; height: 420px" alt="#"
-                                data-pagespeed-url-hash="2548583845" src="{{ asset('assets/upload/carp/04.jpg') }}"
-                                onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> View
-                                    Detail</a>
+                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
+                                    Cart</a>
                             </div>
                         </div>
                         <div class="product-info">
@@ -796,26 +619,25 @@
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star"></i></li>
-                                <li><span>4.0 Review(s)</span></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><span>5.0 Review(s)</span></li>
                             </ul>
                             <div class="price">
                                 <span>250000円</span>
                             </div>
                         </div>
                     </div>
+                    <!-- End Single Product -->
                 </div>
                 <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
                     <div class="single-product">
                         <div class="product-image">
-                            <img data-pagespeed-lazy-src="{{ asset('assets/upload/carp/05.png') }}"
-                                style="width: 100%; height: 420px" alt="#"
-                                data-pagespeed-url-hash="2548583845" src="{{ asset('assets/upload/carp/05.png') }}"
-                                onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
+                            <img src="{{ asset('assets/upload/carp/05.png') }}" alt="#">
+                            <span class="new-tag">New</span>
                             <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> View
-                                    Detail</a>
+                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
+                                    Cart</a>
                             </div>
                         </div>
                         <div class="product-info">
@@ -828,26 +650,24 @@
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star"></i></li>
-                                <li><span>4.0 Review(s)</span></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><span>5.0 Review(s)</span></li>
                             </ul>
                             <div class="price">
                                 <span>250000円</span>
                             </div>
                         </div>
                     </div>
+                    <!-- End Single Product -->
                 </div>
                 <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
                     <div class="single-product">
                         <div class="product-image">
-                            <img data-pagespeed-lazy-src="{{ asset('assets/upload/carp/01.jpg') }}"
-                                style="width: 100%; height: 420px" alt="#"
-                                data-pagespeed-url-hash="2548583845" src="{{ asset('assets/upload/carp/01.jpg') }}"
-                                onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
+                            <img src="{{ asset('assets/upload/carp/01.jpg') }}" alt="#">
                             <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> View
-                                    Detail</a>
+                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
+                                    Cart</a>
                             </div>
                         </div>
                         <div class="product-info">
@@ -860,26 +680,24 @@
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star"></i></li>
-                                <li><span>4.0 Review(s)</span></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><span>5.0 Review(s)</span></li>
                             </ul>
                             <div class="price">
                                 <span>250000円</span>
                             </div>
                         </div>
                     </div>
+                    <!-- End Single Product -->
                 </div>
                 <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
                     <div class="single-product">
                         <div class="product-image">
-                            <img data-pagespeed-lazy-src="{{ asset('assets/upload/carp/02.jpg') }}"
-                                style="width: 100%; height: 420px" alt="#"
-                                data-pagespeed-url-hash="2548583845" src="{{ asset('assets/upload/carp/02.jpg') }}"
-                                onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
+                            <img src="{{ asset('assets/upload/carp/02.jpg') }}" alt="#">
                             <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> View
-                                    Detail</a>
+                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
+                                    Cart</a>
                             </div>
                         </div>
                         <div class="product-info">
@@ -900,18 +718,17 @@
                             </div>
                         </div>
                     </div>
+                    <!-- End Single Product -->
                 </div>
                 <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
                     <div class="single-product">
                         <div class="product-image">
-                            <img data-pagespeed-lazy-src="{{ asset('assets/upload/carp/03.jpg') }}"
-                                style="width: 100%; height: 420px" alt="#"
-                                data-pagespeed-url-hash="2548583845" src="{{ asset('assets/upload/carp/03.jpg') }}"
-                                onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
+                            <img src="{{ asset('assets/upload/carp/03.jpg') }}" alt="#">
+                            <span class="sale-tag">-50%</span>
                             <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> View
-                                    Detail</a>
+                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
+                                    Cart</a>
                             </div>
                         </div>
                         <div class="product-info">
@@ -929,355 +746,51 @@
                             </ul>
                             <div class="price">
                                 <span>250000円</span>
+                                <span class="discount-price">$200.00</span>
                             </div>
                         </div>
                     </div>
+                    <!-- End Single Product -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Product -->
+                    <div class="single-product">
+                        <div class="product-image">
+                            <img src="{{ asset('assets/upload/carp/03.jpg') }}" alt="#">
+                            <div class="button">
+                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
+                                    Cart</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="category">錦鯉</span>
+                            <h4 class="title">
+                                <a href="product-grids.html">錦鯉-09</a>
+                            </h4>
+                            <ul class="review">
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><span>5.0 Review(s)</span></li>
+                            </ul>
+                            <div class="price">
+                                <span>250000円</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Product -->
                 </div>
             </div>
         </div>
     </section>
-
-    <section class="home-product-list section" style="display: none">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-12 custom-responsive-margin">
-                    <h4 class="list-title">Best Sellers</h4>
-
-                    <div class="single-list">
-                        <div class="list-image">
-                            <a href="product-grids.html">
-                                <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/help.webp') }}"
-                                    alt="#" data-pagespeed-url-hash="2685982763"
-                                    src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                                    onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                    onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"></a>
-                        </div>
-                        <div class="list-info">
-                            <h3>
-                                <a href="product-grids.html">GoPro Hero4 Silver</a>
-                            </h3>
-                            <span>$287.99</span>
-                        </div>
-                    </div>
-
-
-                    <div class="single-list">
-                        <div class="list-image">
-                            <a href="product-grids.html">
-                                <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/help.webp') }}"
-                                    alt="#" data-pagespeed-url-hash="2980482684"
-                                    src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                                    onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                    onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"></a>
-                        </div>
-                        <div class="list-info">
-                            <h3>
-                                <a href="product-grids.html">Puro Sound Labs BT2200</a>
-                            </h3>
-                            <span>$95.00</span>
-                        </div>
-                    </div>
-
-
-                    <div class="single-list">
-                        <div class="list-image">
-                            <a href="product-grids.html">
-                                <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/help.webp') }}"
-                                    alt="#" data-pagespeed-url-hash="3274982605"
-                                    src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                                    onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                    onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"></a>
-                        </div>
-                        <div class="list-info">
-                            <h3>
-                                <a href="product-grids.html">HP OfficeJet Pro 8710</a>
-                            </h3>
-                            <span>$120.00</span>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-4 col-md-4 col-12 custom-responsive-margin">
-                    <h4 class="list-title">New Arrivals</h4>
-
-                    <div class="single-list">
-                        <div class="list-image">
-                            <a href="product-grids.html">
-                                <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/help.webp') }}"
-                                    alt="#" data-pagespeed-url-hash="3569482526"
-                                    src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                                    onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                    onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"></a>
-                        </div>
-                        <div class="list-info">
-                            <h3>
-                                <a href="product-grids.html">iPhone X 256 GB Space Gray</a>
-                            </h3>
-                            <span>$1150.00</span>
-                        </div>
-                    </div>
-
-
-                    <div class="single-list">
-                        <div class="list-image">
-                            <a href="product-grids.html">
-                                <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/help.webp') }}"
-                                    alt="#" data-pagespeed-url-hash="3863982447"
-                                    src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                                    onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                    onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"></a>
-                        </div>
-                        <div class="list-info">
-                            <h3>
-                                <a href="product-grids.html">Canon EOS M50 Mirrorless Camera</a>
-                            </h3>
-                            <span>$950.00</span>
-                        </div>
-                    </div>
-
-
-                    <div class="single-list">
-                        <div class="list-image">
-                            <a href="product-grids.html">
-                                <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/help.webp') }}"
-                                    alt="#" data-pagespeed-url-hash="4158482368"
-                                    src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                                    onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                    onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"></a>
-                        </div>
-                        <div class="list-info">
-                            <h3>
-                                <a href="product-grids.html">Microsoft Xbox One S</a>
-                            </h3>
-                            <span>$298.00</span>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-4 col-md-4 col-12">
-                    <h4 class="list-title">Top Rated</h4>
-
-                    <div class="single-list">
-                        <div class="list-image">
-                            <a href="product-grids.html">
-                                <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/help.webp') }}"
-                                    alt="#" data-pagespeed-url-hash="158014993"
-                                    src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                                    onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                    onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"></a>
-                        </div>
-                        <div class="list-info">
-                            <h3>
-                                <a href="product-grids.html">Samsung Gear 360 VR Camera</a>
-                            </h3>
-                            <span>$68.00</span>
-                        </div>
-                    </div>
-
-
-                    <div class="single-list">
-                        <div class="list-image">
-                            <a href="product-grids.html">
-                                <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/help.webp') }}"
-                                    alt="#" data-pagespeed-url-hash="452514914"
-                                    src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                                    onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                    onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"></a>
-                        </div>
-                        <div class="list-info">
-                            <h3>
-                                <a href="product-grids.html">Samsung Galaxy S9+ 64 GB</a>
-                            </h3>
-                            <span>$840.00</span>
-                        </div>
-                    </div>
-
-
-                    <div class="single-list">
-                        <div class="list-image">
-                            <a href="product-grids.html">
-                                <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/help.webp') }}"
-                                    alt="#" data-pagespeed-url-hash="747014835"
-                                    src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                                    onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                    onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"></a>
-                        </div>
-                        <div class="list-info">
-                            <h3>
-                                <a href="product-grids.html">Zeus Bluetooth Headphones</a>
-                            </h3>
-                            <span>$28.00</span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <div class="brands" style="display: none">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 offset-lg-3 col-md-12 col-12">
-                    <h2 class="title">Popular Brands</h2>
-                </div>
-            </div>
-            <div class="brands-logo-wrapper">
-                <div class="brands-logo-carousel d-flex align-items-center justify-content-between">
-                    <div class="brand-logo">
-                        <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/brand.webp') }}" alt="#"
-                            data-pagespeed-url-hash="3611277597" src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                            onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                            onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
-                    </div>
-                    <div class="brand-logo">
-                        <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/brand.webp') }}" alt="#"
-                            data-pagespeed-url-hash="3905777518" src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                            onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                            onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
-                    </div>
-                    <div class="brand-logo">
-                        <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/brand.webp') }}" alt="#"
-                            data-pagespeed-url-hash="4200277439" src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                            onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                            onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
-                    </div>
-                    <div class="brand-logo">
-                        <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/brand.webp') }}" alt="#"
-                            data-pagespeed-url-hash="199810064" src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                            onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                            onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
-                    </div>
-                    <div class="brand-logo">
-                        <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/brand.webp') }}" alt="#"
-                            data-pagespeed-url-hash="494309985" src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                            onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                            onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
-                    </div>
-                    <div class="brand-logo">
-                        <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/brand.webp') }}" alt="#"
-                            data-pagespeed-url-hash="788809906" src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                            onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                            onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
-                    </div>
-                    <div class="brand-logo">
-                        <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/brand.webp') }}" alt="#"
-                            data-pagespeed-url-hash="4200277439" src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                            onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                            onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
-                    </div>
-                    <div class="brand-logo">
-                        <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/brand.webp') }}" alt="#"
-                            data-pagespeed-url-hash="199810064" src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                            onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                            onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <section class="blog-section section" style="display: none">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title">
-                        <h2>Our Latest News</h2>
-                        <p>There are many variations of passages of Lorem
-                            Ipsum available, but the majority have suffered alteration in some form.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-12">
-
-                    <div class="single-blog">
-                        <div class="blog-img">
-                            <a href="blog-single-sidebar.html">
-                                <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/blog.webp') }}"
-                                    alt="#" data-pagespeed-url-hash="3200430300"
-                                    src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                                    onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                    onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
-                            </a>
-                        </div>
-                        <div class="blog-content">
-                            <a class="category" href="javascript:void(0)">eCommerce</a>
-                            <h4>
-                                <a href="blog-single-sidebar.html">What information is needed for shipping?</a>
-                            </h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt.</p>
-                            <div class="button">
-                                <a href="javascript:void(0)" class="btn">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-
-                    <div class="single-blog">
-                        <div class="blog-img">
-                            <a href="blog-single-sidebar.html">
-                                <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/blog.webp') }}"
-                                    alt="#" data-pagespeed-url-hash="3494930221"
-                                    src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                                    onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                    onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
-                            </a>
-                        </div>
-                        <div class="blog-content">
-                            <a class="category" href="javascript:void(0)">Gaming</a>
-                            <h4>
-                                <a href="blog-single-sidebar.html">Interesting fact about gaming consoles</a>
-                            </h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt.</p>
-                            <div class="button">
-                                <a href="javascript:void(0)" class="btn">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-
-                    <div class="single-blog">
-                        <div class="blog-img">
-                            <a href="blog-single-sidebar.html">
-                                <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/blog.webp') }}"
-                                    alt="#" data-pagespeed-url-hash="3789430142"
-                                    src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                                    onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                    onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
-                            </a>
-                        </div>
-                        <div class="blog-content">
-                            <a class="category" href="javascript:void(0)">Electronic</a>
-                            <h4>
-                                <a href="blog-single-sidebar.html">Electronics, instrumentation & control engineering
-                                </a>
-                            </h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt.</p>
-                            <div class="button">
-                                <a href="javascript:void(0)" class="btn">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- End Trending Product Area -->
 
 
 
     <footer class="footer">
-
+        <!-- Start Footer Top -->
         <div class="footer-top">
             <div class="container">
                 <div class="inner-content">
@@ -1285,11 +798,7 @@
                         <div class="col-lg-3 col-md-4 col-12">
                             <div class="footer-logo">
                                 <a href="index.html">
-                                    <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/logo.svg') }}"
-                                        alt="#" data-pagespeed-url-hash="664057475"
-                                        src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                                        onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                        onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
+                                    <img src="{{ asset('assets/images/topPage/logo.svg') }}" alt="#">
                                 </a>
                             </div>
                         </div>
@@ -1313,87 +822,9 @@
                 </div>
             </div>
         </div>
+        <!-- End Footer Top -->
 
-
-        <div class="footer-middle" style="display: none">
-            <div class="container">
-                <div class="bottom-inner">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6 col-12">
-
-                            <div class="single-footer f-contact">
-                                <h3>Get In Touch With Us</h3>
-                                <p class="phone">Phone: +1 (900) 33 169 7720</p>
-                                <ul>
-                                    <li><span>Monday-Friday: </span> 9.00 am - 8.00 pm</li>
-                                    <li><span>Saturday: </span> 10.00 am - 6.00 pm</li>
-                                </ul>
-                                <p class="mail">
-                                    <a href="/cdn-cgi/l/email-protection#81f2f4f1f1eef3f5c1f2e9eef1e6f3e8e5f2afe2eeec">
-                                        <span class="__cf_email__"
-                                            data-cfemail="d7a4a2a7a7b8a5a397a4bfb8a7b0a5beb3a4f9b4b8ba">[email&#160;protected]</span>
-                                    </a>
-                                </p>
-                            </div>
-
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-12">
-
-                            <div class="single-footer our-app">
-                                <h3>Our Mobile App</h3>
-                                <ul class="app-btn">
-                                    <li>
-                                        <a href="javascript:void(0)">
-                                            <i class="lni lni-apple"></i>
-                                            <span class="small-title">Download on the</span>
-                                            <span class="big-title">App Store</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">
-                                            <i class="lni lni-play-store"></i>
-                                            <span class="small-title">Download on the</span>
-                                            <span class="big-title">Google Play</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-12">
-
-                            <div class="single-footer f-link">
-                                <h3>Information</h3>
-                                <ul>
-                                    <li><a href="javascript:void(0)">About Us</a></li>
-                                    <li><a href="javascript:void(0)">Contact Us</a></li>
-                                    <li><a href="javascript:void(0)">Downloads</a></li>
-                                    <li><a href="javascript:void(0)">Sitemap</a></li>
-                                    <li><a href="javascript:void(0)">FAQs Page</a></li>
-                                </ul>
-                            </div>
-
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-12">
-
-                            <div class="single-footer f-link">
-                                <h3>Shop Departments</h3>
-                                <ul>
-                                    <li><a href="javascript:void(0)">Computers & Accessories</a></li>
-                                    <li><a href="javascript:void(0)">Smartphones & Tablets</a></li>
-                                    <li><a href="javascript:void(0)">TV, Video & Audio</a></li>
-                                    <li><a href="javascript:void(0)">Cameras, Photo & Video</a></li>
-                                    <li><a href="javascript:void(0)">Headphones</a></li>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
+        <!-- Start Footer Bottom -->
         <div class="footer-bottom">
             <div class="container">
                 <div class="inner-content">
@@ -1401,11 +832,7 @@
                         <div class="col-lg-4 col-12">
                             <div class="payment-gateway">
                                 <span>We Accept:</span>
-                                <img data-pagespeed-lazy-src="{{ asset('assets/images/topPage/payment.webp') }}"
-                                    alt="#" data-pagespeed-url-hash="2482565258"
-                                    src="/pagespeed_static/1.JiBnMqyl6S.gif"
-                                    onload="pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                                    onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
+                                <img src="{{ asset('assets/images/topPage/payment.webp') }}" alt="#">
                             </div>
                         </div>
                         <div class="col-lg-4 col-12">
@@ -1428,34 +855,20 @@
                 </div>
             </div>
         </div>
-
+        <!-- End Footer Bottom -->
     </footer>
-
 
     <a href="#" class="scroll-top">
         <i class="lni lni-chevron-up"></i>
     </a>
 
-    <script data-cfasync="false"
-        src="https://demo.graygrids.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    <script type="text/javascript" data-pagespeed-no-defer>
-        pagespeed.lazyLoadImages.overrideAttributeFunctions();
-    </script>
-    <script src="https://demo.graygrids.com/themes/shopgrids/assets/js/bootstrap.min.js.pagespeed.jm.R6pdwTt0pj.js">
-    </script>
-    <script
-        src="https://demo.graygrids.com/themes/shopgrids/assets/js/tiny-slider.js+glightbox.min.js+main.js.pagespeed.jc.MCgBCVbLAV.js">
-    </script>
-    <script>
-        eval(mod_pagespeed_Zp_OOsHKoc);
-    </script>
-    <script>
-        eval(mod_pagespeed_5TvwT_lz9K);
-    </script>
-    <script>
-        eval(mod_pagespeed_uoja0BW_wo);
-    </script>
+    <script src="{{ asset('assets/js/shopgrids/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/shopgrids/tiny-slider.js') }}"></script>
+    <script src="{{ asset('assets/js/shopgrids/glightbox.min.js') }}"></script>
+    <script src="{{ asset('assets/js/shopgrids/main.js') }}"></script>
+
     <script type="text/javascript">
+        //========= Hero Slider 
         tns({
             container: '.hero-slider',
             slideBy: 'page',
@@ -1468,6 +881,8 @@
             controls: true,
             controlsText: ['<i class="lni lni-chevron-left"></i>', '<i class="lni lni-chevron-right"></i>'],
         });
+
+        //======== Brand Slider
         tns({
             container: '.brands-logo-carousel',
             autoplay: true,
