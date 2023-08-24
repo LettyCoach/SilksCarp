@@ -38,6 +38,7 @@
                                         <th class="text-center">写真</th>
                                         <th class="text-center">タイトル</th>
                                         <th class="text-center">価格(円)</th>
+                                        <th class="text-center">仕入れ値(円)</th>
                                         <th class="text-center">説明</th>
                                         <th class="text-center">購入</th>
                                     </tr>
@@ -61,6 +62,7 @@
                                                 </a>
                                             </td>
                                             <td class="text-center view-data">{{ $model->product->price }}</td>
+                                            <td class="text-center view-data">{{ $model->product->cost }}</td>
                                             <td class="text-center view-data">{{ $model->product->description }}</td>
                                             <td class="text-center">
                                                 <a href="{{ route('purchase.create', ['id' => $model->id]) }}">

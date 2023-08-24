@@ -69,9 +69,7 @@
                             <div class="row mb-2">
                                 <div class="col">
                                     <label for="">説明</label>
-                                    <textarea name="description" id="description" class="form-control rounded" style="height: 120px">
-                                        {{ old('description') }}
-                                    </textarea>
+                                    <textarea name="description" id="description" class="form-control rounded" style="height: 120px">{{ old('description') }}</textarea>
                                 </div>
                             </div>
                             <div class="row mb-2">

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\ProductMana;
 
 use App\Http\Controllers\Controller;
+use App\Models\Tariff;
 use Illuminate\Http\Request;
 use App\Models\ProductMana\Trade;
+use Illuminate\Support\Facades\Validator;
+
 
 class SaleInfoController extends Controller
 {
@@ -42,7 +45,6 @@ class SaleInfoController extends Controller
 
         $models = Trade::where('type', 1)->where('trade_date', '>=', $stDateTime)->where('trade_date', '<=', $edDateTime)->orderby('trade_date', 'asc');
         $models = $models->get();
-
         $fileName = 'sale-info.csv';
 
         $headers = array(
@@ -66,7 +68,7 @@ class SaleInfoController extends Controller
                 $row['No'] = $i + 1;
                 $row['タイトル'] = mb_convert_encoding($model->product->name, "SJIS", "UTF-8");
                 $row['買い手'] = mb_convert_encoding($model->targetUser->name, "SJIS", "UTF-8");
-                $row['価格(円)'] = $model->price;
+                $row['価格(円)'] = $model->amount;
                 $row['説明'] = mb_convert_encoding($model->description, "SJIS", "UTF-8");
                 $row['販売日'] = $model->getTradeDate();
 
@@ -77,6 +79,43 @@ class SaleInfoController extends Controller
         };
 
         return response()->stream($callback, 200, $headers);
+    }
+
+    public function tariff(Request $request){
+        $tariffs = Tariff::all();
+
+        return view('productMana.sale_info.tariff')
+            ->with('tariffs', $tariffs);
+    }
+
+    public function tariffUpdate(Request $request){
+        // dd($request);
+            $tariffsData = $request->input('tariffs');
+
+            // $validator = Validator::make($tariffsData, [
+            //     '*.guarantee' => 'required|numeric|min:0|max:100',
+            //     '*.fee' => 'required|numeric|min:0|max:100',
+            //     '*.paid' => 'required|numeric|min:0|max:100',
+            // ]);
+
+            // if ($validator->fails()) {
+            //     return redirect()->back()
+            //         ->withErrors($validator)
+            //         ->withInput();
+            // }
+    
+            foreach ($tariffsData as $tariffData) {
+                $tariff = Tariff::find($tariffData['id']);
+    
+                if ($tariff) {
+                    $tariff->guarantee = $tariffData['guarantee'];
+                    $tariff->fee = $tariffData['fee'];
+                    $tariff->paid = $tariffData['paid'];
+                    $tariff->save();
+                }
+            }
+    
+            return redirect()->route('sale-info.index');
     }
 
     /**

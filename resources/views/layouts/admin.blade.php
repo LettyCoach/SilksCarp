@@ -206,14 +206,27 @@
 
             <li class="nav-item">
                 <a class="nav-link {{ $routeName == 'sale-info.index' ? '' : 'collapsed' }} "
-                    href="{{ route('sale-info.index') }}">
-                    <i class="bi bi-clipboard2-pulse"></i>
-                    <span>販売情報</span>
+                    href="{{ route('sale-info.index') }}" data-bs-target="#sale_info" data-bs-toggle="collapse" aria-expanded="false">
+                    <i class="bi bi-clipboard2-pulse"></i><span>販売情報</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
+                <ul id="sale_info" class="nav-content" >
+                    <li>
+                        <a href="{{ route('sale-info.index') }}">
+                            {{-- <i class="fa fa-calculator" aria-hidden="true"></i> --}}
+                            販売情報一覧
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('sale-info.tariff') }}">
+                            {{-- <i class="fa fa-calculator" aria-hidden="true"></i> --}}
+                            手数料タリフ
+                        </a>
+                    </li>
+                </ul>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="users-profile.html">
+                <a class="nav-link collapsed" href="{{ route('withdraw-info.index') }}">
                     <i class="bi bi-bank"></i>
                     <span>出金情報</span>
                 </a>
@@ -221,11 +234,11 @@
 
 
             <li class="nav-item">
-                <a class="nav-link {{ $routeName == 'a2a.index' || $routeName == 'a2i.index' ? '' : 'collapsed' }} "
-                    data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                <a class="nav-link {{ $routeName == 'a2a.index' || $routeName == 'a2i.index' ? '' : 'collapsed' }}"
+                    data-bs-target="#index_components-nav" data-bs-toggle="collapse" href="#" aria-expanded="false" >
                     <i class="bi bi-bell-fill"></i><span>お知らせ管理</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="components-nav"
+                <ul id="index_components-nav"
                     class="nav-content  {{ $routeName == 'a2a.index' || $routeName == 'a2i.index' ? '' : 'collapsed' }} "
                     data-bs-parent="#sidebar-nav">
                     <li>
@@ -251,10 +264,10 @@
 
             <li class="nav-item">
                 <a class="nav-link {{ $routeName == 'help-category.index' || $routeName == 'help.index' ? '' : 'collapsed' }} "
-                    data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-bell-fill"></i><span>ヘルプ管理</span><i class="bi bi-chevron-down ms-auto"></i>
+                    data-bs-target="#help_components-nav" data-bs-toggle="collapse" href="#" aria-expanded="false">
+                    <i class="fa fa-question-circle-o" aria-hidden="true"></i><span>ヘルプ管理</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="components-nav"
+                <ul id="help_components-nav"
                     class="nav-content  {{ $routeName == 'help-category.index' || $routeName == 'help.index' ? '' : 'collapsed' }} "
                     data-bs-parent="#sidebar-nav">
                     <li>

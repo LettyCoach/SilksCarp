@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\ProductMana;
 
 use App\Http\Controllers\Controller;
+use App\Models\MoneyMana\Money;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 use App\Models\ProductMana\Trade;
@@ -56,7 +58,6 @@ class PurchaseController extends Controller
         //
         $id = $request->id;
         $model = Trade::find($id);
-
         return view('productMana.purchase.create')
             ->with('model', $model);
     }
@@ -75,11 +76,15 @@ class PurchaseController extends Controller
                 'destination.required' => '必須項目です。',
             ]
         );
-
+        $user_id = Auth::user()->id;
+        $money = User::find($user_id)->destination_address;
+        if(!$money){
+            return redirect()->route('profile.index', ['page' => 1]);
+        }
         $id = $request->id;
         $modelSource = Trade::find($id);
         $model = new Trade();
-
+        //dd($modelSource);
         $model->product_id = $modelSource->product_id;
         $model->source_user_id = 1;
         $model->target_user_id = Auth::user()->id;
@@ -89,10 +94,11 @@ class PurchaseController extends Controller
         $model->destination = $model->store_state == 0 ? "" : $request->destination;
         $model->trade_date = Carbon::now();
 
-        // $model->save();
+        $model->save();
 
         // return redirect()->route('purchase.index');
-        return redirect()->route('square.index');
+        return redirect()
+            ->route('square.index', ['model'=> $model]);
     }
 
     /**
@@ -101,6 +107,11 @@ class PurchaseController extends Controller
     public function show(string $id)
     {
         //
+        $product_id = Trade::find($id)->product_id;
+        $model = Product::find($product_id);
+
+        return view('productMana.purchase.show')
+            ->with('model', $model);
     }
 
     /**

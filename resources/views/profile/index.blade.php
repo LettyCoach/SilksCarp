@@ -119,6 +119,87 @@
                                                 id="destination_address" value="{{ $user->destination_address }}">
                                         </div>
                                     </div>
+                                    <div class="row mb-3">
+                                        <label for="post_code"
+                                            class="col-md-4 col-lg-3 col-form-label">郵便番号</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="post_code" type="text" class="form-control"
+                                                id="post_code" value="{{ $profile->post }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="prefecture"
+                                            class="col-md-4 col-lg-3 col-form-label">都道府県</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="prefecture" type="text" class="form-control"
+                                                id="prefecture" value="{{ $profile->prefecture }}">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row mb-3">
+                                        <label for="city"
+                                            class="col-md-4 col-lg-3 col-form-label">市区町村</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="city" type="text" class="form-control"
+                                                id="city" value="{{ $profile->city }}">
+                                        </div>
+                                    </div>
+                                                                        
+                                    <div class="row mb-3">
+                                        <label for="street"
+                                            class="col-md-4 col-lg-3 col-form-label">番地</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="street" type="text" class="form-control"
+                                                id="street" value="{{ $profile->street }}">
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="row mb-3">
+                                        <label for="building"
+                                            class="col-md-4 col-lg-3 col-form-label">建物名・部屋番号</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="building" type="text" class="form-control"
+                                                id="building" value="{{ $profile->building }}">
+                                        </div>
+                                    </div>
+                                                                                                                                                	
+                                                                                                                                                
+                                    <div class="row mb-3">
+                                        <label for="phone"
+                                            class="col-md-4 col-lg-3 col-form-label">ご連絡先電話番号</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="phone" type="tel" class="form-control"
+                                                id="phone" value="{{ $profile->phone }}">
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="row mb-3">
+                                        <label for="gender"
+                                            class="col-md-4 col-lg-3 col-form-label">性別</label>
+                                        <div class="col-md-4 col-lg-3">
+                                            <select name="gender" id="gender" class="form-control">
+                                                @if($profile->gender == 'male')
+                                                <option value="male" selected>男性</option>
+                                                <option value="female">女性</option>
+                                                @else
+                                                <option value="male">男性</option>
+                                                <option value="female" selected>女性</option>
+                                                @endif
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="row mb-3">
+                                        <label for="birth"
+                                            class="col-md-4 col-lg-3 col-form-label">誕生年月</label>
+                                        <div class="col-md-6 col-lg-6">
+                                            <input name="birth" type="date" class="form-control"
+                                                id="birth" value="{{ $profile->birth }}">
+                                        </div>
+                                    </div>
 
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-primary">変更</button>
@@ -181,6 +262,7 @@
                                 </form><!-- End Change Password Form -->
 
                             </div>
+                            
 
                         </div><!-- End Bordered Tabs -->
 

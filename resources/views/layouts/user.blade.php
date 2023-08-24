@@ -253,7 +253,7 @@
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
-                <a class="nav-link  {{ $routeName == 'purchase.index' ? '' : 'collapsed' }} "
+                <a class="nav-link  {{ $routeName == 'purchase.pre_setting' ? '' : 'collapsed' }} "
                     href="{{ route('purchase.index') }}">
                     <i class="bi-cart-plus-fill"></i>
                     <span>購入</span>
@@ -293,18 +293,21 @@
                 </a>
                 <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="components-badges.html">
+                        <a class="nav-link collapsed" {{ $routeName == 'bank.index' ? '' : 'collapsed' }}
+                        href="{{ route('withdraw.index') }}">
                             <i class="bi bi-circle"></i><span>出金</span>
                         </a>
                     </li>
                     <li>
-                        <a href="components-badges.html">
-                            <i class="bi bi-circle"></i><span>銀行口座情</span>
+                        <a class="nav-link collapsed" {{ $routeName == 'bank.index' ? '' : 'collapsed' }}
+                        href="{{ route('bank.index') }}">
+                            <i class="bi bi-circle"></i><span>銀行口座情報</span>
                         </a>
                     </li>
                     <li>
-                        <a href="components-badges.html">
-                            <i class="bi bi-circle"></i><span>クレジット</span>
+                        <a class="nav-link collapsed" {{ $routeName == 'credit.index' ? '' : 'collapsed' }}
+                        href="{{ route('credit.index') }}">
+                            <i class="bi bi-circle"></i><span>クレジット情報</span>
                         </a>
                     </li>
                 </ul>
