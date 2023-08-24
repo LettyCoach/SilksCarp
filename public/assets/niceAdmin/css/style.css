@@ -1025,7 +1025,7 @@ h6 {
   color: #012970;
 }
 
-.profile .profile-overview .row {
+.profile .profile-overview .row, .bank .bank-overview .row, .withdraw .withdraw-overview .row, .credit .credit-overview .row {
   margin-bottom: 20px;
   font-size: 15px;
 }
@@ -1034,12 +1034,12 @@ h6 {
   color: #012970;
 }
 
-.profile .profile-overview .label {
+.profile .profile-overview .label, .bank .bank-overview .label, .withdraw .withdraw-overview .label, .credit .credit-overview .label {
   font-weight: 600;
   color: rgba(1, 41, 112, 0.6);
 }
 
-.profile .profile-edit label {
+.profile .profile-edit label, .bank .bank-update label, .withdraw .withdraw-go label, .credit .credit-update label {
   font-weight: 600;
   color: rgba(1, 41, 112, 0.6);
 }
@@ -1047,6 +1047,16 @@ h6 {
 .profile .profile-edit img {
   max-width: 120px;
 }
+
+/*--------------------------------------------------------------
+# ProductMana Page
+--------------------------------------------------------------*/
+.payment-form .row .label{
+  margin-bottom: 20px;
+  font-size: 15px;
+  
+}
+
 
 /*--------------------------------------------------------------
 # F.A.Q Page

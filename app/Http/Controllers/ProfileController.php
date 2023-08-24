@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
 use Auth;
 use Hash;
 use Illuminate\Http\Request;
@@ -17,9 +18,18 @@ class ProfileController extends Controller
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
 
+        
+        $profile = Profile::where('user_id', $user_id)->get()->first();
+        if(!$profile){
+            $profile = new Profile();
+            $profile->user_id = $user_id;
+
+            $profile->save();
+        }
+
         $page = $request->page ?? 0;
 
-        return view('profile.index', compact('page', 'user'));
+        return view('profile.index', compact('page', 'user', 'profile'));
     }
 
     public function updateProfile(Request $request)
@@ -40,9 +50,23 @@ class ProfileController extends Controller
 
         $user->save();
 
+        $profile = Profile::where('user_id', $user_id)->get()->first();
+        if(!$profile){
+            $profile = new Profile();
+            $profile->user_id = $user_id;
+        }
+        $profile->post = $request->post_code;
+        $profile->prefecture = $request->prefecture;
+        $profile->city = $request->city;
+        $profile->street = $request->street;
+        $profile->building = $request->building;
+        $profile->phone = $request->phone;
+        $profile->gender = $request->gender;
+        $profile->birth = $request->birth;
+        $profile->save();
 
         return redirect()
-            ->route('profile.index', ['page' => 1]);
+            ->route('profile.index', ['page' => 0]);
     }
 
     public function updatePassword(Request $request)

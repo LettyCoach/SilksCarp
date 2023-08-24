@@ -1810,11 +1810,11 @@ Author: lineicons.com
 }
 
 .lni-star-empty::before {
-  content: "\ebb1";
+  content: "\2606";
 }
 
 .lni-star-filled::before {
-  content: "\ebb2";
+  content: "\2605";
 }
 
 .lni-star-half::before {
@@ -1822,7 +1822,7 @@ Author: lineicons.com
 }
 
 .lni-star::before {
-  content: "\ebb4";
+  content: "\2605";
 }
 
 .lni-stats-down::before {

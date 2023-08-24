@@ -528,6 +528,7 @@
     <!-- Start Trending Product Area -->
     <section class="trending-product section">
         <div class="container">
+            
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
@@ -537,251 +538,43 @@
                 </div>
             </div>
             <div class="row">
+                @foreach ($models as $i => $model)
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
-                    <div class="single-product">
+                    <div class="single-product" >
                         <div class="product-image">
-                            <img src="{{ asset('assets/upload/carp/01.jpg') }}" alt="#">
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
-                                    Cart</a>
-                            </div>
+                            <a href="{{ route('nogin.index', ['id' => $model->id]) }}">
+                                <img style="aspect-radio: 1/1.3!important; overflow:hidden" class="img-fluid" src="{{ $model->product->getImageUrlFirst() }}"
+                                    class="product_img" alt="">
+                            </a>
+                            
                         </div>
                         <div class="product-info">
                             <span class="category">錦鯉</span>
                             <h4 class="title">
-                                <a href="product-grids.html">錦鯉-01</a>
+                                <a href="{{ route('purchase.create', ['id' => $model->id]) }}">
+                                    {{ $model->product->name }}
+                                </a>
                             </h4>
-                            <ul class="review">
+                            {{-- <ul class="review">
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star"></i></li>
+                                <li><i class="lni lni-star-empty"></i></li>
                                 <li><span>4.0 Review(s)</span></li>
-                            </ul>
+                            </ul> --}}
                             <div class="price">
-                                <span>250000円</span>
+                                <span>{{ $model->product->price }}円</span>
+                            </div>
+                            <div class="price">
+                                <span>{{ $model->product->cost }}円</span>
                             </div>
                         </div>
                     </div>
                     <!-- End Single Product -->
                 </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="{{ asset('assets/upload/carp/02.jpg') }}" alt="#">
-                            <span class="sale-tag">-25%</span>
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
-                                    Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">錦鯉</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">錦鯉-02</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>250000円</span>
-                                <span class="discount-price">250000円</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="{{ asset('assets/upload/carp/04.jpg') }}" alt="#">
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
-                                    Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">錦鯉</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">錦鯉-04</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>250000円</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="{{ asset('assets/upload/carp/05.png') }}" alt="#">
-                            <span class="new-tag">New</span>
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
-                                    Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">錦鯉</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">錦鯉-05</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>250000円</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="{{ asset('assets/upload/carp/01.jpg') }}" alt="#">
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
-                                    Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">錦鯉</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">錦鯉-01</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>250000円</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="{{ asset('assets/upload/carp/02.jpg') }}" alt="#">
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
-                                    Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">錦鯉</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">錦鯉-02</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star"></i></li>
-                                <li><span>4.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>250000円</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="{{ asset('assets/upload/carp/03.jpg') }}" alt="#">
-                            <span class="sale-tag">-50%</span>
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
-                                    Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">錦鯉</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">錦鯉-03</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star"></i></li>
-                                <li><span>4.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>250000円</span>
-                                <span class="discount-price">$200.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product">
-                        <div class="product-image">
-                            <img src="{{ asset('assets/upload/carp/03.jpg') }}" alt="#">
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
-                                    Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">錦鯉</span>
-                            <h4 class="title">
-                                <a href="product-grids.html">錦鯉-09</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><span>5.0 Review(s)</span></li>
-                            </ul>
-                            <div class="price">
-                                <span>250000円</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Product -->
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -937,6 +730,14 @@
         }
         timer();
         setInterval(timer, 1000);
+    </script>
+
+    <script>
+        const indexUrl = "{{ route('purchase.index') }}";
+        const viewIndex = () => {
+            const pageSize = $('#pageSize').val();
+            location.href = `${indexUrl}?pageSize=${pageSize}`;
+        };
     </script>
 </body>
 

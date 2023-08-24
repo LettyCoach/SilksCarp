@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Payment;
 
 use App\Http\Controllers\Controller;
 use App\Models\Payment\SquareLoacationInfo;
+use App\Models\ProductMana\Trade;
 use Config;
 use Illuminate\Http\Request;
 
@@ -19,8 +20,10 @@ class SquareController extends Controller
 {
     //
 
-    public function index()
+    public function index(Request $request)
     {
+        $trade_id = $request->model;
+        $amount = Trade::find($trade_id)->money_amount;
         // Pulled from the .env file and upper cased e.g. SANDBOX, PRODUCTION.
         $upper_case_environment = Config::get('square.environment');
 
@@ -29,12 +32,13 @@ class SquareController extends Controller
         $location_info = new SquareLoacationInfo();
         $idempotencyKey = Uuid::uuid4();
 
-        return view('payment.square.index', compact('web_payment_sdk_url', 'location_info', 'idempotencyKey'));
+        return view('payment.square.index', compact('web_payment_sdk_url', 'location_info', 'idempotencyKey', 'trade_id', 'amount'));
 
     }
 
     public function process_payment(Request $request)
     {
+        dd($request);
 
         $token = $request->token;
         $idempotencyKey = $request->idempotencyKey;
@@ -58,11 +62,12 @@ class SquareController extends Controller
         $location_info = new SquareLoacationInfo();
         $money->setCurrency($location_info->getCurrency());
 
+        // dd($money);
         try {
             // Every payment you process with the SDK must have a unique idempotency key.
+            // the buyer.
             // If you're unsure whether a particular payment succeeded, you can reattempt
             // it with the same idempotency key without worrying about double charging
-            // the buyer.
             $create_payment_request = new CreatePaymentRequest($token, $idempotencyKey, $money);
             $create_payment_request->setLocationId($location_info->getId());
 

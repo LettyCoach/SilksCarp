@@ -47,10 +47,9 @@ class SaleController extends Controller
             }
         }
 
-
+        
         $models = Trade::whereNotIn('id', $ids)
-            ->orderby('trade_date', 'asc');
-
+        ->orderby('trade_date', 'asc');
         $models = $models->paginate($pageSize);
         $models->appends(['pageSize' => $pageSize]);
 

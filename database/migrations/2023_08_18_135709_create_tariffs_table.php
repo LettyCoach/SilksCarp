@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('withdrawal_infos', function (Blueprint $table) {
+        Schema::create('tariffs', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->string('amount')->default('');
-            $table->date('date')->default(date('Y-m-d'));
-            $table->boolean('state')->default(false);
+            $table->string('from');
+            $table->string('to');
+            $table->integer('guarantee')->default(0);
+            $table->integer('fee')->default(0);
+            $table->integer('paid')->default(0);
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('withdrawal_infos');
+        Schema::dropIfExists('tariffs');
     }
 };
