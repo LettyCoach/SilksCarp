@@ -246,7 +246,7 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link {{ $routeName == 'home' ? '' : 'collapsed' }}" href="{{ route('home') }}">
+                <a class="nav-link {{ $routeName == 'alarm-user.index' ? '' : 'collapsed' }}" href="{{ route('alarm-user.index') }}">
                     <i class="bi-alarm"></i>
                     <span>お知らせ</span>
                 </a>
