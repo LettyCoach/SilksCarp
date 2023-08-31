@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('tariffs', function (Blueprint $table) {
             $table->id();
-            $table->string('from');
-            $table->string('to');
+            $table->string('title')->default('');
+            $table->integer('from');
+            $table->integer('to');
             $table->integer('guarantee')->default(0);
             $table->integer('fee')->default(0);
             $table->integer('paid')->default(0);
+            $table->string('other')->default('');
             $table->timestamps();
         });
     }

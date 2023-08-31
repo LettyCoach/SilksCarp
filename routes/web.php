@@ -81,6 +81,7 @@ Route::middleware([Authenticate::class])->group(function () {
     Route::resource('/alarm-user', AlarmUserController::class);
     Route::resource('/message', MessageController::class);
     Route::resource('/presetting', PresettingController::class);
+    // Route::resource('/withdrawal-request', WithdrawInfoController::class);
     
     Route::get('/nogin/create', [NoginController::class, 'create'])->name('nogin.create');
     Route::post('/nogin/store', [NoginController::class, 'store'])->name('nogin.store');
