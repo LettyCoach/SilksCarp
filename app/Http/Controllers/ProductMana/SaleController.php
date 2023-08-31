@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ProductMana;
 
 use App\Http\Controllers\Controller;
 use App\Models\Money\UserMoney;
+use App\Models\ProductMana\WithdrawalInfo;
 use App\Models\Tariff;
 use Illuminate\Http\Request;
 use App\Models\ProductMana\Trade;
@@ -98,14 +99,15 @@ class SaleController extends Controller
         $model->trade_date = Carbon::now();
 
 
+        
 
-        $user_money = new UserMoney();
-        $user_money->user_id = $user_id;
-        $user_money->title = "sale";
-        $user_money->money_all = $model->money_amount;
-        $user_money->money_real = Tariff::getTariff($model->money_amount);
-        $user_money->trade_date = $model->trade_date;
-        $user_money->save();
+        $wInfo = new WithdrawalInfo();
+        $wInfo->user_id = $user_id;
+        $wInfo->title = "sale";
+        $wInfo->money_all = $model->money_amount;
+        $wInfo->money_real = Tariff::getTariff($model->money_amount);
+        $wInfo->trade_date = $model->trade_date;
+        $wInfo->save();
 
 
 
