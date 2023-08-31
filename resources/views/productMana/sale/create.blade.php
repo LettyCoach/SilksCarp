@@ -50,7 +50,7 @@
                                     価格(円):
                                 </div>
                                 <div class="" style="width: calc(100% - 180px); min-width: 360px">
-                                    {{ number_format($model->product->price) }}
+                                    {{ number_format($model->product->cost) }}
                                 </div>
                             </div>
                             <div class="d-flex flex-wrap mt-4 mb-2">

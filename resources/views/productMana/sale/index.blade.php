@@ -37,7 +37,6 @@
                                         <th class="text-center">No</th>
                                         <th class="text-center">写真</th>
                                         <th class="text-center">タイトル</th>
-                                        <th class="text-center">価格(円)</th>
                                         <th class="text-center">仕入れ値(円)</th>
                                         <th class="text-center">説明</th>
                                         <th class="text-center">購入日</th>
@@ -62,7 +61,6 @@
                                                     {{ $model->product->name }}
                                                 </a>
                                             </td>
-                                            <td class="text-center view-data">{{ $model->product->price }}</td>
                                             <td class="text-center view-data">{{ $model->product->cost }}</td>
                                             <td class="text-center view-data">{{ $model->product->description }}</td>
                                             <td class="text-center view-data">{{ $model->getTradeDate() }}</td>

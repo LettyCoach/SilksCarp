@@ -34,7 +34,7 @@
                                     <tbody>
                                         @foreach($tariffs as $key => $tariff)
                                         <tr>
-                                            <td class="text-center">{{ $tariff->from }} ~ {{ $tariff->to }}</td>
+                                            <td class="text-center">{{ $tariff->title }}</td>
                                             <td class="text-center">
                                                 <input class="border-0 bg-transparent guarantee-input" type="number" name="tariffs[{{ $key }}][guarantee]" value="{{ $tariff->guarantee }}" max="100" min="0" data-key="{{ $key }}">
                                             </td>

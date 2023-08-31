@@ -293,7 +293,7 @@
                 </a>
                 <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a class="nav-link collapsed" {{ $routeName == 'bank.index' ? '' : 'collapsed' }}
+                        <a class="nav-link collapsed" {{ $routeName == 'withdraw.index' ? '' : 'collapsed' }}
                         href="{{ route('withdraw.index') }}">
                             <i class="bi bi-circle"></i><span>出金</span>
                         </a>
