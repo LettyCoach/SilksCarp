@@ -25,20 +25,38 @@
                                     data-bs-target="#credit-overview">情報を見る</button>
                             </li>
 
-                            <li class="nav-item">
-                                <button class="nav-link {{ $page == 1 ? 'active' : '' }}"" data-bs-toggle="tab"
-                                    data-bs-target="#credit-update">クレジット情報変更</button>
-                            </li>
+                            @if ( $money->cardNum == "" )
+                                <li class="nav-item">
+                                    <button class="nav-link {{ $page == 1 ? 'active' : '' }}"" data-bs-toggle="tab"
+                                        data-bs-target="#credit-update">クレジット情報登録</button>
+                                </li>
+                            @else
+                                <li class="nav-item">
+                                    <button class="nav-link {{ $page == 1 ? 'active' : '' }}"" data-bs-toggle="tab"
+                                        data-bs-target="#credit-update">クレジット情報変更</button>
+                                </li>
+                            @endif
+
 
                         </ul>
                         <div class="tab-content pt-2">
+
+                            <?php  
+                                if( $money->cardNum == "" ){
+                                    $cardNum = "未登録";
+                                    $secord = "";
+                                }else {
+                                    $cardNum = substr($money->cardNum, 0, 4 ). ' ＊＊＊＊ ＊＊＊＊ ＊＊＊＊';
+                                    $secord = '＊＊ ' .substr($money->secord, 2, 3);
+                                }
+                            ?>
 
                             <div class="tab-pane fade {{ $page == 0 ? 'show active' : '' }} credit-overview"
                                 id="credit-overview">
                                 <h5 class="card-title">credit Details</h5>
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label ">カード番号</div>
-                                    <div class="col-lg-9 col-md-8">{{ substr($money->cardNum, 0, 4 ). ' ＊＊＊＊ ＊＊＊＊ ＊＊＊＊' }}</div>
+                                    <div class="col-lg-9 col-md-8">{{ $cardNum }}</div>
                                 </div>
 
                                 <div class="row">
@@ -53,7 +71,7 @@
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">セキュリティコード</div>
-                                    <div class="col-lg-9 col-md-8">{{ '＊＊ ' .substr($money->secord, 2, 3) }}</div>
+                                    <div class="col-lg-9 col-md-8">{{ $secord }}</div>
                                 </div>
 
                             </div>
@@ -68,7 +86,7 @@
                                         <label for="cardNum" class="col-md-4 col-lg-3 col-form-label">カード番号</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="cardNum" type="tel" class="form-control"
-                                                id="cardNum" >
+                                                id="cardNum" value="{{ $money->cardNum }}">
                                             @error('cardNum')
                                                 <span class="invalid-feedback d-block" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -81,7 +99,7 @@
                                         <label for="expiration" class="col-md-4 col-lg-3 col-form-label">有効期間</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="expiration" type="date" class="form-control"
-                                                id="expiration" >
+                                                id="expiration" value="{{ $money->period }}">
                                             @error('expiration')
                                                 <span class="invalid-feedback d-block" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -94,7 +112,7 @@
                                         <label for="cardType" class="col-md-4 col-lg-3 col-form-label">カード名</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="cardType" type="tel" class="form-control"
-                                                id="cardType" >
+                                                id="cardType" value="{{ $money->cardType }}">
                                             @error('cardType')
                                                 <span class="invalid-feedback d-block" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -107,7 +125,7 @@
                                         <label for="cardSecret" class="col-md-4 col-lg-3 col-form-label">セキュリティコード</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="cardSecret" type="text" class="form-control"
-                                                id="cardSecret" >
+                                                id="cardSecret" value="{{ $secord }}">
                                             @error('cardSecret')
                                                 <span class="invalid-feedback d-block" role="alert">
                                                     <strong>{{ $message }}</strong>
