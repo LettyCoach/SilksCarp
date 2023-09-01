@@ -7,7 +7,7 @@
         window.currency = "{{ $location_info->getCurrency() }}";
         window.country = "{{ $location_info->getCountry() }}";
         window.idempotencyKey = "{{ $idempotencyKey }}";
-        window.moeny_amount = "{{ $amount }}";
+        window.money_amount = "{{ $money_amount }}";
     </script>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/square/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/square/css/sq-payment.css') }}">
@@ -15,11 +15,12 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>商品</h1>
+        <h1>決済</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>
-                <li class="breadcrumb-item active">錦鯉閲覧</li>
+                <li class="breadcrumb-item"><a href="{{ route('purchase.index') }}">商品リスト</a></li>
+                <li class="breadcrumb-item active">決済ペッジ</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -37,7 +38,7 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-6 col-md-5 label">仕入れ値</div>
-                            <div class="col-lg-6 col-md-7">{{ $amount }}(円)</div>
+                            <div class="col-lg-6 col-md-7">{{ $money_amount }}(円)</div>
                         </div>
                         <div class="d-flex content-justify-center p-3">
                             <img src="{{ asset('assets/images/topPage/payment.webp') }}" alt="">
@@ -50,7 +51,6 @@
         </div>
     </section>
     <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
-    <input type="hidden" name="amount_money" id="amount_money" value="{{ $amount }}">
 @endsection
 
 @section('js')

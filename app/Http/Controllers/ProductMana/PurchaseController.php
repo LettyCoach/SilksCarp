@@ -11,6 +11,7 @@ use App\Models\ProductMana\Trade;
 use App\Models\ProductMana\Product;
 use Auth;
 use Carbon\Carbon;
+use Session;
 
 class PurchaseController extends Controller
 {
@@ -94,11 +95,14 @@ class PurchaseController extends Controller
         $model->destination = $model->store_state == 0 ? "" : $request->destination;
         $model->trade_date = Carbon::now();
 
-        $model->save();
+
+        Session::put('pModel', $model);
+
+        // $model->save();
 
         // return redirect()->route('purchase.index');
         return redirect()
-            ->route('square.index', ['model'=> $model]);
+            ->route('square.index');
     }
 
     /**

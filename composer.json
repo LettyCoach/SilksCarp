@@ -15,7 +15,7 @@
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
         "ramsey/uuid": "^4.7",
-        "square/square": "29.0.0.20230720",
+        "square/square": "18.0.0.20220420",
         "vlucas/phpdotenv": "^5.5"
     },
     "require-dev": {

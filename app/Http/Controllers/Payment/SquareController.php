@@ -15,6 +15,7 @@ use Square\SquareClient;
 use Square\Models\Money;
 use Square\Models\CreatePaymentRequest;
 use Square\Exceptions\ApiException;
+use Session;
 
 class SquareController extends Controller
 {
@@ -22,8 +23,8 @@ class SquareController extends Controller
 
     public function index(Request $request)
     {
-        $trade_id = $request->model;
-        $amount = Trade::find($trade_id)->money_amount;
+        $pModel = Session::get('pModel');
+        $money_amount = $pModel->money_amount;
         // Pulled from the .env file and upper cased e.g. SANDBOX, PRODUCTION.
         $upper_case_environment = Config::get('square.environment');
 
@@ -32,16 +33,16 @@ class SquareController extends Controller
         $location_info = new SquareLoacationInfo();
         $idempotencyKey = Uuid::uuid4();
 
-        return view('payment.square.index', compact('web_payment_sdk_url', 'location_info', 'idempotencyKey', 'trade_id', 'amount'));
+        return view('payment.square.index', compact('web_payment_sdk_url', 'location_info', 'idempotencyKey', 'money_amount'));
 
     }
 
     public function process_payment(Request $request)
     {
-        dd($request);
 
         $token = $request->token;
         $idempotencyKey = $request->idempotencyKey;
+        $money_amount = $request->money_amount;
         $square_client = new SquareClient([
             'accessToken' => Config::get('square.access_token'),
             'environment' => Config::get('square.environment'),
@@ -57,7 +58,7 @@ class SquareController extends Controller
         $money = new Money();
         // Monetary amounts are specified in the smallest unit of the applicable currency.
         // This amount is in cents. It's also hard-coded for $1.00, which isn't very useful.
-        $money->setAmount(100);
+        $money->setAmount($money_amount);
         // Set currency to the currency for the location
         $location_info = new SquareLoacationInfo();
         $money->setCurrency($location_info->getCurrency());
@@ -74,6 +75,8 @@ class SquareController extends Controller
             $response = $payments_api->createPayment($create_payment_request);
 
             if ($response->isSuccess()) {
+                $pModel = Session::get('pModel');
+                $pModel->save();
                 echo json_encode($response->getResult());
             } else {
                 echo json_encode(array('errors' => $response->getErrors()));
