@@ -220,8 +220,13 @@ return [
         1 => '対応完了',
     ],
     
-    'withdrwalStates' => [
+    'withdrawalStates' => [
         0 => '出金申請',
         1 => '出金完了',
+    ],
+    
+    'withdrawableStates' => [
+        0 => '出金待ち',
+        1 => '出金可能',
     ],
 ];

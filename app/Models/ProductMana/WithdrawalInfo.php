@@ -32,5 +32,27 @@ class WithdrawalInfo extends Model
         return $date->format("Y-m-d");
     }
 
+    public function isWithdrawableState()
+    {
+        $crtDate = Carbon::now();
+        $day = $crtDate->day;
+        $past = $crtDate->subMonth();
+
+        $trade_date = Carbon::parse($this->trade_date);
+        if ($day < 15) {
+            $past = Carbon::create($past->year, $past->month, 15, 0);
+            if ($trade_date < $past) {
+                return true;
+            }
+            return false;
+        } else {
+            $past = Carbon::create($past->year, $past->month, 1, 0);
+            if ($trade_date < $past) {
+                return true;
+            }
+            return false;
+        }
+    }
+
 
 }

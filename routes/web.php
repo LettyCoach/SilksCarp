@@ -66,6 +66,7 @@ Route::middleware([Authenticate::class])->group(function () {
     Route::get('/sale-info/tariff', [SaleInfoController::class, 'tariff'])->name('sale-info.tariff');
     Route::post('/sale-info/tariff/update', [SaleInfoController::class, 'tariffUpdate'])->name('sale-info.tariff.update');
     Route::get('/withdraw-info', [WithdrawInfoController::class, 'index'])->name('withdraw-info.index');
+    Route::get('/withdraw-info/list', [WithdrawInfoController::class, 'list'])->name('withdraw-info.list');
     Route::get('/withdraw-info/csv', [WithdrawInfoController::class, 'exportCSV'])->name('withdraw-info.csv');
     // Route::resource('/sale-info', SaleInfoController::class);
     Route::get('/message-admin/resposne-state', [MessageAdminController::class, 'setResponseState'])->name('message-admin.response-state');
