@@ -13,7 +13,7 @@
     </div><!-- End Page Title -->
     <section class="section withdraw" style="font-family: yu gothic">
         <div class="row">
-            <div class="col-xl-8 mx-auto">
+            <div class="col-xl-9 mx-auto">
 
                 <div class="card">
                     <div class="card-body pt-3">
@@ -58,7 +58,7 @@
 
                             </div>
 
-                            <div class="tab-pane fade {{ $page == 2 ? 'show active' : '' }} withdraw-setting pt-3"
+                            <div class="tab-pane fade {{ $page == 1 ? 'show active' : '' }} withdraw-setting pt-3"
                                 id="withdraw-setting">
                                 <!-- Change Password Form -->
                                 <form action="{{ route('withdraw.setting') }}" method="POST"
@@ -87,8 +87,8 @@
 
                                     <div class="row mb-3">
                                         <label for="balance" class="col-md-4 col-lg-3 col-form-label">残高</label>
-                                        <div class="col-md-8 col-lg-9" name="balance" id="balance">
-                                        </div>
+                                        <div class="col-md-8 col-lg-9" name="balance" id="balance">{{ $money->amount }}
+                                        </div> 
                                     </div>
                                     
                                     <div class="text-center">
@@ -96,6 +96,91 @@
                                     </div>
                                 </form><!-- End Change Password Form -->
 
+                            </div>
+                            <div class="tab-pane fade {{ $page == 2 ? 'show active' : '' }} withdraw-go pt-3"
+                                id="withdraw-go">
+                                <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="card-title ms-2">現在の残高: &nbsp<span class=""> {{ $money->amount }} 円</span></h5>
+                                <div class="d-flex justify-content-end">
+                                    <a href="{{ route('withdraw.index', ['filter' => 0 ]) }}" class="btn btn-primary me-2">全て</a>
+                                    <a href="{{ route('withdraw.index', ['filter' => 1 ]) }}" class="btn btn-warning me-2">販売済み</a>
+                                    <a href="{{ route('withdraw.index', ['filter' => 2 ]) }}" class="btn btn-success me-2">出金申請中</a>
+                                    <a href="{{ route('withdraw.index', ['filter' => 3 ]) }}" class="btn btn-danger me-3">出金</a>
+                                </div>
+                                </div>
+                                <div class="d-flex justify-content-between flex-wrap items-center mb-2 mt-0">
+                                    <div class="rounded-md">
+                                        <select name="pageSize" class="form-select" id="pageSize" onchange="viewIndex()">
+                                            @foreach (Config::get('app.pageSizes') as $value)
+                                                <option value="{{ $value }}" {{ $value == $pageSize ? 'selected' : '' }}>
+                                                    {{ $value }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="panel-body">
+                                    <div style="min-height: calc(100vh - 360px)">
+                                        <div class="table-responsive" id="data_div">
+                                            <table id="dtBasicExample" class="table table-striped table-fixed table-bordered table-sm"
+                                                cellspacing="0" style="min-width: 1000px; overflow-x: scroll; width:100%">
+                                                <thead style="height:47px;">
+                                                    <tr class="align-middle">
+                                                        <th class="text-center">No</th>
+                                                        <th class="text-center">タイトル</th>
+                                                        <th class="text-center">金額(合計)(円)</th>
+                                                        <th class="text-center">金額(実質)(円)</th>
+                                                        <th class="text-center">説明</th>
+                                                        <th class="text-center">分類</th>
+                                                        <th class="text-center">日付</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    
+                                                    <?php
+                                                        $i = 0;
+                                                    ?>
+                                                    @foreach ($withdraw_historys as $key => $withdraw_history)
+                                                        <?php 
+                                                            $i++;
+
+                                                            if($withdraw_history->state == 0) {
+                                                                if($withdraw_history->type > 0 ) {
+                                                                    $type = "販売済み";
+                                                                } else{
+                                                                    $type = "出金申請中";
+                                                                }
+                                                            } else {
+                                                                $type = "出金";
+                                                            }
+                                                        ?>
+
+                                                        <tr class="align-middle">
+                                                            <td class="text-center view-data">{{ $i }}</td>
+                                                            <td class="text-center view-data">{{ $withdraw_history->title }}</td>
+                                                            <td class="text-center view-data">{{ $withdraw_history->money_all }}</td>
+                                                            <td class="text-center view-data">{{ $withdraw_history->money_real }}</td>
+                                                            <td class="text-center view-data">{{ $withdraw_history->description }}</td>
+                                                            <td class="text-center view-data">{{ $type }}</td>
+                                                            <td class="text-center view-data">{{ $withdraw_history->trade_date }}</td>
+                                                        </tr>
+                                                    @endforeach
+
+                                                    @if ($withdraw_historys->count() == 0)
+                                                        <tr class="align-middle">
+                                                            <td class="text-center" colspan='11'>
+                                                                データはありません。
+                                                            </td>
+                                                        </tr>
+                                                    @endif
+                                                </tbody>
+                                            </table>
+                                            <div class="" style="min-width: 700px">
+                                                {{ $withdraw_historys->links() }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                         </div><!-- End Bordered Tabs -->
@@ -117,6 +202,11 @@
                 
             });
         });
+
+        const indexUrl = "{{ route('withdraw.index') }}";
+        const viewIndex = () => {
+            const pageSize = $('#pageSize').val();
+            location.href = `${indexUrl}?pageSize=${pageSize}`;
+        };
     </script>
 @endsection
-

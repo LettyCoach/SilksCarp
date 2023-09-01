@@ -25,10 +25,18 @@
                                     data-bs-target="#bank-overview">情報を見る</button>
                             </li>
 
-                            <li class="nav-item">
-                                <button class="nav-link {{ $page == 1 ? 'active' : '' }}"" data-bs-toggle="tab"
-                                    data-bs-target="#bank-update">銀行情報変更</button>
-                            </li>
+                            @if ($money->bankName == "")
+                                <li class="nav-item">
+                                    <button class="nav-link {{ $page == 1 ? 'active' : '' }}"" data-bs-toggle="tab"
+                                        data-bs-target="#bank-update">銀行情報登録</button>
+                                </li>
+                            @else
+                                <li class="nav-item">
+                                    <button class="nav-link {{ $page == 1 ? 'active' : '' }}"" data-bs-toggle="tab"
+                                        data-bs-target="#bank-update">銀行情報変更</button>
+                                </li>
+                                
+                            @endif
 
                         </ul>
                         <div class="tab-content pt-2">
@@ -57,6 +65,10 @@
                                     <div class="col-lg-9 col-md-8">{{ $money->pointName }}</div>
                                 </div>
 
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">受取人番号</div>
+                                    <div class="col-lg-9 col-md-8">{{ $money->recipientNum }}</div>
+                                </div>
                             </div>
 
                             <div class="tab-pane fade {{ $page == 1 ? 'show active' : '' }} bank-update pt-3"
@@ -69,7 +81,7 @@
                                         <label for="bankName" class="col-md-4 col-lg-3 col-form-label">銀行名</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="bankName" type="text" class="form-control"
-                                                id="bankName" >
+                                                id="bankName" value="{{ $money->bankName }}">
                                             @error('bankName')
                                                 <span class="invalid-feedback d-block" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -82,7 +94,7 @@
                                         <label for="accountNum" class="col-md-4 col-lg-3 col-form-label">口座番号</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="accountNum" type="text" class="form-control"
-                                                id="accountNum" >
+                                                id="accountNum" value="{{ $money->accountNum }}">
                                             @error('accountNum')
                                                 <span class="invalid-feedback d-block" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -95,7 +107,7 @@
                                         <label for="pointNum" class="col-md-4 col-lg-3 col-form-label">支店番号</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="pointNum" type="number" class="form-control"
-                                                id="pointNum" >
+                                                id="pointNum" value="{{ $money->pointNum }}">
                                             @error('pointNum')
                                                 <span class="invalid-feedback d-block" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -105,11 +117,24 @@
                                     </div>
                                     
                                     <div class="row mb-3">
-                                        <label for="pointName" class="col-md-4 col-lg-3 col-form-label">口座名義</label>
+                                        <label for="pointName" class="col-md-4 col-lg-3 col-form-label">支店名</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="pointName" type="text" class="form-control"
-                                                id="pointName" >
+                                                id="pointName" value="{{ $money->pointName }}">
                                             @error('pointName')
+                                                <span class="invalid-feedback d-block" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="recipientNum" class="col-md-4 col-lg-3 col-form-label">受取人番号</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="recipientNum" type="text" class="form-control"
+                                                id="recipientNum" value="{{ $money->recipientNum }}">
+                                            @error('recipientNum')
                                                 <span class="invalid-feedback d-block" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>

@@ -67,6 +67,7 @@ class MoneyManaController extends Controller
         $money->accountNum = $request->accountNum;
         $money->pointName = $request->pointName;
         $money->pointNum = $request->pointNum;
+        $money->recipientNum = $request->recipientNum;
 
         $money->save();
 
@@ -75,6 +76,9 @@ class MoneyManaController extends Controller
     }
 
     public function withdraw(Request $request){
+
+        $pageSize = $request->pageSize ?? 10;
+
         $user_id = Auth::user()->id;
         $money = Money::where('user_id', $user_id)->get()->first();
         if(!$money){
@@ -86,17 +90,44 @@ class MoneyManaController extends Controller
         }
         $page = $request->page ?? 0;
 
-        return view('moneyMana/withdraw/index', compact('page', 'money') );
+        $withdraw_historys = WithdrawalInfo::where('user_id', $user_id)->orderby('trade_date', 'DESC');
+        
+        if(isset($request->filter)){
+            $filter = $request->filter;
+            if($filter == 0) {
+                $withdraw_historys = WithdrawalInfo::where('user_id', $user_id)->orderby('trade_date', 'DESC');
+            }
+            else if($filter == 1) {
+                $withdraw_historys = WithdrawalInfo::where('user_id', $user_id)->where('type', 1)->orderby('trade_date', 'DESC');
+            }
+            else if($filter == 2) {
+                $withdraw_historys = WithdrawalInfo::where('user_id', $user_id)->where('type', -1)->where('state', 0)->orderby('trade_date', 'DESC');
+            }
+            else if($filter == 3) {
+                $withdraw_historys = WithdrawalInfo::where('user_id', $user_id)->where('type', -1)->where('state', 1)->orderby('trade_date', 'DESC');
+            }
+            $page = 2;
+        }
+
+        $withdraw_historys = $withdraw_historys->paginate($pageSize);
+        $withdraw_historys->appends(['pageSize' => $pageSize]);
+        if(isset($request->pageSize)) {
+            $page = 2;
+        }
+
+        return view('moneyMana/withdraw/index', compact('page', 'money', 'pageSize' ,'withdraw_historys') );
     }
 
     public function settingWithdraw(Request $request){
         $user_id = Auth::user()->id;
+
         $model = new WithdrawalInfo();
-        
         $model->user_id = $user_id;
-        $model->amount = $request->withdraw_amount;
-        $model->state = false;
-        $model->date = Carbon::today();
+        $model->title = "withdraw";
+        $model->money_all = $request->withdraw_amount * 1.1;
+        $model->money_real = $request->withdraw_amount;
+        $model->type = -1;
+        $model->trade_date = Carbon::now();
         
         $model->save();
 

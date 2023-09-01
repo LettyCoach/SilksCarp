@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('accountNum')->default('');
             $table->string('pointName')->default('');
             $table->string('pointNum')->default('');
+            $table->string('recipientNum')->default('');
             $table->string('amount')->default('');
             $table->timestamps();
         });
