@@ -53,7 +53,7 @@
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">残高</div>
-                                    <div class="col-lg-9 col-md-8">{{ $money->amount }}</div>
+                                    <div class="col-lg-9 col-md-8">{{ $balance }}</div>
                                 </div>
 
                             </div>
@@ -64,7 +64,7 @@
                                 <form action="{{ route('withdraw.setting') }}" method="POST"
                                     enctype="multipart/form-data" onsubmit="">
                                     @csrf
-                                    <input type="hidden" name="total_amount" id="total_amount" value="{{ $money->amount }}">
+                                    <input type="hidden" name="total_amount" id="total_amount" value="{{ $balance }}">
 
                                     <div class="row mb-3">
                                         <label for="withdraw_amount" class="col-md-4 col-lg-3 col-form-label">出金金額</label>
@@ -87,7 +87,7 @@
 
                                     <div class="row mb-3">
                                         <label for="balance" class="col-md-4 col-lg-3 col-form-label">残高</label>
-                                        <div class="col-md-8 col-lg-9" name="balance" id="balance">{{ $money->amount }}
+                                        <div class="col-md-8 col-lg-9" name="balance" id="balance">{{ $balance }}
                                         </div> 
                                     </div>
                                     
@@ -100,11 +100,11 @@
                             <div class="tab-pane fade {{ $page == 2 ? 'show active' : '' }} withdraw-go pt-3"
                                 id="withdraw-go">
                                 <div class="d-flex justify-content-between align-items-center">
-                                <h5 class="card-title ms-2">現在の残高: &nbsp<span class=""> {{ $money->amount }} 円</span></h5>
+                                <h5 class="card-title ms-2">現在の残高: &nbsp<span class=""> {{ $balance }} 円</span></h5>
                                 <div class="d-flex justify-content-end">
                                     <a href="{{ route('withdraw.index', ['filter' => 0 ]) }}" class="btn btn-primary me-2">全て</a>
-                                    <a href="{{ route('withdraw.index', ['filter' => 1 ]) }}" class="btn btn-warning me-2">販売済み</a>
-                                    <a href="{{ route('withdraw.index', ['filter' => 2 ]) }}" class="btn btn-success me-2">出金申請中</a>
+                                    <a href="{{ route('withdraw.index', ['filter' => 1 ]) }}" class="btn btn-success me-2">出金待ち</a>
+                                    <a href="{{ route('withdraw.index', ['filter' => 2 ]) }}" class="btn btn-warning me-2">出金可能</a>
                                     <a href="{{ route('withdraw.index', ['filter' => 3 ]) }}" class="btn btn-danger me-3">出金</a>
                                 </div>
                                 </div>
@@ -145,13 +145,16 @@
                                                             $i++;
 
                                                             if($withdraw_history->state == 0) {
-                                                                if($withdraw_history->type > 0 ) {
-                                                                    $type = "販売済み";
-                                                                } else{
-                                                                    $type = "出金申請中";
+                                                                if($withdraw_history->type == -1) {
+                                                                    if($withdraw_history->isWithdrawableState()) {
+                                                                        $type = "出金可能";
+                                                                    } else {
+                                                                        $type = "出金待ち";
+                                                                    }
                                                                 }
                                                             } else {
                                                                 $type = "出金";
+
                                                             }
                                                         ?>
 

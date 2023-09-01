@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Alarm\AlarmToAll;
+use App\Models\Alarm\AlarmToIndividual;
 use App\Models\MessageMana\Message;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -65,6 +66,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(AlarmToAll::class, 'alarm_read_states', 'user_id', 'alarm_to_all_id')->withPivot('read_date');
     }
+    public function indi_alarms(): HasMany
+    {
+        return $this->hasMany(AlarmToIndividual::class, 'user_id');
+    }
 
     public function messages(): HasMany
     {
@@ -84,7 +89,7 @@ class User extends Authenticatable
 
         $initTime = "2000-01-01 00:00:00";
         foreach ($messages as $msg) {
-            if ($isAdmin && $msg->read_date === $initTime) {
+            if ($isAdmin && $msg->read_date == $initTime) {
                 array_push($unreadMSGs, [
                     "avatar" => $msg->user->getAvatar(),
                     "name" => $this->name,

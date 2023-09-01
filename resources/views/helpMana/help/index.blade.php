@@ -49,14 +49,14 @@
 
                         <div class="rouneded-md">
                             <a class="rounded btn btn-primary" href="javascript:;viewIndex()">
-                                <i class="fa fa-find"></i>&nbsp;
+                                <i class="fa fa-search"></i>&nbsp;
                                 ヘルプ
                             </a>
                         </div>
 
                         <div class="rouneded-md">
                             <a class="rounded btn btn-danger" href="{{ route('help.create') }}">
-                                <i class="fa fa-search"></i>&nbsp;
+                                <i class="fa fa-plus"></i>&nbsp;
                                 ヘルプ追加
                             </a>
                         </div>

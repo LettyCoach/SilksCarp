@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MessageMana\Message;
 use App\Models\MoneyMana\Money;
 use App\Models\ProductMana\WithdrawalInfo;
 use Auth;
@@ -90,32 +91,57 @@ class MoneyManaController extends Controller
         }
         $page = $request->page ?? 0;
 
-        $withdraw_historys = WithdrawalInfo::where('user_id', $user_id)->orderby('trade_date', 'DESC');
+        $withdrawInfos = WithdrawalInfo::where('user_id', $user_id)->get();
+        $balance = 0;
+        foreach($withdrawInfos as $key => $withdrawInfo) {
+            // dd($withdrawInfo);
+            $balance += $withdrawInfo->money_real * $withdrawInfo->type; 
+        }
+        $withdraw_historys = WithdrawalInfo::where('user_id', $user_id)->where('type', -1)->orderby('trade_date', 'DESC');
         
         if(isset($request->filter)){
+
             $filter = $request->filter;
-            if($filter == 0) {
-                $withdraw_historys = WithdrawalInfo::where('user_id', $user_id)->orderby('trade_date', 'DESC');
+
+            if ($filter == 1) {
+                $ids = [];
+                $withdraw_historys = $withdraw_historys->get();
+                foreach ($withdraw_historys as $key => $withdraw_history) {
+                    if ($withdraw_history->isWithdrawableState()) {
+                        array_push($ids, $withdraw_history->id);
+                    }
+                }
+                $withdraw_historys = WithdrawalInfo::whereNotIn('id', $ids)->where('type', -1)->orderby('trade_date', 'DESC');
             }
-            else if($filter == 1) {
-                $withdraw_historys = WithdrawalInfo::where('user_id', $user_id)->where('type', 1)->orderby('trade_date', 'DESC');
+            else if ($filter == 2) {
+                $ids = [];
+                $withdraw_historys = $withdraw_historys->get();
+                foreach ($withdraw_historys as $key => $withdraw_history) {
+                    if($withdraw_history->state == 1) {
+                        array_push($ids, $withdraw_history->id);
+                    }
+                    if (!$withdraw_history->isWithdrawableState()) {
+                        array_push($ids, $withdraw_history->id);
+                    }
+                }
+                $withdraw_historys = WithdrawalInfo::whereNotIn('id', $ids)->where('type', -1)->orderby('trade_date', 'DESC');
             }
-            else if($filter == 2) {
-                $withdraw_historys = WithdrawalInfo::where('user_id', $user_id)->where('type', -1)->where('state', 0)->orderby('trade_date', 'DESC');
-            }
-            else if($filter == 3) {
-                $withdraw_historys = WithdrawalInfo::where('user_id', $user_id)->where('type', -1)->where('state', 1)->orderby('trade_date', 'DESC');
-            }
+            
+            else if ($filter == 3) {
+                $withdraw_historys = $withdraw_historys->where('state', 1);
+            } 
+            
             $page = 2;
         }
-
+        
         $withdraw_historys = $withdraw_historys->paginate($pageSize);
         $withdraw_historys->appends(['pageSize' => $pageSize]);
+        // dd($withdraw_historys);
         if(isset($request->pageSize)) {
             $page = 2;
         }
 
-        return view('moneyMana/withdraw/index', compact('page', 'money', 'pageSize' ,'withdraw_historys') );
+        return view('moneyMana/withdraw/index', compact('page', 'money', 'balance' , 'pageSize' ,'withdraw_historys') );
     }
 
     public function settingWithdraw(Request $request){
@@ -130,11 +156,21 @@ class MoneyManaController extends Controller
         $model->trade_date = Carbon::now();
         
         $model->save();
-
+        
         $money = Money::where('user_id', $user_id)->get()->first();
         $old_amount = $money->amount;
         $money->amount = $old_amount - $request->withdraw_amount * 1.1 ;
         $money->save();
+        
+        $message = new Message();
+        $message->user_id = $user_id;
+        $message->title = "出金申請";
+        $message->content = $model->targetUser->name. "様から" . $request->withdraw_amount . "円のお金が出金申請されました。";
+        $message->save();
+
+        $model->description = $message->id;
+        $model->save();
+
 
         return redirect()->route('withdraw.index', ['page'=>0]);
     }

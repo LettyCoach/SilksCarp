@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\ProductMana;
 
 use App\Http\Controllers\Controller;
+use App\Models\Alarm\AlarmToIndividual;
+use App\Models\MessageMana\MessageSub;
 use App\Models\ProductMana\WithdrawalInfo;
+use App\Models\User;
+use Auth;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class WithdrawInfoController extends Controller
@@ -53,6 +58,45 @@ class WithdrawInfoController extends Controller
 
         return view('productMana.withdraw_info.list', compact('pageSize', 'state', 'models'));
     }
+    
+    public function withdraw(Request $request) {
+        $models = WithdrawalInfo::orderby('trade_date', 'asc');
+        $models = $models->where('type', -1)->get();
+        $ids = [];
+        foreach ($models as $key => $model) {
+            if ($model->isWithdrawableState()) {
+                $model->state = 1;
+                $model->save();
+
+
+
+                $message_id = $model->description;
+                $message = new MessageSub();
+                $message->title = "出金通知";
+                $message->content = $model->money_real . "円のお金が" . Carbon::today()->format('Y 年 m 月 d 日') . "出金されました。";
+                $message->type = 1;
+                $message->message_id = $message_id;
+                $message->parent_id = null;
+                $message->read_date = "2000-01-01 00:00:00";
+
+                $message->save();
+
+                if(!in_array($model->targetUser->id, $ids)) {
+                    array_push($ids, $model->targetUser->id);
+                }
+            }
+        }
+
+        foreach($ids as $id) {
+            $alarm = new AlarmToIndividual();
+            $alarm->user_id = $id;
+            $alarm->type = 2;
+            $alarm->read_date = '2000-01-01 00:00:00';
+    
+            $alarm->save();
+        }
+        return redirect()->route('withdraw-info.list');
+    }
 
 
     public function exportCSV(Request $request)
@@ -97,6 +141,85 @@ class WithdrawInfoController extends Controller
 
                 fputcsv($file, array($row['No'], $row['買い手'], $row['価格(円)'], $row['銀行名'], $row['口座番号'], $row['説明'], $row['販売日']));
             }
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+    public function applyCSV() {
+
+        $admin_id = Auth::user()->id;
+        $admin = User::find($admin_id);
+        $admin_name = mb_convert_encoding($admin->name, "SJIS", "UTF-8");
+        $models = WithdrawalInfo::where('type', -1)->orderby('trade_date', 'DESC')->get();
+
+        $ids = [];
+        foreach ($models as $key => $model) {
+            if($model->state == 1) {
+                array_push($ids, $model->id);
+            }
+            if (!$model->isWithdrawableState()) {
+                array_push($ids, $model->id);
+            }
+        }
+        $models = WithdrawalInfo::whereNotIn('id', $ids)->where('type', -1)->orderby('trade_date', 'DESC')->get();
+        $fileName = 'withdraw-apply.csv';
+        
+        $headers = array(
+            "Content-type" => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma" => "no-cache",
+            "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
+            "Expires" => "0"
+        );
+        
+        $columns = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P');
+        
+        foreach ($columns as $i => $column) {
+            $columns[$i] = mb_convert_encoding($column, "SJIS", "UTF-8");
+        }
+
+        $callback = function () use ($models, $columns) {
+            $headers = array('1', '21', '0', '8818002600', 'yamada', '0901', '9', 'mitsui', '410', 'simmi', '1', '185018', '', '', '', '');
+            
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $headers);
+
+            $total_money = 0;
+            foreach ($models as $i => $model) {
+                $total_money += $model->money_real;
+                $row['A'] = '2';
+                $row['B'] = '1';
+                $row['C'] = mb_convert_encoding($model->money->bankName, "SJIS", "UTF-8");
+                $row['D'] = $model->money->pointNum;
+                $row['E'] = mb_convert_encoding($model->money->pointName, "SJIS", "UTF-8");
+                $row['F'] = '0';
+                $row['G'] = '1';
+                $row['H'] = $model->money->accountNum;
+                $row['I'] = mb_convert_encoding($model->targetUser->name, "SJIS", "UTF-8");
+                $row['J'] = $model->money_real;
+                $row['K'] = 0;
+                $row['L'] = $model->money->recipientNum;
+                $row['M'] = '';
+                $row['N'] = '7';
+                $row['O'] = '';
+                $row['P'] = '';
+
+                fputcsv($file, array($row['A'], $row['B'], $row['C'], $row['D'], $row['E'], $row['F'], $row['G'], $row['H'], $row['I'], $row['J'], $row['K'], $row['L'], $row['M'], $row['N'], $row['O'], $row['P'],));
+            }
+
+            $row['A'] = 8;
+            $row['B'] = $models->count();
+            $row['C'] = $total_money;
+
+            fputcsv($file, array($row['A'], $row['B'], $row['C']));
+
+            $row['A'] = 9;
+
+            fputcsv($file, array($row['A']));
+
+
             fclose($file);
         };
 

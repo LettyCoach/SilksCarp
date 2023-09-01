@@ -57,6 +57,11 @@
         ->where('end_date', '>=', $now)
         ->get();
     
+    $unreadNotification = $user
+        ->indi_alarms()
+        ->where('read_date', '2000-01-01 00:00:00')
+        ->get();
+    
     $unreadMSGs = Auth::user()->getUnreadMessages();
 @endphp
 
@@ -82,14 +87,14 @@
 
                     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                         <i class="bi bi-bell"></i>
-                        @if (count($unreadAlarms) > 0)
-                            <span class="badge bg-primary badge-number">{{ count($unreadAlarms) }}</span>
+                        @if (count($unreadAlarms) + count($unreadNotification) > 0)
+                            <span class="badge bg-primary badge-number">{{ count($unreadAlarms) + count($unreadNotification) }}</span>
                         @endif
                     </a><!-- End Notification Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
                         <li class="dropdown-header">
-                            You have {{ count($unreadAlarms) }} new notifications
+                            You have {{ count($unreadAlarms) }} new notices for everyone
                             <a href="{{ route('alarm-user.index') }}"><span
                                     class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
                         </li>
@@ -119,9 +124,30 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li class="dropdown-footer">
-                            <a href="{{ route('alarm-user.index') }}">Show all notifications</a>
+                        <li class="dropdown-header">
+                            You have {{ count($unreadNotification) }} new individual notices
+                            <a href="{{ route('alarm-indi.index') }}"><span
+                                    class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
                         </li>
+                        @foreach ($unreadNotification as $alarm)
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <li class="notification-item">
+                                @if ($alarm->type === 0)
+                                    <i class="bi bi-info-circle text-primary"></i>
+                                @else
+                                    <i class="bi bi-exclamation-circle text-warning"></i>
+                                @endif
+                                <div>
+                                    <div class="text-truncate" style="max-width: 200px;">
+                                        {{ $alarm->title }}
+                                    </div>
+                                    <p>{{ $alarm->created_at }}</p>
+                                </div>
+                            </li>
+                        @endforeach
 
                     </ul><!-- End Notification Dropdown Items -->
 
@@ -323,7 +349,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="users-profile.html">
+                <a class="nav-link collapsed" href="{{ route('help.user') }}">
                     <i class="bi-question-diamond"></i>
                     <span>ヘルプ</span>
                 </a>
