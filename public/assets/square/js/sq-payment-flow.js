@@ -17,26 +17,27 @@ window.payments = Square.payments(window.applicationId, window.locationId);
 
 window.paymentFlowMessageEl = document.getElementById('payment-flow-message');
 
-window.showSuccess = function(message) {
+window.showSuccess = function (message) {
   window.paymentFlowMessageEl.classList.add('success');
   window.paymentFlowMessageEl.classList.remove('error');
   window.paymentFlowMessageEl.innerText = message;
 }
 
-window.showError = function(message) {
+window.showError = function (message) {
   window.paymentFlowMessageEl.classList.add('error');
   window.paymentFlowMessageEl.classList.remove('success');
   window.paymentFlowMessageEl.innerText = message;
 }
 
-window.createPayment = async function(token) {
+window.createPayment = async function (token) {
 
   const _token = document.getElementById('_token').value;
-  
+
   const dataJsonString = JSON.stringify({
     token,
     _token,
-    idempotencyKey: window.idempotencyKey
+    idempotencyKey: window.idempotencyKey,
+    money_amount: window.money_amount
   });
 
   try {
@@ -58,6 +59,7 @@ window.createPayment = async function(token) {
       }
     } else {
       window.showSuccess('Payment Successful!');
+      location.href = "/purchase";
     }
   } catch (error) {
     console.error('Error:', error);
@@ -65,7 +67,7 @@ window.createPayment = async function(token) {
 }
 
 // Hardcoded for testing purpose, only used for Apple Pay and Google Pay
-window.getPaymentRequest = function() {
+window.getPaymentRequest = function () {
   return {
     countryCode: window.country,
     currencyCode: window.currency,

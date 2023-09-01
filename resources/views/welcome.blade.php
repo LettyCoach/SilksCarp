@@ -528,7 +528,7 @@
     <!-- Start Trending Product Area -->
     <section class="trending-product section">
         <div class="container">
-            
+
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
@@ -539,24 +539,25 @@
             </div>
             <div class="row">
                 @foreach ($models as $i => $model)
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Product -->
-                    <div class="single-product" >
-                        <div class="product-image">
-                            <a href="{{ route('nogin.index', ['id' => $model->id]) }}">
-                                <img style="aspect-radio: 1/1.3!important; overflow:hidden" class="img-fluid" src="{{ $model->product->getImageUrlFirst() }}"
-                                    class="product_img" alt="">
-                            </a>
-                            
-                        </div>
-                        <div class="product-info">
-                            <span class="category">錦鯉</span>
-                            <h4 class="title">
-                                <a href="{{ route('purchase.create', ['id' => $model->id]) }}">
-                                    {{ $model->product->name }}
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <!-- Start Single Product -->
+                        <div class="single-product">
+                            <div class="product-image">
+                                <a href="{{ route('nogin.index', ['id' => $model->id]) }}">
+                                    <img style="aspect-radio: 1/1.3!important; overflow:hidden; width: 250px; height: 360px; object-fit: cover;"
+                                        class="img-fluid product_img" src="{{ $model->product->getImageUrlFirst() }}"
+                                        alt="">
                                 </a>
-                            </h4>
-                            {{-- <ul class="review">
+
+                            </div>
+                            <div class="product-info">
+                                <span class="category">錦鯉</span>
+                                <h4 class="title">
+                                    <a href="{{ route('purchase.create', ['id' => $model->id]) }}">
+                                        {{ $model->product->name }}
+                                    </a>
+                                </h4>
+                                {{-- <ul class="review">
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
@@ -564,16 +565,16 @@
                                 <li><i class="lni lni-star-empty"></i></li>
                                 <li><span>4.0 Review(s)</span></li>
                             </ul> --}}
-                            <div class="price">
-                                <span>{{ $model->product->price }}円</span>
-                            </div>
-                            <div class="price">
-                                <span>{{ $model->product->cost }}円</span>
+                                <div class="price">
+                                    <span>{{ $model->product->price }}円</span>
+                                </div>
+                                <div class="price">
+                                    <span>{{ $model->product->cost }}円</span>
+                                </div>
                             </div>
                         </div>
+                        <!-- End Single Product -->
                     </div>
-                    <!-- End Single Product -->
-                </div>
                 @endforeach
             </div>
         </div>
