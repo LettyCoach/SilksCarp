@@ -3,8 +3,10 @@
 use App\Http\Controllers\Alarm\AlarmToAllController;
 use App\Http\Controllers\Alarm\AlarmToIndividualController;
 use App\Http\Controllers\Alarm\AlarmUserController;
+use App\Http\Controllers\AlarmIndiController;
 use App\Http\Controllers\HelpMana\HelpCategoryController;
 use App\Http\Controllers\HelpMana\HelpController;
+use App\Http\Controllers\HelpUserController;
 use App\Http\Controllers\MessageMana\MessageController;
 use App\Http\Controllers\MessageMana\MessageAdminController;
 use App\Http\Controllers\MoneyManaController;
@@ -67,7 +69,9 @@ Route::middleware([Authenticate::class])->group(function () {
     Route::post('/sale-info/tariff/update', [SaleInfoController::class, 'tariffUpdate'])->name('sale-info.tariff.update');
     Route::get('/withdraw-info', [WithdrawInfoController::class, 'index'])->name('withdraw-info.index');
     Route::get('/withdraw-info/list', [WithdrawInfoController::class, 'list'])->name('withdraw-info.list');
+    Route::get('/withdraw-info/withdraw', [WithdrawInfoController::class, 'withdraw'])->name('withdraw-info.withdraw');
     Route::get('/withdraw-info/csv', [WithdrawInfoController::class, 'exportCSV'])->name('withdraw-info.csv');
+    Route::get('/withdraw-info/applycsv', [WithdrawInfoController::class, 'applyCSV'])->name('withdraw-info.applycsv');
     // Route::resource('/sale-info', SaleInfoController::class);
     Route::get('/message-admin/resposne-state', [MessageAdminController::class, 'setResponseState'])->name('message-admin.response-state');
     Route::resource('/message-admin', MessageAdminController::class);
@@ -80,6 +84,7 @@ Route::middleware([Authenticate::class])->group(function () {
     Route::resource('/sale', SaleController::class);
     Route::resource('/own', OwnController::class);
     Route::resource('/alarm-user', AlarmUserController::class);
+    Route::resource('/alarm-indi', AlarmIndiController::class);
     Route::resource('/message', MessageController::class);
     Route::resource('/presetting', PresettingController::class);
     // Route::resource('/withdrawal-request', WithdrawInfoController::class);
@@ -95,6 +100,8 @@ Route::middleware([Authenticate::class])->group(function () {
     Route::post('/money/bank/update', [MoneyManaController::class, 'updateBank'])->name('bank.update');
     Route::get('/money/withdraw', [MoneyManaController::class, 'withdraw'])->name('withdraw.index');
     Route::post('/money/withdraw/setting', [MoneyManaController::class, 'settingWithdraw'])->name('withdraw.setting');
+    Route::get('/help_user', [HelpUserController::class, 'user'])->name('help.user');
+    Route::get('/help_user/{id}', [HelpUserController::class, 'show'])->name('help.user_show');
 
     /********************************* Common Page *****************************************/
 });

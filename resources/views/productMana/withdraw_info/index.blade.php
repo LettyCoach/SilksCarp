@@ -94,7 +94,7 @@
                                                 {{ $model->money->accountNum }}
                                             </td>
                                             <td class="text-center view-data">
-                                                {{ $model->date }}
+                                                {{ $model->trade_date }}
                                             </td>
                                             <td class="text-center view-data">
                                                 @if(!$model->state)

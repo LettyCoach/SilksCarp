@@ -35,6 +35,10 @@
                             </select>
                         </div>
                         <div>
+                            <a class="rounded btn btn-success me-2" href="{{ route('withdraw-info.withdraw') }}">
+                                <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                出金
+                            </a>
                             <a class="rounded btn btn-warning" href="javascript:;exportCSV()">
                                 <i class="fa fa-cloud-download" aria-hidden="true"></i>
                                 CSV
@@ -80,14 +84,16 @@
                                                 {{ $model->getTradeDate() }}
                                             </td>
                                             <td class="text-center view-data">
-                                                @if ($model->isWithdrawableState())
-                                                    出金可能
+                                                @if ($model->state == 1)
+                                                    出金
                                                 @else
-                                                    出金待ち
+                                                    @if ($model->isWithdrawableState())
+                                                        出金可能
+                                                    @else
+                                                        出金待ち
+                                                    @endif
                                                 @endif
                                             </td>
-                                            {{-- <td class="text-center view-data">{{ $model->product->price }}</td> --}}
-                                            {{-- <td class="text-center view-data">{{ $model->getTradeDate() }}</td> --}}
                                         </tr>
                                     @endforeach
 
@@ -121,14 +127,8 @@
         };
 
         function exportCSV() {
-            let _url = "{{ route('withdraw-info.csv') }}";
-
+            let _url = "{{ route('withdraw-info.applycsv') }}";
             alert('ok');
-            const pageSize = $('#pageSize').val();
-            const stDate = $('#stDate').val();
-            const edDate = $('#edDate').val();
-            _url = `${_url}?pageSize=${pageSize}&stDate=${stDate}&edDate=${edDate}`;
-
             window.location.href = _url;
         }
     </script>

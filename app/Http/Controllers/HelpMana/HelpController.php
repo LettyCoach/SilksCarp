@@ -163,4 +163,7 @@ class HelpController extends Controller
 
         return redirect()->route('help.index');
     }
+
+
+
 }
