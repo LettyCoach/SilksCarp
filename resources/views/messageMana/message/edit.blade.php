@@ -2,7 +2,7 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('assets/css/messageMana/message.css') }}">
     <div class="pagetitle">
-        <h1>商品</h1>
+        <h1>メッセージ変更</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>

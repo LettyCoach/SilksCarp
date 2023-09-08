@@ -80,9 +80,9 @@
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
                         <li class="dropdown-header">
-                            You have {{ count($unreadMSGs) }} new messages
+                            未読メッセージが {{ count($unreadMSGs) }} 件あります。
                             <a href="{{ route('message-admin.index') }}"><span
-                                    class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                                    class="badge rounded-pill bg-primary p-2 ms-2">全て見る</span></a>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -106,7 +106,7 @@
                         </li>
 
                         <li class="dropdown-footer">
-                            <a href="{{ route('message-admin.index') }}">Show all messages</a>
+                            <a href="{{ route('message-admin.index') }}">全メッセージを見る</a>
                         </li>
 
                     </ul><!-- End Messages Dropdown Items -->
@@ -133,7 +133,7 @@
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                                 <i class="bi bi-person"></i>
-                                <span>My Profile</span>
+                                <span>プロフィール</span>
                             </a>
                         </li>
                         <li>
@@ -143,7 +143,7 @@
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                                 <i class="bi bi-gear"></i>
-                                <span>Account Settings</span>
+                                <span>設定</span>
                             </a>
                         </li>
                         <li>
@@ -153,7 +153,7 @@
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
                                 <i class="bi bi-question-circle"></i>
-                                <span>Need Help?</span>
+                                <span>ヘルプ</span>
                             </a>
                         </li>
                         <li>
@@ -165,7 +165,7 @@
                                 onclick="event.preventDefault();
                                           document.getElementById('logout-form').submit();">
                                 <i class="bi bi-box-arrow-right"></i>
-                                <span>Sign Out</span>
+                                <span>サインアウト</span>
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf

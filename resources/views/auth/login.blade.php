@@ -48,7 +48,7 @@
                                     </div>
 
                                     <div class="col-12 mt-4">
-                                        <label for="yourPassword" class="form-label">Password</label>
+                                        <label for="yourPassword" class="form-label">パスワード</label>
                                         <input id="password" type="password"
                                             class="form-control @error('password') is-invalid @enderror" name="password"
                                             required autocomplete="current-password">
@@ -71,7 +71,7 @@
                                     </div>
 
                                     <div class="col-12 mt-4">
-                                        <button class="btn btn-primary w-100" type="submit">Login</button>
+                                        <button class="btn btn-primary w-100" type="submit">ログイン</button>
                                     </div>
 
                                     <div class="col-12 mt-4">

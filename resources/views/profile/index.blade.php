@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Profile</h1>
+        <h1>プロフィール</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>
@@ -58,7 +58,7 @@
 
                             <div class="tab-pane fade {{ $page == 0 ? 'show active' : '' }} profile-overview"
                                 id="profile-overview">
-                                <h5 class="card-title">Profile Details</h5>
+                                <h5 class="card-title">プロフィール詳細</h5>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label ">名前</div>
@@ -85,8 +85,9 @@
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="row mb-3">
-                                        <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile
-                                            Image</label>
+                                        <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">アバター
+                                        </label>
+                                            
                                         <div class="col-md-8 col-lg-9">
                                             <img src="{{ $user->getAvatar() }}" alt="Profile">
                                             <div class="pt-2">
@@ -215,8 +216,9 @@
                                     enctype="multipart/form-data" onsubmit="">
                                     @csrf
                                     <div class="row mb-3">
-                                        <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current
-                                            Password</label>
+                                        <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">現在のパスワード
+                                        
+                                        </label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="currentPassword" type="password" class="form-control"
                                                 id="currentPassword" value="{{ old('currentPassword') }}">
@@ -229,8 +231,7 @@
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New
-                                            Password</label>
+                                        <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">パスワード</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="newPassword" type="password" class="form-control"
                                                 id="newPassword" value="{{ old('newPassword') }}">
@@ -243,8 +244,8 @@
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New
-                                            Password</label>
+                                        <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">パスワード（確認）
+                                        </label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="renewPassword" type="password" class="form-control"
                                                 id="renewPassword" value="{{ old('renewPassword') }}">

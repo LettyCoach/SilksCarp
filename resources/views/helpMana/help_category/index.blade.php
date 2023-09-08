@@ -3,7 +3,7 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('assets/css/helpMana/help_category.css') }}">
     <div class="pagetitle">
-        <h1>カテゴリー</h1>
+        <h1>ヘルプカテゴリー</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>

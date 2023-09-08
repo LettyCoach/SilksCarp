@@ -43,9 +43,9 @@
 
                             <div class="tab-pane fade {{ $page == 0 ? 'show active' : '' }} bank-overview"
                                 id="bank-overview">
-                                <h5 class="card-title">Bank Details</h5>
+                                {{-- <h5 class="card-title">Bank Details</h5> --}}
 
-                                <div class="row">
+                                <div class="row mt-4">
                                     <div class="col-lg-3 col-md-8 label ">銀行名</div>
                                     <div class="col-lg-9 col-md-8">{{ $money->bankName }}</div>
                                 </div>

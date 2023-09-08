@@ -61,7 +61,7 @@
                                     </div>
 
                                     <div class="col-12">
-                                        <label for="password" class="form-label">Password</label>
+                                        <label for="password" class="form-label">パスワード</label>
 
                                         <input id="password" type="password"
                                             class="form-control @error('password') is-invalid @enderror" name="password"
@@ -76,7 +76,7 @@
                                     </div>
 
                                     <div class="col-12">
-                                        <label for="password-confirm" class="form-label">Confirm Password</label>
+                                        <label for="password-confirm" class="form-label">パスワード（確認）</label>
                                         <input id="password-confirm" type="password" class="form-control"
                                             name="password_confirmation" required autocomplete="new-password">
                                     </div>
@@ -91,10 +91,10 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <button class="btn btn-primary w-100" type="submit">Create Account</button>
+                                        <button class="btn btn-primary w-100" type="submit">新規登録</button>
                                     </div>
                                     <div class="col-12">
-                                        <p class="small mb-0">すでにアカウントをお持ちですか？ <a href="{{ route('login') }}">Log in</a>
+                                        <p class="small mb-0">すでにアカウントをお持ちですか？ <a href="{{ route('login') }}">ログイン</a>
                                         </p>
                                     </div>
                                 </form>

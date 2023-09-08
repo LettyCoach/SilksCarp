@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\ProductMana;
 
 use App\Http\Controllers\Controller;
+use App\Mail\WithdrawMail;
 use App\Models\Alarm\AlarmToIndividual;
 use App\Models\MessageMana\MessageSub;
 use App\Models\ProductMana\WithdrawalInfo;
@@ -10,6 +11,7 @@ use App\Models\User;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Mail;
 
 class WithdrawInfoController extends Controller
 {
@@ -26,7 +28,7 @@ class WithdrawInfoController extends Controller
         $stDateTime = $stDate . ' 00:00:00';
         $edDateTime = $edDate . ' 23:59:59';
 
-        $models = WithdrawalInfo::where('trade_date', '>=', $stDateTime)->where('trade_date', '<=', $edDateTime)->orderby('trade_date', 'asc');
+        $models = WithdrawalInfo::where('updated_at', '>=', $stDateTime)->where('updated_at', '<=', $edDateTime)->orderby('updated_at', 'asc');
         $models = $models->where('type', -1)->where('state', 1);
         $models = $models->paginate($pageSize);
         $models->appends(compact('pageSize', 'stDate', 'edDate'));
@@ -68,8 +70,6 @@ class WithdrawInfoController extends Controller
                 $model->state = 1;
                 $model->save();
 
-
-
                 $message_id = $model->description;
                 $message = new MessageSub();
                 $message->title = "出金通知";
@@ -94,6 +94,18 @@ class WithdrawInfoController extends Controller
             $alarm->read_date = '2000-01-01 00:00:00';
     
             $alarm->save();
+
+            $user = User::find($id);
+            $mailData = [
+                'user' => $user->name,
+                'date' => Carbon::now()->format('Y-m-d')
+            ];
+
+
+            // ------------------mail send---------------------------
+
+            
+            // Mail::to($user->email)->send(new WithdrawMail($mailData));
         }
         return redirect()->route('withdraw-info.list');
     }
@@ -109,7 +121,7 @@ class WithdrawInfoController extends Controller
         $stDateTime = $stDate . ' 00:00:00';
         $edDateTime = $edDate . ' 23:59:59';
 
-        $models = WithdrawalInfo::where('state', 0)->where('date', '>=', $stDateTime)->where('date', '<=', $edDateTime)->orderby('date', 'asc');
+        $models = WithdrawalInfo::where('state', 0)->where('trade_date', '>=', $stDateTime)->where('trade_date', '<=', $edDateTime)->orderby('trade_date', 'asc');
         $models = $models->get();
 
         $fileName = 'withdraw-info.csv';
@@ -164,6 +176,7 @@ class WithdrawInfoController extends Controller
             }
         }
         $models = WithdrawalInfo::whereNotIn('id', $ids)->where('type', -1)->orderby('trade_date', 'DESC')->get();
+
         $fileName = 'withdraw-apply.csv';
         
         $headers = array(

@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{ asset('assets/css/productMana/purchase.css') }}">
 
     <div class="pagetitle">
-        <h1>Register and Buy</h1>
+        <h1>ユーザー登録と購入</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>

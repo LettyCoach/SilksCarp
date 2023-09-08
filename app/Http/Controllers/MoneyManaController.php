@@ -157,11 +157,6 @@ class MoneyManaController extends Controller
         
         $model->save();
         
-        $money = Money::where('user_id', $user_id)->get()->first();
-        $old_amount = $money->amount;
-        $money->amount = $old_amount - $request->withdraw_amount * 1.1 ;
-        $money->save();
-        
         $message = new Message();
         $message->user_id = $user_id;
         $message->title = "出金申請";

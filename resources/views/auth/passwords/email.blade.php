@@ -30,7 +30,7 @@
 
                                     <div class="row mt-3 mb-3">
                                         <label for="email"
-                                            class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                                            class="col-md-4 col-form-label text-md-end">{{ __('メールアドレス') }}</label>
 
                                         <div class="col-md-6">
                                             <input id="email" type="email"

@@ -3,11 +3,11 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('assets/css/productMana/sale_info.css') }}">
     <div class="pagetitle">
-        <h1>売却　</h1>
+        <h1>出金</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>
-                <li class="breadcrumb-item active">情報</li>
+                <li class="breadcrumb-item active">出金</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -128,7 +128,6 @@
 
         function exportCSV() {
             let _url = "{{ route('withdraw-info.applycsv') }}";
-            alert('ok');
             window.location.href = _url;
         }
     </script>
