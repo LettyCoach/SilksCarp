@@ -213,7 +213,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('profile.index') }}">
                                 <i class="bi bi-person"></i>
                                 <span>プロフィール</span>
                             </a>
@@ -223,7 +223,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('bank.index') }}">
                                 <i class="bi bi-gear"></i>
                                 <span>設定</span>
                             </a>
@@ -233,7 +233,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('help.user') }}">
                                 <i class="bi bi-question-circle"></i>
                                 <span>ヘルプ</span>
                             </a>

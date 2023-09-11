@@ -126,7 +126,7 @@
                             <h6>{{ Auth::user()->name }}</h6>
                             <span>管理者</span>
                         </li>
-                        <li>
+                        {{-- <li>
                             <hr class="dropdown-divider">
                         </li>
 
@@ -155,10 +155,10 @@
                                 <i class="bi bi-question-circle"></i>
                                 <span>ヘルプ</span>
                             </a>
-                        </li>
+                        </li>--}}
                         <li>
                             <hr class="dropdown-divider">
-                        </li>
+                        </li> 
 
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"
