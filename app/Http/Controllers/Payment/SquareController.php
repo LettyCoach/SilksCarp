@@ -23,6 +23,10 @@ class SquareController extends Controller
 
     public function index(Request $request)
     {
+        if (isset($request->money_amount) == false) {
+            return redirect(route('purchase.index'));
+        }
+        
         $pModel = Session::get('pModel');
         $money_amount = $pModel->money_amount;
         // Pulled from the .env file and upper cased e.g. SANDBOX, PRODUCTION.
@@ -39,6 +43,10 @@ class SquareController extends Controller
 
     public function process_payment(Request $request)
     {
+
+        if (isset($request->money_amount) == false) {
+            return redirect(route('purchase.index'));
+        }
 
         $token = $request->token;
         $idempotencyKey = $request->idempotencyKey;
