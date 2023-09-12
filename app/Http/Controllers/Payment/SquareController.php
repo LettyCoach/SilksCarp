@@ -23,11 +23,14 @@ class SquareController extends Controller
 
     public function index(Request $request)
     {
-        if (isset($request->money_amount) == false) {
-            return redirect(route('purchase.index'));
-        }
+
         
         $pModel = Session::get('pModel');
+        
+        if (isset($pModel->money_amount) == false) {
+            return redirect(route('purchase.index'));
+        }
+
         $money_amount = $pModel->money_amount;
         // Pulled from the .env file and upper cased e.g. SANDBOX, PRODUCTION.
         $upper_case_environment = Config::get('square.environment');
@@ -38,6 +41,7 @@ class SquareController extends Controller
         $idempotencyKey = Uuid::uuid4();
 
         return view('payment.square.index', compact('web_payment_sdk_url', 'location_info', 'idempotencyKey', 'money_amount'));
+
 
     }
 
