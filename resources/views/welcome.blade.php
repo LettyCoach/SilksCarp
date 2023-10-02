@@ -217,14 +217,13 @@
                         <div class="top-end">
                             <div class="user">
                                 <i class="lni lni-user"></i>
-                                Hello
                             </div>
                             <ul class="user-login">
                                 <li>
-                                    <a href="{{ route('login') }}">Sign In</a>
+                                    <a href="{{ route('login') }}">ログイン</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('register') }}">Register</a>
+                                    <a href="{{ route('register') }}">新規登録</a>
                                 </li>
                             </ul>
                         </div>
@@ -533,7 +532,7 @@
                 <div class="col-12">
                     <div class="section-title">
                         <h2>おすすめ商品</h2>
-                        <p>Lorem Ipsum の一節にはさまざまなバリエーションがありますが、大部分は何らかの形で改変されています。</p>
+                        {{-- <p>Lorem Ipsum の一節にはさまざまなバリエーションがありますが、大部分は何らかの形で改変されています。</p> --}}
                     </div>
                 </div>
             </div>

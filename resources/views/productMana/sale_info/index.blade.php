@@ -3,7 +3,7 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('assets/css/productMana/sale_info.css') }}">
     <div class="pagetitle">
-        <h1>売却　</h1>
+        <h1>売却情報　</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>credit</h1>
+        <h1>クレジット</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>
@@ -53,8 +53,8 @@
 
                             <div class="tab-pane fade {{ $page == 0 ? 'show active' : '' }} credit-overview"
                                 id="credit-overview">
-                                <h5 class="card-title">credit Details</h5>
-                                <div class="row">
+                                {{-- <h5 class="card-title">credit Details</h5> --}}
+                                <div class="row mt-4">
                                     <div class="col-lg-3 col-md-4 label ">カード番号</div>
                                     <div class="col-lg-9 col-md-8">{{ $cardNum }}</div>
                                 </div>

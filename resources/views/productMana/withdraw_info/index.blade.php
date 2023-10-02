@@ -3,11 +3,11 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('assets/css/productMana/sale_info.css') }}">
     <div class="pagetitle">
-        <h1>売却　</h1>
+        <h1>出金情報</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>
-                <li class="breadcrumb-item active">情報</li>
+                <li class="breadcrumb-item active">出金情報</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -71,7 +71,7 @@
                                         <th class="text-center">価格(円)</th>
                                         <th class="text-center">銀行名</th>
                                         <th class="text-center">口座番号</th>
-                                        <th class="text-center">申請日</th>
+                                        <th class="text-center">出金日</th>
                                         <th class="text-center">状態</th>
                                     </tr>
                                 </thead>
@@ -85,7 +85,7 @@
                                                 {{ $model->user->name }}
                                             </td>
                                             <td class="text-center view-data">
-                                                {{ $model->amount }}
+                                                {{ $model->money_real }}
                                             </td>
                                             <td class="text-center view-data">
                                                 {{ $model->money->bankName }}
@@ -94,7 +94,7 @@
                                                 {{ $model->money->accountNum }}
                                             </td>
                                             <td class="text-center view-data">
-                                                {{ $model->trade_date }}
+                                                {{ $model->updated_at->format('Y-m-d') }}
                                             </td>
                                             <td class="text-center view-data">
                                                 @if(!$model->state)
@@ -165,7 +165,6 @@
         function exportCSV() {
             let _url = "{{ route('withdraw-info.csv') }}";
 
-            alert('ok');
             const pageSize = $('#pageSize').val();
             const stDate = $('#stDate').val();
             const edDate = $('#edDate').val();

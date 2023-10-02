@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>withdraw</h1>
+        <h1>出金</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>
                 <li class="breadcrumb-item">お金管理</li>
-                <li class="breadcrumb-item">クレジット情報</li>
+                <li class="breadcrumb-item">出金</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -40,8 +40,8 @@
 
                             <div class="tab-pane fade {{ $page == 0 ? 'show active' : '' }} withdraw-overview"
                                 id="withdraw-overview">
-                                <h5 class="card-title">Withdraw Details</h5>
-                                <div class="row">
+                                {{-- <h5 class="card-title">Withdraw Details</h5> --}}
+                                <div class="row mt-4">
                                     <div class="col-lg-3 col-md-8 label ">銀行名</div>
                                     <div class="col-lg-9 col-md-8">{{ $money->bankName }}</div>
                                 </div>
@@ -130,7 +130,7 @@
                                                         <th class="text-center">タイトル</th>
                                                         <th class="text-center">金額(合計)(円)</th>
                                                         <th class="text-center">金額(実質)(円)</th>
-                                                        <th class="text-center">説明</th>
+                                                        {{-- <th class="text-center">説明</th> --}}
                                                         <th class="text-center">分類</th>
                                                         <th class="text-center">日付</th>
                                                     </tr>
@@ -163,7 +163,7 @@
                                                             <td class="text-center view-data">{{ $withdraw_history->title }}</td>
                                                             <td class="text-center view-data">{{ $withdraw_history->money_all }}</td>
                                                             <td class="text-center view-data">{{ $withdraw_history->money_real }}</td>
-                                                            <td class="text-center view-data">{{ $withdraw_history->description }}</td>
+                                                            {{-- <td class="text-center view-data">{{ $withdraw_history->description }}</td> --}}
                                                             <td class="text-center view-data">{{ $type }}</td>
                                                             <td class="text-center view-data">{{ $withdraw_history->trade_date }}</td>
                                                         </tr>

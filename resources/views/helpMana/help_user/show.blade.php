@@ -2,12 +2,12 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('assets/css/alarm/a2a.css') }}">
     <div class="pagetitle">
-        <h1>商品</h1>
+        <h1>ヘルプ</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>
-                <li class="breadcrumb-item active"> <a href="{{ route('a2a.index') }}">お知らせ一覧</a> </li>
-                <li class="breadcrumb-item active">お知らせ見る</li>
+                <li class="breadcrumb-item active"> <a href="{{ route('a2a.index') }}">ヘルプ一覧</a> </li>
+                <li class="breadcrumb-item active">ヘルプ見る</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->

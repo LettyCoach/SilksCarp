@@ -19,4 +19,10 @@ class AlarmToIndividual extends Model
     {
         return Carbon::parse($this->created_at)->format("Y-m-d");
     }
+
+    public function getEndDate()
+    {
+        return Carbon::parse($this->end_date)->format("Y-m-d");
+    }
+
 }
