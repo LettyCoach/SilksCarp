@@ -128,8 +128,6 @@ class WithdrawInfoController extends Controller
         $models = WithdrawalInfo::where('state', 1)->where('updated_at', '>=', $stDateTime)->where('updated_at', '<=', $edDateTime)->orderby('updated_at', 'asc');
         $models = $models->get();
 
-        dd($models);
-
         $fileName = 'withdraw-info.csv';
 
         $headers = array(
