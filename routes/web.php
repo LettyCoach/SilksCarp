@@ -60,24 +60,27 @@ Route::middleware([Authenticate::class])->group(function () {
     
     
     /********************************* Admin Page *****************************************/
-    Route::resource('/product', ProductController::class);
-    Route::resource('/a2a', AlarmToAllController::class);
-    Route::resource('/a2i', AlarmToIndividualController::class);
-    Route::get('/sale-info', [SaleInfoController::class, 'index'])->name('sale-info.index');
-    Route::get('/sale-info/csv', [SaleInfoController::class, 'exportCSV'])->name('sale-info.csv');
-    Route::get('/sale-info/tariff', [SaleInfoController::class, 'tariff'])->name('sale-info.tariff');
-    Route::post('/sale-info/tariff/update', [SaleInfoController::class, 'tariffUpdate'])->name('sale-info.tariff.update');
-    Route::get('/withdraw-info', [WithdrawInfoController::class, 'index'])->name('withdraw-info.index');
-    Route::get('/withdraw-info/list', [WithdrawInfoController::class, 'list'])->name('withdraw-info.list');
-    Route::get('/withdraw-info/withdraw', [WithdrawInfoController::class, 'withdraw'])->name('withdraw-info.withdraw');
-    Route::get('/withdraw-info/csv', [WithdrawInfoController::class, 'exportCSV'])->name('withdraw-info.csv');
-    Route::get('/withdraw-info/applycsv', [WithdrawInfoController::class, 'applyCSV'])->name('withdraw-info.applycsv');
-    // Route::resource('/sale-info', SaleInfoController::class);
-    Route::get('/message-admin/resposne-state', [MessageAdminController::class, 'setResponseState'])->name('message-admin.response-state');
-    Route::resource('/message-admin', MessageAdminController::class);
-    Route::resource("/help-category", HelpCategoryController::class);
-    Route::resource("/help", HelpController::class);
-    
+    Route::middleware(['admin'])->group(function(){
+        
+        Route::resource('/product', ProductController::class);
+        Route::resource('/a2a', AlarmToAllController::class);
+        Route::resource('/a2i', AlarmToIndividualController::class);
+        Route::get('/sale-info', [SaleInfoController::class, 'index'])->name('sale-info.index');
+        Route::get('/sale-info/csv', [SaleInfoController::class, 'exportCSV'])->name('sale-info.csv');
+        Route::get('/sale-info/tariff', [SaleInfoController::class, 'tariff'])->name('sale-info.tariff');
+        Route::post('/sale-info/tariff/update', [SaleInfoController::class, 'tariffUpdate'])->name('sale-info.tariff.update');
+        Route::get('/withdraw-info', [WithdrawInfoController::class, 'index'])->name('withdraw-info.index');
+        Route::get('/withdraw-info/list', [WithdrawInfoController::class, 'list'])->name('withdraw-info.list');
+        Route::get('/withdraw-info/withdraw', [WithdrawInfoController::class, 'withdraw'])->name('withdraw-info.withdraw');
+        Route::get('/withdraw-info/csv', [WithdrawInfoController::class, 'exportCSV'])->name('withdraw-info.csv');
+        Route::get('/withdraw-info/applycsv', [WithdrawInfoController::class, 'applyCSV'])->name('withdraw-info.applycsv');
+        // Route::resource('/sale-info', SaleInfoController::class);
+        Route::get('/message-admin/resposne-state', [MessageAdminController::class, 'setResponseState'])->name('message-admin.response-state');
+        Route::resource('/message-admin', MessageAdminController::class);
+        Route::resource("/help-category", HelpCategoryController::class);
+        Route::resource("/help", HelpController::class);
+        
+    });
     
     /********************************* User Page *****************************************/
     Route::resource('/purchase', PurchaseController::class);
