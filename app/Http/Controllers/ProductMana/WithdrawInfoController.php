@@ -45,8 +45,6 @@ class WithdrawInfoController extends Controller
         $models = $models->where('type', -1)->get();
         
         $ids = [];
-        $ils = [];
-        $iks = [];
         if ($state != -1) {
             foreach ($models as $key => $model) {
                 if ($state != $model->isWithdrawableState()) {
@@ -127,7 +125,7 @@ class WithdrawInfoController extends Controller
         $stDateTime = $stDate . ' 00:00:00';
         $edDateTime = $edDate . ' 23:59:59';
 
-        $models = WithdrawalInfo::where('state', 0)->where('trade_date', '>=', $stDateTime)->where('trade_date', '<=', $edDateTime)->orderby('trade_date', 'asc');
+        $models = WithdrawalInfo::where('state', 1)->where('updated_at', '>=', $stDateTime)->where('updated_at', '<=', $edDateTime)->orderby('updated_at', 'asc');
         $models = $models->get();
 
         $fileName = 'withdraw-info.csv';
