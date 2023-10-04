@@ -47,19 +47,19 @@
                                     @foreach ($models as $i => $model)
                                         <tr class="align-middle">
                                             <td class="text-center view-data">
-                                                <a href="{{ route('sale.show', ['sale' => $model->id]) }}">{{ $i + 1 }}
-                                                </a>
+                                                {{ $i + 1 }}
+                                                {{-- </a> --}}
                                             </td>
                                             <td class="text-center view-data">
-                                                <a href="{{ route('sale.show', ['sale' => $model->id]) }}">
+                                                {{-- <a href="{{ route('sale.show', ['sale' => $model->id]) }}"> --}}
                                                     <img src="{{ $model->product->getImageUrlFirst() }}"
                                                         class="product_img" alt="">
-                                                </a>
+                                                {{-- </a> --}}
                                             </td>
                                             <td class="text-center view-data">
-                                                <a href="{{ route('sale.show', ['sale' => $model->id]) }}">
+                                                {{-- <a href="{{ route('sale.show', ['sale' => $model->id]) }}"> --}}
                                                     {{ $model->product->name }}
-                                                </a>
+                                                {{-- </a> --}}
                                             </td>
                                             <td class="text-center view-data">{{ $model->product->cost }}</td>
                                             <td class="text-center view-data">{{ $model->product->description }}</td>

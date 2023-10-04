@@ -39,6 +39,7 @@ class WithdrawalInfo extends Model
         $past = $crtDate->subMonth();
 
         $trade_date = Carbon::parse($this->trade_date);
+
         if ($day < 15) {
             $past = Carbon::create($past->year, $past->month, 15, 0);
             if ($trade_date < $past) {

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->string('title', 512)->default('');
-            $table->integer('money_all')->default(0);
-            $table->integer('money_real')->default(0);
+            $table->float('money_all')->default(0);
+            $table->float('money_real')->default(0);
             $table->string('description', 2048)->default('');
             $table->integer('type')->default(1);
             $table->integer('state')->default(0);

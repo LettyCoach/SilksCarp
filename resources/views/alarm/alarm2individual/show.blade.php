@@ -12,7 +12,7 @@
         </nav>
     </div><!-- End Page Title -->
 
-    <section class="section">
+    <section class="section col-lg-8 mx-auto">
         <div class="card">
             <div class="row d-flex justify-content-center">
 

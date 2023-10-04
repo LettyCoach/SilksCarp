@@ -40,19 +40,25 @@ class WithdrawInfoController extends Controller
     {
         $pageSize = $request->pageSize ?? 10;
         $state = $request->state ?? -1;
-
+        
         $models = WithdrawalInfo::orderby('trade_date', 'asc');
         $models = $models->where('type', -1)->get();
-
+        
         $ids = [];
+        $ils = [];
+        $iks = [];
         if ($state != -1) {
             foreach ($models as $key => $model) {
                 if ($state != $model->isWithdrawableState()) {
                     array_push($ids, $model->id);
                 }
+                if ( $state == 1 ){
+                    if( $model->state == 1 ){
+                        array_push($ids, $model->id);
+                    }
+                }
             }
         }
-
         $models = WithdrawalInfo::whereNotIn('id', $ids)->where('type', -1)->orderby('trade_date', 'asc');
 
         $models = $models->paginate($pageSize);
@@ -70,16 +76,16 @@ class WithdrawInfoController extends Controller
                 $model->state = 1;
                 $model->save();
 
-                $message_id = $model->description;
-                $message = new MessageSub();
-                $message->title = "出金通知";
-                $message->content = $model->money_real . "円のお金が" . Carbon::today()->format('Y 年 m 月 d 日') . "出金されました。";
-                $message->type = 1;
-                $message->message_id = $message_id;
-                $message->parent_id = null;
-                $message->read_date = "2000-01-01 00:00:00";
+                // $message_id = $model->description;
+                // $message = new MessageSub();
+                // $message->title = "出金通知";
+                // $message->content = $model->money_real . "円のお金が" . Carbon::today()->format('Y 年 m 月 d 日') . "出金されました。";
+                // $message->type = 1;
+                // $message->message_id = $message_id;
+                // $message->parent_id = null;
+                // $message->read_date = "2000-01-01 00:00:00";
 
-                $message->save();
+                // $message->save();
 
                 if(!in_array($model->targetUser->id, $ids)) {
                     array_push($ids, $model->targetUser->id);

@@ -12,11 +12,11 @@
         </nav>
     </div><!-- End Page Title -->
 
-    <section class="section">
+    <section class="section col-lg-10 mx-auto">
         <div class="card">
             <div class="row d-flex justify-content-center">
 
-                <div class="col-10 col-lg-8 col-xl-6">
+                <div class="col-10 col-lg-10 col-xl-6">
                     <div class="row mt-5">
                         <div class="row mb-2">
                             <div class="col">
@@ -72,7 +72,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row py-3">
                         <div class="col d-flex justify-content-center">
                             <button type="button" class="btn btn-secondary"
                                 onclick="location.href='{{ route('purchase.index') }}'">
