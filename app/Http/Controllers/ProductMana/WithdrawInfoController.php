@@ -128,6 +128,8 @@ class WithdrawInfoController extends Controller
         $models = WithdrawalInfo::where('state', 1)->where('updated_at', '>=', $stDateTime)->where('updated_at', '<=', $edDateTime)->orderby('updated_at', 'asc');
         $models = $models->get();
 
+        dd($models);
+
         $fileName = 'withdraw-info.csv';
 
         $headers = array(
@@ -149,7 +151,7 @@ class WithdrawInfoController extends Controller
             foreach ($models as $i => $model) {
                 $row['No'] = $i + 1;
                 $row['買い手'] = mb_convert_encoding($model->targetUser->name, "SJIS", "UTF-8");
-                $row['価格(円)'] = $model->amount;
+                $row['価格(円)'] = $model->money_real;
                 $row['銀行名'] = $model->money->bankName;
                 $row['口座番号'] = $model->money->accountNum;
                 $row['説明'] = mb_convert_encoding($model->description, "SJIS", "UTF-8");
