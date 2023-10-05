@@ -111,7 +111,7 @@
                                 @endif
                                 <div>
                                     <div class="text-truncate" style="max-width: 200px;">
-                                    <a href="{{ route('alarm-user.show', ['alarm-user' => $alarm->id]) }}">
+                                    <a href="{{ route('alarm-user.show', ['alarm_user' => $alarm->id]) }}">
                                         {{ $alarm->title }}
                                     </a>
                                     </div>
@@ -143,7 +143,7 @@
                                 @endif
                                 <div>
                                     <div class="text-truncate" style="max-width: 200px;">
-                                    <a href="{{ route('alarm-indi.show', ['alarm-indi' => $alarm->id]) }}">
+                                    <a href="{{ route('alarm-indi.show', ['alarm_indi' => $alarm->id]) }}">
                                         {{ $alarm->title }}
                                     </a>
                                         {{-- {{ $alarm->title }} --}}

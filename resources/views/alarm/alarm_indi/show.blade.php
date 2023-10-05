@@ -36,7 +36,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <div class="col d-flex justify-content-center px-5 mx-5 py-2">
+                            <div class="col d-flex justify-content-start px-5 mx-5 py-2">
                                 <button type="button" class="btn btn-secondary"
                                     onclick="location.href='{{ route('alarm-indi.index') }}'">
                                     <i class="bi-list-stars"></i> 一覧を見る

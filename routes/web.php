@@ -60,10 +60,10 @@ Route::middleware([Authenticate::class])->group(function () {
     
     
     /********************************* Admin Page *****************************************/
-    Route::resource('/a2a', AlarmToAllController::class);
-    Route::resource('/a2i', AlarmToIndividualController::class);
     Route::middleware(['admin'])->group(function(){
         
+        Route::resource('/a2a', AlarmToAllController::class);
+        Route::resource('/a2i', AlarmToIndividualController::class);
         Route::resource('/product', ProductController::class);
         Route::get('/sale-info', [SaleInfoController::class, 'index'])->name('sale-info.index');
         Route::get('/sale-info/csv', [SaleInfoController::class, 'exportCSV'])->name('sale-info.csv');
