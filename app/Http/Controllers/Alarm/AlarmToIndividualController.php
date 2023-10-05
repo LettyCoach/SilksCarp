@@ -20,20 +20,26 @@ class AlarmToIndividualController extends Controller
         $selType = $request->selType ?? -1;
         $selUser_id = $request->selUser_id ?? -1;
         $selState = $request->selState ?? -1;
-        $selRead_date = $request->selRead_state;
+        $today = Date('Y-m-d');
+        $selRead_date = $request->selRead_date ?? $today;
+
 
         $models = AlarmToIndividual::orderby('created_at', 'desc');
         if ($selType > -1) {
             $models = $models->where('type', $selType);
         }
+        if ($selUser_id > -1) {
+            $models = $models->where('user_id', $selUser_id);
+        }
+        if ($selState > -1) {
+            $models = $models->where('state', $selState);
+        }
+        // $models = $models->whereDate('created_at', $selRead_date);
 
         $models = $models->paginate($pageSize);
         $models->appends(['pageSize' => $pageSize]);
 
         $users = User::whereNull('role')->orWhere('role', '<>', 'admin')->orderby('name', 'asc')->get();
-
-        $today = Date('Y-m-d');
-
 
         return view(
             'alarm.alarm2individual.index',

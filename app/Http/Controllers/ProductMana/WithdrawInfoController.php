@@ -39,7 +39,7 @@ class WithdrawInfoController extends Controller
     public function list(Request $request)
     {
         $pageSize = $request->pageSize ?? 10;
-        $state = $request->state ?? -1;
+        $state = $request->state ?? 1;
         
         $models = WithdrawalInfo::orderby('trade_date', 'asc');
         $models = $models->where('type', -1)->get();
@@ -57,7 +57,7 @@ class WithdrawInfoController extends Controller
                 }
             }
         }
-        $models = WithdrawalInfo::whereNotIn('id', $ids)->where('type', -1)->orderby('trade_date', 'asc');
+        $models = WithdrawalInfo::whereNotIn('id', $ids)->where('state', 0)->where('type', -1)->orderby('trade_date', 'asc');
 
         $models = $models->paginate($pageSize);
         $models->appends(compact('pageSize', 'state'));
@@ -69,6 +69,7 @@ class WithdrawInfoController extends Controller
         $models = WithdrawalInfo::orderby('trade_date', 'asc');
         $models = $models->where('type', -1)->get();
         $ids = [];
+        $datas = [];
         foreach ($models as $key => $model) {
             if ($model->isWithdrawableState()) {
                 $model->state = 1;
@@ -87,14 +88,19 @@ class WithdrawInfoController extends Controller
 
                 if(!in_array($model->targetUser->id, $ids)) {
                     array_push($ids, $model->targetUser->id);
+                    $tmp_array = [$model->targetUser->id, $model->money_real];
+                    array_push($datas, $tmp_array);
                 }
             }
         }
-
-        foreach($ids as $id) {
+        foreach($datas as $key=>$data) {
+            $id = $data[0];
+            $val = $data[1];
+            $date = Carbon::now()->format('Y-m-d');
             $alarm = new AlarmToIndividual();
             $alarm->user_id = $id;
             $alarm->type = 2;
+            $alarm->description = '申請した金額が'. $date .'に出金されました。';
             $alarm->read_date = '2000-01-01 00:00:00';
     
             $alarm->save();
@@ -111,7 +117,7 @@ class WithdrawInfoController extends Controller
             
             // Mail::to($user->email)->send(new WithdrawMail($mailData));
         }
-        return redirect()->route('withdraw-info.list');
+        return redirect()->route('withdraw-info.list')->with('message', '操作が成功しました。');
     }
 
 

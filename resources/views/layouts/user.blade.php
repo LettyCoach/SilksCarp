@@ -111,11 +111,13 @@
                                 @endif
                                 <div>
                                     <div class="text-truncate" style="max-width: 200px;">
+                                    <a href="{{ route('a2a.show', ['a2a' => $alarm->id]) }}">
                                         {{ $alarm->title }}
+                                    </a>
                                     </div>
-                                    <div class="text-truncate" style="max-width: 240px;">
+                                    {{-- <div class="text-truncate" style="max-width: 240px;">
                                         {{ $alarm->description }}
-                                    </div>
+                                    </div> --}}
                                     <p>{{ $alarm->created_at }}</p>
                                 </div>
                             </li>
@@ -133,7 +135,6 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-
                             <li class="notification-item">
                                 @if ($alarm->type === 0)
                                     <i class="bi bi-info-circle text-primary"></i>
@@ -142,7 +143,10 @@
                                 @endif
                                 <div>
                                     <div class="text-truncate" style="max-width: 200px;">
+                                    <a href="{{ route('a2i.show', ['a2i' => $alarm->id]) }}">
                                         {{ $alarm->title }}
+                                    </a>
+                                        {{-- {{ $alarm->title }} --}}
                                     </div>
                                     <p>{{ $alarm->created_at }}</p>
                                 </div>

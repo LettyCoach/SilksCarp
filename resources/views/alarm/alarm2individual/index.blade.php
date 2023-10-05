@@ -47,15 +47,15 @@
                             <select name="selState" class="form-select" id="selState" onchange="viewIndex()">
                                 <option value="-1" selected>全て(状態)</option>
                                 @foreach (Config::get('app.alarmStates_I') as $k => $v)
-                                    <option value="{{ $k }}" {{ $k == $selType ? 'selected' : '' }}>
+                                    <option value="{{ $k }}" {{ $k == $selState ? 'selected' : '' }}>
                                         {{ $v }}</option>
                                 @endforeach
                             </select>
                         </div>
-                        <div class="rounded-md">
-                            <input type="date" name="selRead_date" id="selRead_date" class="form-control rounded"
+                        {{-- <div class="rounded-md">
+                            <input type="date" name="selRead_date" id="selRead_date" onchange="viewIndex()" class="form-control rounded"
                                 value="{{ $today }}" placeholder="" />
-                        </div>
+                        </div> --}}
 
                         <a class="rounded btn btn-success" href="javascript:;viewIndex()">
                             <i class="bi-search"></i>&nbsp;
@@ -72,11 +72,11 @@
                                     <tr class="align-middle">
                                         <th class="text-center">No</th>
                                         <th class="text-center">種別</th>
-                                        <th class="text-center">タイトル</th>
+                                        <th class="text-center">受信者</th>
                                         <th class="text-center">詳細</th>
                                         <th class="text-center">発行日</th>
-                                        <th class="text-center">表示期間</th>
-                                        <th class="text-center">変更</th>
+                                        {{-- <th class="text-center">表示期間</th> --}}
+                                        {{-- <th class="text-center">変更</th> --}}
                                         <th class="text-center">削除</th>
                                     </tr>
                                 </thead>
@@ -95,17 +95,17 @@
                                             </td>
                                             <td class="text-center view-data">
                                                 <a href="{{ route('a2i.show', ['a2i' => $model->id]) }}">
-                                                    {{ $model->title }}
+                                                    {{ $model->user->name }}
                                                 </a>
                                             </td>
                                             <td class="text-center view-data">{{ $model->description }}</td>
                                             <td class="text-center view-data">{{ $model->getStartDate() }}</td>
-                                            <td class="text-center view-data">{{ $model->getEndDate() }}</td>
-                                            <td class="text-center">
+                                            {{-- <td class="text-center view-data">{{ $model->getEndDate() }}</td> --}}
+                                            {{-- <td class="text-center">
                                                 <a href="{{ route('a2i.edit', ['a2i' => $model->id]) }}">
                                                     <i class="bi-pencil-square"></i>
                                                 </a>
-                                            </td>
+                                            </td> --}}
                                             <td class="text-center">
                                                 <form method="POST"
                                                     action="{{ route('a2i.destroy', ['a2i' => $model->id]) }}">
@@ -147,7 +147,11 @@
         const indexUrl = "{{ route('a2i.index') }}";
         const viewIndex = () => {
             const pageSize = $('#pageSize').val();
-            location.href = `${indexUrl}?pageSize=${pageSize}`;
+            const selType = $('#selType').val();
+            const selUser_id = $('#selUser_id').val();
+            const selState = $('#selState').val();
+            const selRead_date = $('#selRead_date').val();
+            location.href = `${indexUrl}?pageSize=${pageSize}&selType=${selType}&selUser_id=${selUser_id}&selState=${selState}&selRead_date=${selRead_date}`;
         };
 
         $(".delete-button").click(function(e) {

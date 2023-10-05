@@ -34,7 +34,6 @@
     <!-- Font Awesome Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
     <!-- Vendor CSS Files -->
     <link href="{{ asset('assets/niceAdmin/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/niceAdmin/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
@@ -46,6 +45,7 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/niceAdmin/css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('assets/css/toastr.min.css')}}">
 
 </head>
 
@@ -155,10 +155,10 @@
                                 <i class="bi bi-question-circle"></i>
                                 <span>ヘルプ</span>
                             </a>
-                        </li>--}}
+                        </li> --}}
                         <li>
                             <hr class="dropdown-divider">
-                        </li> 
+                        </li>
 
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"
@@ -225,7 +225,7 @@
                     </li>
                 </ul>
             </li>
-{{-- 
+            {{-- 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('withdraw-info.index') }}">
                     <i class="bi bi-bank"></i>
@@ -235,8 +235,8 @@
 
             <li class="nav-item">
                 <a class="nav-link {{ $routeName == 'withdraw-info.index' ? '' : 'collapsed' }} "
-                    href="{{ route('withdraw-info.index') }}" data-bs-target="#withdraw_info" data-bs-toggle="collapse"
-                    aria-expanded="false">
+                    href="{{ route('withdraw-info.index') }}" data-bs-target="#withdraw_info"
+                    data-bs-toggle="collapse" aria-expanded="false">
                     <i class="bi bi-clipboard2-pulse"></i><span>出金情報</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="withdraw_info" class="nav-content">
@@ -349,6 +349,22 @@
 
     <!-- Jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+    <!-- Toastr  -->
+    <script src="{{ asset('assets/js/toastr.js') }}"></script>
+    <script src="{{ asset('assets/js/toastr_sr.js') }}"></script>
+
+
+    @if (session()->has('message'))
+        <script>
+            toastr.success("{{ session()->get('message') }}");
+        </script>
+    @endif
+    @if (session()->has('waringmessage'))
+        <script>
+            toastr.warning("{{ session()->get('waringmessage') }}");
+        </script>
+    @endif
 
     @yield('js')
 

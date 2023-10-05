@@ -49,7 +49,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col d-flex justify-content-end pr-5 mr-5 py-3">
+                            <div class="col d-flex justify-content-start pr-5 mr-5 py-3">
                                 <button type="button" class="btn btn-secondary"
                                     onclick="location.href='{{ route('help.user') }}'">
                                     <i class="bi-list-stars"></i> 一覧を見る

@@ -130,7 +130,8 @@
         const indexUrl = "{{ route('a2a.index') }}";
         const viewIndex = () => {
             const pageSize = $('#pageSize').val();
-            location.href = `${indexUrl}?pageSize=${pageSize}`;
+            const selType = $('#selType').val();
+            location.href = `${indexUrl}?pageSize=${pageSize}&selType=${selType}`;
         };
 
         $(".delete-button").click(function(e) {
