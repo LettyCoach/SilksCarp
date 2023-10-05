@@ -144,7 +144,7 @@
                                 <div>
                                     <div class="text-truncate" style="max-width: 200px;">
                                     <a href="{{ route('alarm-indi.show', ['alarm_indi' => $alarm->id]) }}">
-                                        {{ $alarm->title }}
+                                        {{ $alarm->getTypeName() }}
                                     </a>
                                         {{-- {{ $alarm->title }} --}}
                                     </div>

@@ -28,6 +28,12 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
+                                <label for="" class="col-md-4 col-lg-3 col-form-label fw-bold">詳細</label>
+                                <div class="col-md-8 col-lg-9">
+                                    {{ $model->description }}
+                                </div>
+                            </div>
+                            <div class="row mb-3">
                                 <label for="title" class="col-md-4 col-lg-3 col-form-label fw-bold">発行日</label>
                                 <div class="col-md-8 col-lg-9">
                                     {{ $model->getStartDate() }}
