@@ -13,7 +13,7 @@
         </nav>
     </div><!-- End Page Title -->
 
-    <section class="section">
+    <section class="section col-lg-8 mx-auto">
         <div class="card">
             <form action="{{ route('help.update', ['help' => $model->id]) }}" method="POST" enctype="multipart/form-data"
                 onsubmit="return checkData()">
@@ -78,7 +78,7 @@
 
 
                         <div class="row">
-                            <div class="col d-flex justify-content-end">
+                            <div class="col d-flex justify-content-start">
                                 <button type="submit" class="btn btn-success">
                                     <i class="fa fa-check"></i> セーブ
                                 </button>
