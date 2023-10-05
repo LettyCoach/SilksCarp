@@ -89,6 +89,8 @@ class SquareController extends Controller
             if ($response->isSuccess()) {
                 $pModel = Session::get('pModel');
                 $pModel->save();
+                $pAlarm = Session::get('pAlarm');
+                $pAlarm->save();
                 echo json_encode($response->getResult());
             } else {
                 echo json_encode(array('errors' => $response->getErrors()));
