@@ -100,7 +100,7 @@ class WithdrawInfoController extends Controller
             $alarm = new AlarmToIndividual();
             $alarm->user_id = $id;
             $alarm->type = 2;
-            $alarm->description = '申請した金額が'. $date .'に出金されました。';
+            // $alarm->description = '申請した金額が'. $date .'に出金されました。';
             $alarm->read_date = '2000-01-01 00:00:00';
     
             $alarm->save();
