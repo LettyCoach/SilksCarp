@@ -156,11 +156,16 @@
                                                                 $type = "出金";
 
                                                             }
+                                                            if( $withdraw_history->title == 'withdraw' ){
+                                                                $title = "出金";
+                                                            } else if ( $withdraw_history->title == 'sale' ){
+                                                                $title = '購入';
+                                                            }
                                                         ?>
 
                                                         <tr class="align-middle">
                                                             <td class="text-center view-data">{{ $i }}</td>
-                                                            <td class="text-center view-data">{{ $withdraw_history->title }}</td>
+                                                            <td class="text-center view-data">{{ $title }}</td>
                                                             <td class="text-center view-data">{{ $withdraw_history->money_all }}</td>
                                                             <td class="text-center view-data">{{ $withdraw_history->money_real }}</td>
                                                             {{-- <td class="text-center view-data">{{ $withdraw_history->description }}</td> --}}
