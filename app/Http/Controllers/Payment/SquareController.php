@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Payment;
 use App\Http\Controllers\Controller;
 use App\Models\Payment\SquareLoacationInfo;
 use App\Models\ProductMana\Trade;
+use App\Models\Alarm\AlarmToIndividual;
+
 use Config;
 use Illuminate\Http\Request;
 

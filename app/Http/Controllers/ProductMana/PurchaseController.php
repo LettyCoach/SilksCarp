@@ -99,7 +99,6 @@ class PurchaseController extends Controller
         $alarm = new AlarmToIndividual();
         $alarm->user_id = Auth::user()->id;
         $alarm->type = 0;
-        $alarm->description = '錦鯉が購入されました。';
         $alarm->read_date = '2000-01-01';
 
         Session::put('pModel', $model);

@@ -60,7 +60,7 @@
                                         <th class="text-center">No</th>
                                         <th class="text-center">読んだ状態</th>
                                         <th class="text-center">種別</th>
-                                        <th class="text-center">詳細</th>
+                                        {{-- <th class="text-center">詳細</th> --}}
                                         <th class="text-center">発行日</th>
                                     </tr>
                                 </thead>
@@ -91,11 +91,11 @@
                                                     {{ $model->getTypeName() }}
                                                 </a>
                                             </td>
-                                            <td class="text-center view-data">
+                                            {{-- <td class="text-center view-data">
                                                 <a href="{{ route('alarm-indi.show', ['alarm_indi' => $model->id]) }}">
                                                     {{ $model->description }}
                                                 </a>
-                                            </td>
+                                            </td> --}}
                                             <td class="text-center view-data">{{ $model->getStartDate() }}</td>
                                         </tr>
                                     @endforeach

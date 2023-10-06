@@ -12,14 +12,14 @@
         </nav>
     </div><!-- End Page Title -->
 
-    <section class="section" style="font-family: yu gothic">
+    <section class="section col-lg-8 mx-auto" style="font-family: yu gothic">
         <div class="card">
             <form action="{{ route('message.store') }}" method="post" enctype="multipart/form-data"
                 onsubmit="return checkData()">
                 @csrf
                 <div class="row d-flex justify-content-center">
 
-                    <div class="col-10 col-lg-8 col-xl-7">
+                    <div class="col-10 col-lg-10 col-xl-9">
                         <div class="row mt-5">
                             <div class="row mb-3">
                                 <label for="title" class="col-md-4 col-lg-3 col-form-label fw-bold">タイトル (必須)</label>
