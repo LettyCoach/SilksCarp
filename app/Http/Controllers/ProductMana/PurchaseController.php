@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\ProductMana;
 
 use App\Http\Controllers\Controller;
+use App\Models\Alarm\AlarmToIndividual;
 use App\Models\MoneyMana\Money;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -95,8 +96,14 @@ class PurchaseController extends Controller
         $model->destination = $model->store_state == 0 ? "" : $request->destination;
         $model->trade_date = Carbon::now();
 
+        $alarm = new AlarmToIndividual();
+        $alarm->user_id = Auth::user()->id;
+        $alarm->type = 0;
+        $alarm->description = '錦鯉が購入されました。';
+        $alarm->read_date = '2000-01-01';
 
         Session::put('pModel', $model);
+        Session::put('pAlarm', $alarm);
 
         // $model->save();
 

@@ -12,17 +12,19 @@
         </nav>
     </div><!-- End Page Title -->
 
-    <section class="section">
+    <section class="section col-lg-10 mx-auto">
         <div class="card">
             <div class="row d-flex justify-content-center">
 
-                <div class="col-10 col-lg-8 col-xl-6">
+                <div class="col-10 col-lg-10 col-xl-6">
                     <div class="row mt-5">
                         <div class="row mb-2">
                             <div class="col">
                                 <label for="">商品</label>
-                                <input type="text" name="name" id="name" class="form-control rounded"
-                                    value="{{ $model->name }}" />
+                                <div class="form-control rounded">
+                                    {{ $model->name }}
+                                </div>
+                    
                             </div>
                         </div>
                         <label for="">写真</label>
@@ -46,33 +48,36 @@
                         <div class="row mb-2">
                             <div class="col">
                                 <label for="">価格(円)</label>
-                                <input type="text" name="price" id="price" class="form-control rounded"
-                                    value="{{ number_format($model->price) }}" />
+                                <div class="form-control rounded" style="min-height: 38px;">
+                                    {{ number_format($model->price) }}
+                                </div>
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col">
                                 <label for="">説明</label>
-                                <textarea name="description" id="description" class="form-control rounded" style="height: 120px">{{ $model->description }}</textarea>
+                                <div name="description" id="description" class="form-control rounded" style="height: 120px" disabled>{{ $model->description }}</div>
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col">
                                 <label for="">仕入れ値(円)</label>
-                                <input type="text" name="cost" id="cost" class="form-control rounded"
-                                    value="{{ number_format($model->cost) }}" />
+                                <div class="form-control rounded" style="min-height: 38px;">
+                                    {{ number_format($model->cost) }}
+                                </div>
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col">
                                 <label for="">仕入先URL</label>
-                                <input type="text" name="supplier_url" id="supplier_url" class="form-control rounded"
-                                    value="{{ $model->supplier_url }}" />
+                                <div class="form-control rounded" style="min-height: 38px;">
+                                    {{ $model->supplier_url }}
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row py-3">
                         <div class="col d-flex justify-content-center">
                             <button type="button" class="btn btn-secondary"
                                 onclick="location.href='{{ route('purchase.index') }}'">

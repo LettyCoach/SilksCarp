@@ -39,21 +39,25 @@ class WithdrawInfoController extends Controller
     public function list(Request $request)
     {
         $pageSize = $request->pageSize ?? 10;
-        $state = $request->state ?? -1;
-
+        $state = $request->state ?? 1;
+        
         $models = WithdrawalInfo::orderby('trade_date', 'asc');
         $models = $models->where('type', -1)->get();
-
+        
         $ids = [];
         if ($state != -1) {
             foreach ($models as $key => $model) {
                 if ($state != $model->isWithdrawableState()) {
                     array_push($ids, $model->id);
                 }
+                if ( $state == 1 ){
+                    if( $model->state == 1 ){
+                        array_push($ids, $model->id);
+                    }
+                }
             }
         }
-
-        $models = WithdrawalInfo::whereNotIn('id', $ids)->where('type', -1)->orderby('trade_date', 'asc');
+        $models = WithdrawalInfo::whereNotIn('id', $ids)->where('state', 0)->where('type', -1)->orderby('trade_date', 'asc');
 
         $models = $models->paginate($pageSize);
         $models->appends(compact('pageSize', 'state'));
@@ -65,32 +69,38 @@ class WithdrawInfoController extends Controller
         $models = WithdrawalInfo::orderby('trade_date', 'asc');
         $models = $models->where('type', -1)->get();
         $ids = [];
+        $datas = [];
         foreach ($models as $key => $model) {
             if ($model->isWithdrawableState()) {
                 $model->state = 1;
                 $model->save();
 
-                $message_id = $model->description;
-                $message = new MessageSub();
-                $message->title = "出金通知";
-                $message->content = $model->money_real . "円のお金が" . Carbon::today()->format('Y 年 m 月 d 日') . "出金されました。";
-                $message->type = 1;
-                $message->message_id = $message_id;
-                $message->parent_id = null;
-                $message->read_date = "2000-01-01 00:00:00";
+                // $message_id = $model->description;
+                // $message = new MessageSub();
+                // $message->title = "出金通知";
+                // $message->content = $model->money_real . "円のお金が" . Carbon::today()->format('Y 年 m 月 d 日') . "出金されました。";
+                // $message->type = 1;
+                // $message->message_id = $message_id;
+                // $message->parent_id = null;
+                // $message->read_date = "2000-01-01 00:00:00";
 
-                $message->save();
+                // $message->save();
 
                 if(!in_array($model->targetUser->id, $ids)) {
                     array_push($ids, $model->targetUser->id);
+                    $tmp_array = [$model->targetUser->id, $model->money_real];
+                    array_push($datas, $tmp_array);
                 }
             }
         }
-
-        foreach($ids as $id) {
+        foreach($datas as $key=>$data) {
+            $id = $data[0];
+            $val = $data[1];
+            $date = Carbon::now()->format('Y-m-d');
             $alarm = new AlarmToIndividual();
             $alarm->user_id = $id;
             $alarm->type = 2;
+            $alarm->description = '申請した金額が'. $date .'に出金されました。';
             $alarm->read_date = '2000-01-01 00:00:00';
     
             $alarm->save();
@@ -107,7 +117,7 @@ class WithdrawInfoController extends Controller
             
             // Mail::to($user->email)->send(new WithdrawMail($mailData));
         }
-        return redirect()->route('withdraw-info.list');
+        return redirect()->route('withdraw-info.list')->with('message', '操作が成功しました。');
     }
 
 
@@ -121,7 +131,7 @@ class WithdrawInfoController extends Controller
         $stDateTime = $stDate . ' 00:00:00';
         $edDateTime = $edDate . ' 23:59:59';
 
-        $models = WithdrawalInfo::where('state', 0)->where('trade_date', '>=', $stDateTime)->where('trade_date', '<=', $edDateTime)->orderby('trade_date', 'asc');
+        $models = WithdrawalInfo::where('state', 1)->where('updated_at', '>=', $stDateTime)->where('updated_at', '<=', $edDateTime)->orderby('updated_at', 'asc');
         $models = $models->get();
 
         $fileName = 'withdraw-info.csv';
@@ -145,7 +155,7 @@ class WithdrawInfoController extends Controller
             foreach ($models as $i => $model) {
                 $row['No'] = $i + 1;
                 $row['買い手'] = mb_convert_encoding($model->targetUser->name, "SJIS", "UTF-8");
-                $row['価格(円)'] = $model->amount;
+                $row['価格(円)'] = $model->money_real;
                 $row['銀行名'] = $model->money->bankName;
                 $row['口座番号'] = $model->money->accountNum;
                 $row['説明'] = mb_convert_encoding($model->description, "SJIS", "UTF-8");

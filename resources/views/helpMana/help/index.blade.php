@@ -69,6 +69,7 @@
                                 cellspacing="0" style="min-width: 1000px; overflow-x: scroll; width:100%">
                                 <thead style="height:47px;">
                                     <tr class="align-middle">
+                                        <th class="text-center">No</th>
                                         <th class="text-center">表示順番</th>
                                         <th class="text-center">タイトル</th>
                                         <th class="text-center">本文</th>
@@ -79,6 +80,11 @@
                                 <tbody>
                                     @foreach ($models as $i => $model)
                                         <tr class="align-middle">
+                                            <td class="text-center view-data">
+                                                <a href="{{ route('help.show', ['help' => $model->id]) }}">
+                                                    {{ $i + 1 }}
+                                                </a>
+                                            </td>
                                             <td class="text-center view-data">
                                                 <a href="{{ route('help.show', ['help' => $model->id]) }}">
                                                     {{ $model->display_order }}

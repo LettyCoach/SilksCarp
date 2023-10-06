@@ -12,7 +12,7 @@
         </nav>
     </div><!-- End Page Title -->
 
-    <section class="section">
+    <section class="section col-lg-8 mx-auto">
         <div class="card">
             <div class="row d-flex justify-content-center">
 
@@ -73,7 +73,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col d-flex justify-content-center">
+                        <div class="col d-flex justify-content-start">
                             <button type="button" class="btn btn-secondary"
                                 onclick="location.href='{{ route('a2a.index') }}'">
                                 <i class="bi-list-stars"></i> 一覧を見る

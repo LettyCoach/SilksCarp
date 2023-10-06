@@ -2,10 +2,12 @@
 
 namespace App\Models\Alarm;
 
+use App\Models\User;
 use Config;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class AlarmToIndividual extends Model
 {
@@ -23,6 +25,11 @@ class AlarmToIndividual extends Model
     public function getEndDate()
     {
         return Carbon::parse($this->end_date)->format("Y-m-d");
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
 }

@@ -541,7 +541,7 @@
                     <div class="col-lg-3 col-md-6 col-12">
                         <!-- Start Single Product -->
                         <div class="single-product">
-                            <div class="product-image">
+                            <div class="product-image d-flex justify-content-center">
                                 <a href="{{ route('nogin.index', ['id' => $model->id]) }}">
                                     <img style="aspect-radio: 1/1.3!important; overflow:hidden; width: 250px; height: 360px; object-fit: cover;"
                                         class="img-fluid product_img" src="{{ $model->product->getImageUrlFirst() }}"

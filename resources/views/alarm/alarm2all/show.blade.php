@@ -2,7 +2,7 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('assets/css/alarm/a2a.css') }}">
     <div class="pagetitle">
-        <h1>商品</h1>
+        <h1>お知らせ</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>
@@ -12,7 +12,7 @@
         </nav>
     </div><!-- End Page Title -->
 
-    <section class="section">
+    <section class="section col-lg-8 mx-auto">
         <div class="card">
             <div class="row d-flex justify-content-center">
 
@@ -46,7 +46,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col d-flex justify-content-left px-5 mx-5 py-2">
+                            <div class="col d-flex justify-content-start px-5 mx-5 py-2">
                                 <button type="button" class="btn btn-secondary"
                                     onclick="location.href='{{ route('a2a.index') }}'">
                                     <i class="bi-list-stars"></i> 一覧を見る

@@ -52,6 +52,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
     public function getAvatar()
     {
         $url = "assets/users/$this->id.png";
